@@ -12,7 +12,8 @@ An immersive, high-performance 3D portfolio and interactive AI engineering lab b
 ---
 
 <p align="center">
-  <img width="100%" alt="Portfolio Preview" src="https://github.com/user-attachments/assets/2ca00269-b401-49fe-ad1e-36a3ed975457" />
+  <img width="1667" height="943" alt="ChatGPT Image Jul 8, 2026, 09_47_13 PM" src="https://github.com/user-attachments/assets/b6a9022d-ff24-41e6-ae3f-c97c8c7eafb5" />
+
 </p>
 
 ---
