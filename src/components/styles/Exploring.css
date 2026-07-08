@@ -1,0 +1,372 @@
+/* ═══════════════════════════════════════════════════════
+   Currently Exploring — Now Learning Player Theme
+   ═══════════════════════════════════════════════════════ */
+
+.exploring-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 140px 0;
+  margin: auto;
+  overflow: hidden;
+  background: #0b080c; /* clean solid black background */
+}
+
+/* Remove all floating particles and ambient gradients */
+.exploring-particles,
+.exploring-section::before {
+  display: none !important;
+}
+
+/* ─── Header ─── */
+.exploring-header {
+  text-align: center;
+  margin-bottom: 70px;
+  position: relative;
+  z-index: 1;
+}
+
+.exploring-header h2 {
+  font-size: 70px;
+  line-height: 75px;
+  font-weight: 400;
+  margin: 0 0 20px;
+}
+
+.exploring-header h2 .exploring-title-exploring {
+  color: #fff;
+}
+
+.exploring-header h2 .exploring-title-radar {
+  color: var(--accentColor);
+}
+
+.exploring-subtitle {
+  font-size: 16px;
+  font-weight: 300;
+  color: rgba(234, 229, 236, 0.45);
+  max-width: 440px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ─── Player Wrapper ─── */
+.exploring-player-wrapper {
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.exploring-player-card {
+  position: relative;
+  padding: 48px 44px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(194, 164, 255, 0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.exploring-player-card:hover {
+  border-color: rgba(194, 164, 255, 0.15);
+  box-shadow: 0 25px 70px -30px rgba(127, 64, 255, 0.1);
+}
+
+/* Slide/fade content transitions */
+.exploring-player-content-wrap {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ─── Player Label (🎧 NOW LEARNING) ─── */
+.exploring-player-label-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.exploring-player-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accentColor);
+}
+
+.exploring-player-label span {
+  font-size: 13px;
+}
+
+/* Mini Audio Equalizer */
+.exploring-equalizer {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 14px;
+}
+
+.exploring-equalizer-bar {
+  width: 2px;
+  height: 100%;
+  background: var(--accentColor);
+  border-radius: 1px;
+  transform-origin: bottom;
+  transform: scaleY(0.2);
+  transition: transform 0.3s ease;
+}
+
+.exploring-equalizer-bar--active {
+  animation: exploringEqualizerBounce 1.2s ease-in-out infinite alternate;
+}
+
+.exploring-equalizer-bar:nth-child(1) { animation-delay: 0.1s; }
+.exploring-equalizer-bar:nth-child(2) { animation-delay: 0.4s; }
+.exploring-equalizer-bar:nth-child(3) { animation-delay: 0.2s; }
+.exploring-equalizer-bar:nth-child(4) { animation-delay: 0.5s; }
+
+@keyframes exploringEqualizerBounce {
+  0% { transform: scaleY(0.25); }
+  100% { transform: scaleY(1); }
+}
+
+/* ─── Track Title (▶ Agentic AI) ─── */
+.exploring-track-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 34px;
+  font-weight: 500;
+  color: #fff;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.5px;
+}
+
+.exploring-track-title span {
+  font-size: 24px;
+  color: var(--accentColor);
+  opacity: 0.85;
+}
+
+/* ─── Track Subtitle (by OpenAI • LangChain • MCP) ─── */
+.exploring-track-subtitle {
+  font-size: 16px;
+  font-weight: 300;
+  color: rgba(234, 229, 236, 0.45);
+  margin: 0 0 32px 0;
+  letter-spacing: 0.3px;
+}
+
+/* ─── Timeline Scrubber ─── */
+.exploring-timeline-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.exploring-timeline-time {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11.5px;
+  color: rgba(234, 229, 236, 0.35);
+  min-width: 36px;
+}
+
+.exploring-timeline-bar-bg {
+  flex: 1;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.exploring-timeline-bar-bg:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.exploring-timeline-bar-progress {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--accentColor);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.exploring-timeline-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accentColor);
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 8px var(--accentColor);
+  transition: transform 0.2s ease;
+}
+
+.exploring-timeline-bar-bg:hover .exploring-timeline-dot {
+  transform: translate(-50%, -50%) scale(1.3);
+}
+
+/* ─── Player Controls ─── */
+.exploring-player-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  margin-top: 10px;
+}
+
+.exploring-control-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.exploring-control-btn svg {
+  fill: rgba(234, 229, 236, 0.5);
+  transition: fill 0.3s ease;
+}
+
+.exploring-control-btn:hover svg {
+  fill: #fff;
+}
+
+.exploring-control-btn:active {
+  transform: scale(0.92);
+}
+
+.exploring-control-btn--play-pause {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.exploring-control-btn--play-pause svg {
+  fill: var(--accentColor);
+}
+
+.exploring-control-btn--play-pause:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: scale(1.05);
+}
+
+.exploring-control-btn--play-pause:hover svg {
+  fill: #fff;
+  filter: drop-shadow(0 0 6px var(--accentColor));
+}
+
+.exploring-control-btn--play-pause:active {
+  transform: scale(0.95);
+}
+
+/* ─── Tags spec display ─── */
+.exploring-player-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.05);
+}
+
+.exploring-player-tag {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: rgba(234, 229, 236, 0.4);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 5px 12px;
+  transition: all 0.3s ease;
+}
+
+.exploring-player-card:hover .exploring-player-tag {
+  border-color: rgba(194, 164, 255, 0.15);
+  color: rgba(234, 229, 236, 0.65);
+}
+
+.exploring-player-tag:hover {
+  background: rgba(194, 164, 255, 0.08) !important;
+  border-color: var(--accentColor) !important;
+  color: var(--accentColor) !important;
+}
+
+/* ─── GSAP entrance ─── */
+.exploring-player-wrapper {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.exploring-player-wrapper.exploring-player-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Responsive ─── */
+@media only screen and (max-width: 1400px) {
+  .exploring-header h2 {
+    font-size: 55px;
+    line-height: 60px;
+  }
+  .exploring-track-title {
+    font-size: 28px;
+  }
+  .exploring-track-subtitle {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 1025px) {
+  .exploring-section {
+    padding: 100px 0;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .exploring-header h2 {
+    font-size: 45px;
+    line-height: 48px;
+  }
+  .exploring-player-card {
+    padding: 36px 30px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .exploring-section {
+    padding: 60px 0;
+  }
+  .exploring-header h2 {
+    font-size: 34px;
+    line-height: 38px;
+  }
+  .exploring-track-title {
+    font-size: 22px;
+  }
+  .exploring-track-title span {
+    font-size: 18px;
+  }
+  .exploring-player-card {
+    padding: 28px 20px;
+  }
+}

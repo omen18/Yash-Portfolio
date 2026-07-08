@@ -1,0 +1,383 @@
+/* ═══════════════════════════════════════════════════════
+   Open To Section — macOS Finder Theme Overhaul
+   ═══════════════════════════════════════════════════════ */
+
+.opento-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 140px 0;
+  margin: auto;
+  overflow: visible;
+  background: #0b080c; /* solid black background */
+}
+
+/* Remove all floating particles and ambient gradients */
+.opento-particles,
+.opento-section::before {
+  display: none !important;
+}
+
+/* ─── Header ─── */
+.opento-header {
+  text-align: center;
+  margin-bottom: 70px;
+  position: relative;
+  z-index: 1;
+}
+
+.opento-header h2 {
+  font-size: 70px;
+  line-height: 75px;
+  font-weight: 400;
+  margin: 0 0 20px;
+}
+
+.opento-header h2 .opento-title-open {
+  color: #fff;
+}
+
+.opento-header h2 .opento-title-work {
+  color: var(--accentColor);
+}
+
+.opento-subtitle {
+  font-size: 16px;
+  font-weight: 300;
+  color: rgba(234, 229, 236, 0.5);
+  letter-spacing: 0.5px;
+  max-width: 440px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.opento-tagline {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--accentColor);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-top: 16px;
+  opacity: 0.6;
+}
+
+/* ════════════════════════════════════════════════════════
+   macOS FINDER WINDOW
+   ════════════════════════════════════════════════════════ */
+
+.opento-finder-window {
+  width: 100%;
+  max-width: 900px;
+  border-radius: 12px;
+  background: #0e0a12;
+  border: 1px solid rgba(194, 164, 255, 0.08);
+  box-shadow: 0 30px 80px -25px rgba(0, 0, 0, 0.8),
+              0 0 40px -15px rgba(127, 64, 255, 0.05);
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Finder Title Bar ─── */
+.opento-finder-titlebar {
+  height: 48px;
+  background: #140f1a;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  position: relative;
+}
+
+.opento-finder-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.opento-finder-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.opento-finder-dot--red { background: #ff5f56; }
+.opento-finder-dot--yellow { background: #ffbd2e; }
+.opento-finder-dot--green { background: #27c93f; }
+
+.opento-finder-arrows {
+  display: flex;
+  gap: 12px;
+  margin-left: 28px;
+}
+
+.opento-finder-arrow {
+  cursor: pointer;
+  opacity: 0.3;
+  transition: opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.opento-finder-arrow:hover {
+  opacity: 0.8;
+}
+
+.opento-finder-arrow svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2;
+}
+
+.opento-finder-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(234, 229, 236, 0.7);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.opento-finder-title svg {
+  width: 15px;
+  height: 15px;
+  stroke: var(--accentColor);
+  fill: none;
+  stroke-width: 2;
+}
+
+/* ─── Finder Body Layout ─── */
+.opento-finder-body {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: 400px;
+}
+
+/* Sidebar (Left) */
+.opento-finder-sidebar {
+  background: #100b16;
+  border-right: 1px solid rgba(255, 255, 255, 0.03);
+  padding: 20px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.opento-sidebar-label {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(234, 229, 236, 0.25);
+  letter-spacing: 0.5px;
+  padding-left: 8px;
+}
+
+.opento-sidebar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.opento-sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  color: rgba(234, 229, 236, 0.55);
+}
+
+.opento-sidebar-item svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+  transition: stroke 0.3s ease;
+}
+
+.opento-sidebar-item:hover {
+  background: rgba(255, 255, 255, 0.02);
+  color: rgba(234, 229, 236, 0.85);
+}
+
+.opento-sidebar-item-active {
+  background: rgba(194, 164, 255, 0.08) !important;
+  color: #fff !important;
+  font-weight: 500;
+}
+
+.opento-sidebar-item-active svg {
+  stroke: var(--accentColor);
+  filter: drop-shadow(0 0 3px var(--accentColor));
+}
+
+/* Main Area (Right) */
+.opento-finder-content {
+  background: #0e0a12;
+  padding: 30px 40px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Path Indicator */
+.opento-content-path {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: rgba(234, 229, 236, 0.25);
+  margin-bottom: 24px;
+}
+
+.opento-content-path span {
+  color: var(--accentColor);
+}
+
+/* Folder Content animation wrappers */
+.opento-content-inner {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.opento-content-fade {
+  opacity: 0;
+  transform: translateX(12px);
+}
+
+/* Folder title & desc */
+.opento-content-inner h3 {
+  font-size: 32px;
+  font-weight: 500;
+  color: #fff;
+  margin: 0 0 12px 0;
+  letter-spacing: -0.5px;
+}
+
+.opento-content-inner p {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: rgba(234, 229, 236, 0.45);
+  margin: 0 0 32px 0;
+}
+
+/* Grid specs list */
+.opento-content-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.opento-tag {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: rgba(234, 229, 236, 0.4);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 6px 14px;
+  transition: all 0.3s ease;
+}
+
+.opento-tag:hover {
+  background: rgba(194, 164, 255, 0.08) !important;
+  border-color: var(--accentColor) !important;
+  color: var(--accentColor) !important;
+  transform: translateY(-1px);
+}
+
+/* ─── Finder Status Bar ─── */
+.opento-finder-statusbar {
+  height: 32px;
+  background: #100b16;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 11px;
+  color: rgba(234, 229, 236, 0.25);
+  letter-spacing: 0.5px;
+}
+
+/* ─── Responsive styling ─── */
+@media only screen and (max-width: 1400px) {
+  .opento-header h2 {
+    font-size: 55px;
+    line-height: 60px;
+  }
+}
+
+@media only screen and (max-width: 1025px) {
+  .opento-section {
+    padding: 100px 0;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .opento-header h2 {
+    font-size: 45px;
+    line-height: 48px;
+  }
+  .opento-finder-body {
+    grid-template-columns: 200px 1fr;
+  }
+  .opento-finder-content {
+    padding: 24px 30px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .opento-finder-body {
+    grid-template-columns: 1fr;
+  }
+  .opento-finder-sidebar {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 16px;
+    flex-direction: row;
+    overflow-x: auto;
+    white-space: nowrap;
+    gap: 8px;
+  }
+  .opento-sidebar-label {
+    display: none;
+  }
+  .opento-sidebar-list {
+    flex-direction: row;
+    gap: 6px;
+  }
+  .opento-sidebar-item {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .opento-section {
+    padding: 60px 0;
+  }
+  .opento-header h2 {
+    font-size: 34px;
+    line-height: 38px;
+  }
+  .opento-content-inner h3 {
+    font-size: 24px;
+  }
+}

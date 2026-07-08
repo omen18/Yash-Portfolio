@@ -1,0 +1,162 @@
+.about-section {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  place-items: center;
+  position: relative;
+  opacity: 1;
+  height: auto;
+  width: var(--cWidth);
+  margin: auto;
+}
+.about-me {
+  padding: 50px 0px;
+  padding-bottom: 0;
+  width: 500px;
+  max-width: calc(100% - 15px);
+}
+.about-me h3 {
+  font-size: 25px;
+  text-transform: uppercase;
+  letter-spacing: 7px;
+  font-weight: 400;
+  color: var(--accentColor);
+}
+
+.about-me p {
+  font-size: 33px;
+  font-weight: 600;
+  line-height: 36px;
+  letter-spacing: 1px;
+}
+
+@media only screen and (min-width: 600px) {
+  .about-section {
+    justify-content: center;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .about-me {
+    width: 500px;
+    max-width: calc(100% - 70px);
+    transform: translateY(0%);
+  }
+  .about-section {
+    opacity: 1;
+  }
+}
+@media only screen and (min-width: 1025px) {
+  .about-section {
+    width: var(--cWidth);
+    justify-content: right;
+    max-width: 1920px;
+    height: var(--vh);
+    padding: 0px;
+    opacity: 1;
+  }
+  .about-me {
+    padding: 0px;
+    width: 50%;
+  }
+  .about-me p {
+    font-size: 1.9vw;
+    line-height: 2.3vw;
+  }
+}
+@media only screen and (min-width: 1950px) {
+  .about-me p {
+    font-size: 2.5rem;
+    line-height: 2.7rem;
+  }
+}
+
+/* ─── Trait Rotator ─── */
+.about-trait-container {
+  margin-top: 40px;
+  padding: 24px 30px;
+  border-left: 2px solid var(--accentColor);
+  background: rgba(255, 255, 255, 0.01);
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.about-trait-container:hover {
+  background: rgba(194, 164, 255, 0.02);
+  border-left-color: #fff;
+}
+
+.about-trait-content {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.about-trait-fade {
+  opacity: 0;
+  transform: translateX(15px);
+}
+
+.about-trait-title {
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0 0 10px 0;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.about-trait-title span {
+  color: var(--accentColor);
+  font-family: monospace;
+  margin-right: 4px;
+}
+
+.about-trait-desc {
+  font-size: 16px !important;
+  font-weight: 300 !important;
+  line-height: 24px !important;
+  color: rgba(234, 229, 236, 0.6) !important;
+  margin: 0 !important;
+}
+
+.about-trait-indicators {
+  display: flex;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.about-trait-dot {
+  width: 24px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.about-trait-dot:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.about-trait-dot-active {
+  background: var(--accentColor);
+  width: 40px;
+}
+
+/* Media queries update */
+@media only screen and (max-width: 1024px) {
+  .about-trait-title {
+    font-size: 18px;
+  }
+  .about-trait-desc {
+    font-size: 14px !important;
+    line-height: 20px !important;
+  }
+  .about-trait-container {
+    margin-top: 30px;
+    padding: 20px;
+  }
+}
+
