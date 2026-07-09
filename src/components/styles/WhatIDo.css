@@ -22,7 +22,7 @@
   font-size: calc(4vw + 25px);
   line-height: calc(4vw + 20px);
   font-weight: 600;
-  margin-right: 10%;
+  margin-right: 22%;
   margin-bottom: 100px;
 }
 
@@ -278,12 +278,12 @@
 }
 @media only screen and (max-width: 1600px) {
   .what-box h2 {
-    margin-right: 18%;
+    margin-right: 25%;
   }
 }
 @media only screen and (max-width: 1400px) {
   .what-box h2 {
-    margin-right: 20%;
+    margin-right: 28%;
   }
   .what-box-in {
     height: 400px;
