@@ -69,8 +69,11 @@ const Scene = () => {
               animations.startIntro();
             }, 2500);
           });
+          let loadedCharacter: THREE.Object3D | null = character;
           const onResize = () => {
-            handleResize(renderer, camera, canvasDiv);
+            if (loadedCharacter) {
+              handleResize(renderer, camera, canvasDiv, loadedCharacter);
+            }
           };
           window.addEventListener("resize", onResize);
 
