@@ -2,12 +2,10 @@ import * as THREE from "three";
 import { useRef, useMemo, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
-import { EffectComposer, N8AO } from "@react-three/postprocessing";
 import {
   BallCollider,
   Physics,
   RigidBody,
-  CylinderCollider,
   RapierRigidBody,
 } from "@react-three/rapier";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -63,7 +61,7 @@ const skillsList = [
 
 const sphereGeometry = new THREE.SphereGeometry(1, 28, 28);
 
-const spheres = [...Array(70)].map(() => ({
+const spheres = [...Array(48)].map(() => ({
   scale: [0.7, 1, 0.8, 1, 1][Math.floor(Math.random() * 5)],
 }));
 
@@ -71,7 +69,7 @@ type SphereProps = {
   vec?: THREE.Vector3;
   scale: number;
   r?: typeof THREE.MathUtils.randFloatSpread;
-  material: THREE.MeshPhysicalMaterial;
+  material: THREE.MeshStandardMaterial;
   isActive: boolean;
 };
 
@@ -111,11 +109,6 @@ function SphereGeo({
       colliders={false}
     >
       <BallCollider args={[scale]} />
-      <CylinderCollider
-        rotation={[Math.PI / 2, 0, 0]}
-        position={[0, 0, 1.2 * scale]}
-        args={[0.15 * scale, 0.275 * scale]}
-      />
       <mesh
         castShadow
         receiveShadow
@@ -574,7 +567,7 @@ const TechStack = () => {
       const techstackEl = document.getElementById("techstack");
       if (techstackEl) {
         const rect = techstackEl.getBoundingClientRect();
-        setIsActive(rect.top < window.innerHeight && rect.bottom > 0);
+        setIsActive(rect.top < window.innerHeight + 400 && rect.bottom > -400);
       }
     };
     document.querySelectorAll(".header a").forEach((elem) => {
@@ -599,14 +592,11 @@ const TechStack = () => {
   const materials = useMemo(() => {
     return processedTextures.map(
       (texture) =>
-        new THREE.MeshPhysicalMaterial({
+        new THREE.MeshStandardMaterial({
           color: "#ffffff",
           map: texture,
-          metalness: 0.05,
-          roughness: 0.15,
-          clearcoat: 1.0,
-          clearcoatRoughness: 0.05,
-          reflectivity: 0.8,
+          metalness: 0.1,
+          roughness: 0.1,
         })
     );
   }, [processedTextures]);
@@ -615,44 +605,45 @@ const TechStack = () => {
     <div className="techstack" id="techstack">
       <h2> My Techstack</h2>
 
-      <Canvas
-        shadows
-        gl={{ alpha: true, stencil: false, depth: false, antialias: false }}
-        camera={{ position: [0, 0, 20], fov: 32.5, near: 1, far: 100 }}
-        onCreated={(state) => (state.gl.toneMappingExposure = 1.5)}
-        className="tech-canvas"
-      >
-        <ambientLight intensity={1} />
-        <spotLight
-          position={[20, 20, 25]}
-          penumbra={1}
-          angle={0.2}
-          color="white"
-          castShadow
-          shadow-mapSize={[512, 512]}
-        />
-        <directionalLight position={[0, 5, -4]} intensity={2} />
-        <Physics gravity={[0, 0, 0]}>
-          <Pointer isActive={isActive} />
-          {materials.length > 0 &&
-            spheres.map((props, i) => (
-              <SphereGeo
-                key={i}
-                {...props}
-                material={materials[i < materials.length ? i : Math.floor(Math.random() * materials.length)]}
-                isActive={isActive}
-              />
-            ))}
-        </Physics>
-        <Environment
-          files="/models/char_enviorment.hdr"
-          environmentIntensity={0.5}
-          environmentRotation={[0, 4, 2]}
-        />
-        <EffectComposer enableNormalPass={false}>
-          <N8AO color="#0f002c" aoRadius={2} intensity={1.15} />
-        </EffectComposer>
-      </Canvas>
+      {isActive ? (
+        <Canvas
+          shadows
+          gl={{ alpha: true, stencil: false, depth: false, antialias: false }}
+          camera={{ position: [0, 0, 20], fov: 32.5, near: 1, far: 100 }}
+          onCreated={(state) => (state.gl.toneMappingExposure = 1.5)}
+          className="tech-canvas"
+        >
+          <ambientLight intensity={1} />
+          <spotLight
+            position={[20, 20, 25]}
+            penumbra={1}
+            angle={0.2}
+            color="white"
+            castShadow
+            shadow-mapSize={[512, 512]}
+          />
+          <directionalLight position={[0, 5, -4]} intensity={2} />
+          <Physics gravity={[0, 0, 0]}>
+            <Pointer isActive={isActive} />
+            {materials.length > 0 &&
+              spheres.map((props, i) => (
+                <SphereGeo
+                  key={i}
+                  {...props}
+                  material={materials[i < materials.length ? i : Math.floor(Math.random() * materials.length)]}
+                  isActive={isActive}
+                />
+              ))}
+          </Physics>
+          <Environment
+            files="/models/char_enviorment.hdr"
+            environmentIntensity={0.5}
+            environmentRotation={[0, 4, 2]}
+          />
+        </Canvas>
+      ) : (
+        <div className="tech-canvas-placeholder" style={{ height: "100%", width: "100%" }} />
+      )}
     </div>
   );
 };
