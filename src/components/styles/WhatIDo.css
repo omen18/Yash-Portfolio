@@ -24,6 +24,7 @@
   font-weight: 600;
   margin-right: 22%;
   margin-bottom: 100px;
+  transform: translateX(-80px);
 }
 
 .hat-h2 {
@@ -358,6 +359,7 @@
     margin: 50px 0;
     font-size: 55px;
     line-height: 53px;
+    transform: none;
   }
   .what-box:first-child {
     justify-content: left;
