@@ -38,9 +38,10 @@ const projectsList: Project[] = [
     category: "iOS Development",
     tools: "Swift, SwiftUI, iOS SDK, Dynamic Island Integration",
     images: [
-      "/images/islandpet_home.png",
-      "/images/islandpet_evolution.png",
-      "/images/islandpet_mobile.png"
+      "/images/islandpet_desktop_home.png",
+      "/images/islandpet_desktop_evolution.png",
+      "/images/islandpet_mobile_home.png",
+      "/images/islandpet_mobile_evolution.png"
     ],
     link: "https://github.com/omen18/IslandPet"
   },
