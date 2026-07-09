@@ -14,16 +14,27 @@ const SocialIcons = () => {
 
   useEffect(() => {
     const social = document.getElementById("social") as HTMLElement;
+    if (!social) return;
+
+    const cleanups: (() => void)[] = [];
 
     social.querySelectorAll("span").forEach((item) => {
       const elem = item as HTMLElement;
       const link = elem.querySelector("a") as HTMLElement;
+      if (!link) return;
 
-      const rect = elem.getBoundingClientRect();
-      let mouseX = rect.width / 2;
-      let mouseY = rect.height / 2;
-      let currentX = 0;
-      let currentY = 0;
+      const centerX = 25;
+      const centerY = 25;
+      let mouseX = centerX;
+      let mouseY = centerY;
+      let currentX = centerX;
+      let currentY = centerY;
+      let isHovered = false;
+      let animationFrameId: number;
+
+      // Set initial centered coordinates
+      link.style.setProperty("--siLeft", `${centerX}px`);
+      link.style.setProperty("--siTop", `${centerY}px`);
 
       const updatePosition = () => {
         currentX += (mouseX - currentX) * 0.1;
@@ -32,10 +43,20 @@ const SocialIcons = () => {
         link.style.setProperty("--siLeft", `${currentX}px`);
         link.style.setProperty("--siTop", `${currentY}px`);
 
-        requestAnimationFrame(updatePosition);
+        if (!isHovered) {
+          // Stop the animation frame ticking when link settled back to center
+          if (Math.abs(currentX - centerX) < 0.05 && Math.abs(currentY - centerY) < 0.05) {
+            link.style.setProperty("--siLeft", `${centerX}px`);
+            link.style.setProperty("--siTop", `${centerY}px`);
+            return;
+          }
+        }
+
+        animationFrameId = requestAnimationFrame(updatePosition);
       };
 
       const onMouseMove = (e: MouseEvent) => {
+        const rect = elem.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
 
@@ -43,19 +64,38 @@ const SocialIcons = () => {
           mouseX = x;
           mouseY = y;
         } else {
-          mouseX = rect.width / 2;
-          mouseY = rect.height / 2;
+          mouseX = centerX;
+          mouseY = centerY;
         }
       };
 
-      document.addEventListener("mousemove", onMouseMove);
-
-      updatePosition();
-
-      return () => {
-        elem.removeEventListener("mousemove", onMouseMove);
+      const onMouseEnter = () => {
+        isHovered = true;
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = requestAnimationFrame(updatePosition);
       };
+
+      const onMouseLeave = () => {
+        isHovered = false;
+        mouseX = centerX;
+        mouseY = centerY;
+      };
+
+      elem.addEventListener("mouseenter", onMouseEnter);
+      elem.addEventListener("mousemove", onMouseMove);
+      elem.addEventListener("mouseleave", onMouseLeave);
+
+      cleanups.push(() => {
+        cancelAnimationFrame(animationFrameId);
+        elem.removeEventListener("mouseenter", onMouseEnter);
+        elem.removeEventListener("mousemove", onMouseMove);
+        elem.removeEventListener("mouseleave", onMouseLeave);
+      });
     });
+
+    return () => {
+      cleanups.forEach((cleanup) => cleanup());
+    };
   }, []);
 
   const handleResumeClick = (e: React.MouseEvent) => {

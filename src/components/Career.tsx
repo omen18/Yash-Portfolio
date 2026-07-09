@@ -13,15 +13,19 @@ const Career = () => {
   const [isSliding, setIsSliding] = useState(false);
 
   useEffect(() => {
+    let timeoutId: any;
     const interval = setInterval(() => {
       setIsSliding(true);
-      setTimeout(() => {
+      timeoutId = setTimeout(() => {
         setRoleIndex((prev) => (prev + 1) % careerRoles.length);
         setIsSliding(false);
       }, 800);
     }, 3000);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeoutId);
+    };
   }, []);
 
   const nextRoleIndex = (roleIndex + 1) % careerRoles.length;

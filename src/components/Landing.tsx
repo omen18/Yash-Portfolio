@@ -13,17 +13,21 @@ const Landing = ({ children }: PropsWithChildren) => {
   const [isSliding, setIsSliding] = useState(false);
 
   useEffect(() => {
+    let timeoutId: any;
     const interval = setInterval(() => {
       setIsSliding(true);
       
       // Sync the state swap with the CSS transition duration (800ms)
-      setTimeout(() => {
+      timeoutId = setTimeout(() => {
         setCurrentIndex((prev) => (prev + 1) % roles.length);
         setIsSliding(false);
       }, 800);
     }, 3000);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeoutId);
+    };
   }, []);
 
   const nextIndex = (currentIndex + 1) % roles.length;
