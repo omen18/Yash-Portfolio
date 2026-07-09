@@ -481,66 +481,72 @@ const TechStack = () => {
               img.crossOrigin = "anonymous";
               img.src = skill.url!;
               img.onload = () => {
-                const canvas = document.createElement("canvas");
-                canvas.width = img.width;
-                canvas.height = img.height;
-                const ctx = canvas.getContext("2d");
-                if (!ctx) {
-                  const fallbackTex = new THREE.Texture(img);
-                  fallbackTex.needsUpdate = true;
-                  resolve(fallbackTex);
-                  return;
-                }
+                try {
+                  const canvas = document.createElement("canvas");
+                  canvas.width = img.width;
+                  canvas.height = img.height;
+                  const ctx = canvas.getContext("2d");
+                  if (!ctx) {
+                    const fallbackTex = new THREE.Texture(img);
+                    fallbackTex.needsUpdate = true;
+                    resolve(fallbackTex);
+                    return;
+                  }
 
-                ctx.drawImage(img, 0, 0);
-                const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-                const data = imgData.data;
+                  ctx.drawImage(img, 0, 0);
+                  const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                  const data = imgData.data;
 
-                const sampleX = Math.min(5, canvas.width - 1);
-                const sampleY = Math.min(5, canvas.height - 1);
-                const sampleIdx = (sampleY * canvas.width + sampleX) * 4;
+                  const sampleX = Math.min(5, canvas.width - 1);
+                  const sampleY = Math.min(5, canvas.height - 1);
+                  const sampleIdx = (sampleY * canvas.width + sampleX) * 4;
 
-                const rBg = data[sampleIdx];
-                const gBg = data[sampleIdx + 1];
-                const bBg = data[sampleIdx + 2];
+                  const rBg = data[sampleIdx];
+                  const gBg = data[sampleIdx + 1];
+                  const bBg = data[sampleIdx + 2];
 
-                const threshold = 35; // Tighter threshold to prevent erasing black logos
+                  const threshold = 35; // Tighter threshold to prevent erasing black logos
 
-                for (let i = 0; i < data.length; i += 4) {
-                  const r = data[i];
-                  const g = data[i + 1];
-                  const b = data[i + 2];
-                  const a = data[i + 3];
+                  for (let i = 0; i < data.length; i += 4) {
+                    const r = data[i];
+                    const g = data[i + 1];
+                    const b = data[i + 2];
+                    const a = data[i + 3];
 
-                  const dist = Math.sqrt(
-                    (r - rBg) ** 2 +
-                    (g - gBg) ** 2 +
-                    (b - bBg) ** 2
-                  );
+                    const dist = Math.sqrt(
+                      (r - rBg) ** 2 +
+                      (g - gBg) ** 2 +
+                      (b - bBg) ** 2
+                    );
 
-                  const isBg = a < 50 || dist < threshold;
+                    const isBg = a < 50 || dist < threshold;
 
-                  if (isBg) {
-                    // Make background pure white
-                    data[i] = 255;
-                    data[i + 1] = 255;
-                    data[i + 2] = 255;
-                    data[i + 3] = 255;
-                  } else {
-                    // Color inversion: if the logo element is white/light, convert it to premium purple (#7928ca)
-                    const isWhiteLogoPixel = r > 200 && g > 200 && b > 200;
-                    if (isWhiteLogoPixel) {
-                      data[i] = 121;     // Red (79)
-                      data[i + 1] = 40;  // Green (28)
-                      data[i + 2] = 202; // Blue (ca)
+                    if (isBg) {
+                      // Make background pure white
+                      data[i] = 255;
+                      data[i + 1] = 255;
+                      data[i + 2] = 255;
+                      data[i + 3] = 255;
+                    } else {
+                      // Color inversion: if the logo element is white/light, convert it to premium purple (#7928ca)
+                      const isWhiteLogoPixel = r > 200 && g > 200 && b > 200;
+                      if (isWhiteLogoPixel) {
+                        data[i] = 121;     // Red (79)
+                        data[i + 1] = 40;  // Green (28)
+                        data[i + 2] = 202; // Blue (ca)
+                      }
                     }
                   }
-                }
 
-                ctx.putImageData(imgData, 0, 0);
-                const canvasTex = new THREE.CanvasTexture(canvas);
-                canvasTex.colorSpace = THREE.SRGBColorSpace;
-                resolve(canvasTex);
+                  ctx.putImageData(imgData, 0, 0);
+                  const canvasTex = new THREE.CanvasTexture(canvas);
+                  canvasTex.colorSpace = THREE.SRGBColorSpace;
+                  resolve(canvasTex);
+                } catch (error) {
+                  console.error("Error processing texture with canvas (e.g. CORS/Tainted canvas):", error);
+                  const loader = new THREE.TextureLoader();
+                  resolve(loader.load(skill.url!));
+                }
               };
               img.onerror = () => {
                 const loader = new THREE.TextureLoader();
