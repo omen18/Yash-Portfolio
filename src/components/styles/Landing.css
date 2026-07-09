@@ -297,6 +297,7 @@
     bottom: 0;
     z-index: 11;
     position: fixed;
+    left: 48.5%;
   }
   .character-model::after,
   .character-model::before {
@@ -305,7 +306,7 @@
   .landing-intro {
     top: 50%;
     left: auto;
-    right: 66%;
+    right: 68.5%;
     transform: translate(0%, -50%);
   }
 
@@ -323,7 +324,7 @@
   .landing-intro {
     top: 50%;
     left: auto;
-    right: 70%;
+    right: 72.5%;
     transform: translate(0%, -50%);
   }
 
