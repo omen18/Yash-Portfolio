@@ -38,9 +38,7 @@
   gap: 50px;
   justify-content: start;
 }
-.work-flex .work-box:nth-child(even) {
-  flex-direction: column-reverse;
-}
+
 .work-flex::before,
 .work-flex::after {
   content: "";
@@ -233,9 +231,7 @@
     padding: 40px 20px;
     gap: 30px;
   }
-  .work-flex .work-box:nth-child(even) {
-    flex-direction: column;
-  }
+
 }
 
 /* ─── Work Gallery Interactive Thumbnails ─── */
@@ -244,6 +240,7 @@
   flex-direction: column;
   gap: 15px;
   width: 100%;
+  margin-top: auto;
 }
 
 .work-gallery-thumbnails {
