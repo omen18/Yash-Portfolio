@@ -51,8 +51,8 @@ const projectsList: Project[] = [
     category: "AI Integration",
     tools: "React, FastAPI, OpenAI API, LLM Agents",
     images: [
-      "/images/study_landing.png",
-      "/images/study_dashboard.png"
+      "/images/study_showcase_landing.png",
+      "/images/study_showcase_dashboard.png"
     ],
     link: "https://github.com/omen18"
   },
