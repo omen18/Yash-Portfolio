@@ -62,9 +62,9 @@ const projectsList: Project[] = [
     category: "Full Stack & Web Dev",
     tools: "React, Node.js, Express, PostgreSQL, Crop Analytics",
     images: [
-      "/images/krishi_landing.png",
-      "/images/krishi_analysis.png",
-      "/images/krishi_chart.png"
+      "/images/krishi_showcase_landing.png",
+      "/images/krishi_showcase_analysis.png",
+      "/images/krishi_showcase_chart.png"
     ],
     link: "https://github.com/omen18"
   },
