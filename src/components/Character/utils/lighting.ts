@@ -11,11 +11,13 @@ const setLighting = (scene: THREE.Scene) => {
   directionalLight.shadow.mapSize.height = 1024;
   directionalLight.shadow.camera.near = 0.5;
   directionalLight.shadow.camera.far = 50;
+  directionalLight.shadow.bias = -0.0005;
   scene.add(directionalLight);
 
   const pointLight = new THREE.PointLight(0xc2a4ff, 0, 100, 3);
   pointLight.position.set(3, 12, 4);
   pointLight.castShadow = true;
+  pointLight.shadow.bias = -0.0005;
   scene.add(pointLight);
 
   new RGBELoader()
