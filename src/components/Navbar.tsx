@@ -4,11 +4,14 @@ import HoverLinks from "./HoverLinks";
 import { gsap } from "gsap";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import "./styles/Navbar.css";
+import { useLoading } from "../context/LoadingProvider";
 
 gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
 export let smoother: ScrollSmoother;
 
 const Navbar = () => {
+  const { isLoading } = useLoading();
+
   useEffect(() => {
     if (window.innerWidth > 1024) {
       smoother = ScrollSmoother.create({
@@ -23,7 +26,7 @@ const Navbar = () => {
       });
 
       smoother.scrollTop(0);
-      smoother.paused(true);
+      smoother.paused(isLoading);
     }
 
     let links = document.querySelectorAll(".header ul a");
@@ -46,6 +49,13 @@ const Navbar = () => {
       }
     });
   }, []);
+
+  useEffect(() => {
+    if (window.innerWidth > 1024 && smoother) {
+      smoother.paused(isLoading);
+      ScrollTrigger.refresh();
+    }
+  }, [isLoading]);
   return (
     <>
       <div className="header">
