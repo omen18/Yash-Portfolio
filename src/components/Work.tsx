@@ -24,11 +24,11 @@ const projectsList: Project[] = [
     category: "Full Stack & Database Architecture",
     tools: "React, TypeScript, Node.js, Express, MySQL",
     images: [
-      "/images/ticket_landing.png",
-      "/images/ticket_future.png",
-      "/images/ticket_signin.png",
-      "/images/ticket_payment.png",
-      "/images/ticket_review.png"
+      "/images/ticket_showpass_landing.png",
+      "/images/ticket_showpass_features.png",
+      "/images/ticket_showpass_book.png",
+      "/images/ticket_showpass_events.png",
+      "/images/ticket_showpass_visit.png"
     ],
     link: "https://github.com/omen18/Ticket-Booking-System"
   },
