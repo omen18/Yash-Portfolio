@@ -563,26 +563,28 @@ const TechStack = () => {
       ScrollTrigger.refresh();
     }, 500);
 
-    const techstackEl = document.getElementById("techstack");
-    let observer: IntersectionObserver | null = null;
-
-    if (techstackEl) {
-      observer = new IntersectionObserver(
-        ([entry]) => {
-          setIsActive(entry.isIntersecting);
-        },
-        {
-          rootMargin: "400px 0px 400px 0px", // Activates when techstack is within 400px of viewport bounds
-        }
-      );
-      observer.observe(techstackEl);
-    }
-
+    const handleScroll = () => {
+      const techstackEl = document.getElementById("techstack");
+      if (techstackEl) {
+        const rect = techstackEl.getBoundingClientRect();
+        setIsActive(rect.top < window.innerHeight + 400 && rect.bottom > -400);
+      }
+    };
+    document.querySelectorAll(".header a").forEach((elem) => {
+      const element = elem as HTMLAnchorElement;
+      element.addEventListener("click", () => {
+        const interval = setInterval(() => {
+          handleScroll();
+        }, 10);
+        setTimeout(() => {
+          clearInterval(interval);
+        }, 1000);
+      });
+    });
+    window.addEventListener("scroll", handleScroll);
     return () => {
       active = false;
-      if (observer && techstackEl) {
-        observer.unobserve(techstackEl);
-      }
+      window.removeEventListener("scroll", handleScroll);
       clearTimeout(timer);
     };
   }, []);

@@ -95,13 +95,10 @@ const OpenTo = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
-  const folderTimeoutRef = useRef<any>(null);
-
   // Active folder selection transition helper
   const changeFolder = useCallback((newIndex: number) => {
-    if (folderTimeoutRef.current) clearTimeout(folderTimeoutRef.current);
     setIsAnimating(true);
-    folderTimeoutRef.current = setTimeout(() => {
+    setTimeout(() => {
       setActiveIndex(newIndex);
       setIsAnimating(false);
     }, 450);
@@ -109,20 +106,15 @@ const OpenTo = () => {
 
   // Automatic rotation loop
   useEffect(() => {
-    let timeoutId: any;
     const interval = setInterval(() => {
       setIsAnimating(true);
-      timeoutId = setTimeout(() => {
+      setTimeout(() => {
         setActiveIndex((prev) => (prev + 1) % finderFolders.length);
         setIsAnimating(false);
       }, 450);
     }, 4500);
 
-    return () => {
-      clearInterval(interval);
-      clearTimeout(timeoutId);
-      if (folderTimeoutRef.current) clearTimeout(folderTimeoutRef.current);
-    };
+    return () => clearInterval(interval);
   }, []);
 
   const handleSidebarClick = (index: number) => {

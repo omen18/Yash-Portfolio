@@ -29,19 +29,15 @@ const About = () => {
   const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
-    let timeoutId: any;
     const interval = setInterval(() => {
       setIsAnimating(true);
-      timeoutId = setTimeout(() => {
+      setTimeout(() => {
         setIndex((prev) => (prev + 1) % traits.length);
         setIsAnimating(false);
       }, 500);
     }, 4000);
 
-    return () => {
-      clearInterval(interval);
-      clearTimeout(timeoutId);
-    };
+    return () => clearInterval(interval);
   }, []);
 
   return (

@@ -1,7 +1,7 @@
 .impact-marquee-section {
   width: 100vw;
   padding: 3rem 0;
-  background-color: var(--backgroundColor);
+  background-color: var(--black);
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   overflow: hidden;
@@ -25,12 +25,12 @@
 
 .impact-marquee-section::before {
   left: 0;
-  background: linear-gradient(to right, var(--backgroundColor) 0%, transparent 100%);
+  background: linear-gradient(to right, var(--black) 0%, transparent 100%);
 }
 
 .impact-marquee-section::after {
   right: 0;
-  background: linear-gradient(to left, var(--backgroundColor) 0%, transparent 100%);
+  background: linear-gradient(to left, var(--black) 0%, transparent 100%);
 }
 
 .impact-marquee-container {
@@ -60,13 +60,13 @@
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--white);
   opacity: 0.8;
   white-space: nowrap;
 }
 
 .impact-star {
-  color: var(--accentColor); /* Uses your glowing accent color */
+  color: var(--accent); /* Uses your glowing accent color */
   font-size: 1.2rem;
   opacity: 0.9;
   filter: drop-shadow(0 0 8px rgba(121, 40, 202, 0.6));
