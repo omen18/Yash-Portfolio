@@ -121,7 +121,7 @@ const Exploring = () => {
         }
         return prev + 1;
       });
-    }, 200);
+    }, 1000);
 
     return () => clearInterval(timer);
   }, [isPlaying, currentTrack.durationSeconds, handleNext]);
