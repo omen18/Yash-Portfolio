@@ -308,4 +308,15 @@
     inset 0px 0px 10px 0px #393939;
 }
 
+@media only screen and (min-width: 1025px) {
+  .work-box.even-card .work-info {
+    order: 2;
+    margin-top: auto;
+  }
+  .work-box.even-card .work-gallery-wrapper {
+    order: 1;
+    margin-top: 0;
+  }
+}
+
 

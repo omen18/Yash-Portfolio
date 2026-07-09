@@ -129,8 +129,10 @@ const WorkCard = ({ project, index }: { project: Project; index: number }) => {
     return () => clearInterval(interval);
   }, [activeImage, project.images]);
 
+  const isEven = index % 2 === 1;
+
   return (
-    <div className="work-box" ref={cardRef}>
+    <div className={`work-box ${isEven ? "even-card" : ""}`} ref={cardRef}>
       <div className="work-info">
         <div className="work-title">
           <h3>0{index + 1}</h3>
