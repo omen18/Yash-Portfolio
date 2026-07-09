@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./styles/About.css";
 
 const traits = [
@@ -28,16 +28,25 @@ const About = () => {
   const [index, setIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
+  const clickTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout>;
     const interval = setInterval(() => {
       setIsAnimating(true);
-      setTimeout(() => {
+      timeoutId = setTimeout(() => {
         setIndex((prev) => (prev + 1) % traits.length);
         setIsAnimating(false);
       }, 500);
     }, 4000);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeoutId);
+      if (clickTimeoutRef.current) {
+        clearTimeout(clickTimeoutRef.current);
+      }
+    };
   }, []);
 
   return (
@@ -69,7 +78,7 @@ const About = () => {
                 onClick={() => {
                   if (i !== index && !isAnimating) {
                     setIsAnimating(true);
-                    setTimeout(() => {
+                    clickTimeoutRef.current = setTimeout(() => {
                       setIndex(i);
                       setIsAnimating(false);
                     }, 500);
