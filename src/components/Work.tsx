@@ -74,10 +74,11 @@ const projectsList: Project[] = [
     category: "Algorithm & 3D Graph Optimization",
     tools: "React, Three.js, Graph Theory, A* / Dijkstra Search",
     images: [
-      "/images/route_landing.png",
-      "/images/route_algorithms.png",
-      "/images/route_3d.png",
-      "/images/route_impact.png"
+      "/images/route_showcase_landing.png",
+      "/images/route_showcase_algorithms.png",
+      "/images/route_showcase_3d.png",
+      "/images/route_showcase_impact.png",
+      "/images/route_showcase_comparison.png"
     ],
     link: "https://github.com/omen18/AI-delivery-route-planner",
     liveLink: "https://ai-delivery-route-planner.vercel.app/"
