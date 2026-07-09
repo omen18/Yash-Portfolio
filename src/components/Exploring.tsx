@@ -115,13 +115,17 @@ const Exploring = () => {
 
     const timer = setInterval(() => {
       setElapsed((prev) => {
-        if (prev >= currentTrack.durationSeconds) {
+        // Auto-advance each track in 15 seconds of real-time play.
+        // Ticking every 100ms means 150 ticks total to complete the track.
+        const increment = currentTrack.durationSeconds / 150;
+        const nextElapsed = prev + increment;
+        if (nextElapsed >= currentTrack.durationSeconds) {
           handleNext();
           return 0;
         }
-        return prev + 1;
+        return nextElapsed;
       });
-    }, 1000);
+    }, 100);
 
     return () => clearInterval(timer);
   }, [isPlaying, currentTrack.durationSeconds, handleNext]);
