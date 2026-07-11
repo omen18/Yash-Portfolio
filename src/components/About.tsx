@@ -11,6 +11,10 @@ const traits = [
     desc: "Hidden structure, messy clues, and technical rabbit holes are my comfort zone.",
   },
   {
+    title: "Football Aficionado",
+    desc: "I live and breathe the beautiful game—whether analyzing tactical match strategies, playing on the field, or cheering for my favorite club.",
+  },
+  {
     title: "Gym Enthusiast",
     desc: "Progressive overload applies to code, models, and training logs.",
   },

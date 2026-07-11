@@ -1,0 +1,547 @@
+/* ─── Arcade Modal Overlay ─── */
+.game-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(8, 6, 12, 0.7);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999999;
+  animation: arcadeFadeIn 0.3s ease forwards;
+}
+
+/* ─── Arcade Window (macOS/Apple Style Glass) ─── */
+.game-modal {
+  position: relative;
+  background: rgba(14, 10, 20, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(194, 164, 255, 0.15);
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8), 
+              0 0 80px -20px rgba(168, 124, 255, 0.2);
+  border-radius: 20px;
+  width: 90%;
+  max-width: 660px;
+  overflow: hidden;
+  z-index: 10;
+  transform: translateY(20px);
+  animation: arcadeSlideUp 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.game-modal-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(168, 124, 255, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ─── macOS Style Window Control Bar ─── */
+.game-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 14px 20px;
+}
+
+.game-indicators {
+  display: flex;
+  gap: 8px;
+}
+
+.game-indicators .dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}
+
+.game-indicators .dot.red { background-color: #ff5f56; }
+.game-indicators .dot.yellow { background-color: #ffbd2e; }
+.game-indicators .dot.green { background-color: #27c93f; }
+
+.game-title {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+}
+
+.game-close-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.game-close-btn:hover {
+  color: #ff5f56;
+}
+
+/* ─── HUD Display Bar ─── */
+.game-hud {
+  display: flex;
+  justify-content: space-between;
+  background: rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 15px 30px;
+}
+
+.hud-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hud-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: rgba(234, 229, 236, 0.4);
+}
+
+.hud-value {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(168, 124, 255, 0.5);
+}
+
+/* ─── Game HUD Extras (Combo and Turbo) ─── */
+.game-hud-extras {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 8px 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+}
+
+.combo-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+  color: #f1fa8c;
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(241, 250, 140, 0.4);
+}
+
+.combo-badge.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.combo-bar-container {
+  width: 60px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.combo-bar-fill {
+  height: 100%;
+  background: #f1fa8c;
+  width: 0%;
+  transition: width 0.05s linear;
+  box-shadow: 0 0 8px #f1fa8c;
+}
+
+.turbo-badge {
+  color: rgba(255, 255, 255, 0.2);
+  font-weight: 600;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+}
+
+.turbo-badge.active {
+  color: #ffb86c;
+  text-shadow: 0 0 10px rgba(255, 184, 108, 0.6);
+  animation: turboPulse 0.8s infinite alternate;
+}
+
+@keyframes turboPulse {
+  from { transform: scale(1); }
+  to { transform: scale(1.05); }
+}
+
+/* ─── Canvas view ─── */
+.canvas-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 30px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-canvas {
+  background: #0a0810;
+  border: 1px solid rgba(194, 164, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.9), 0 10px 40px rgba(0,0,0,0.5);
+  display: block;
+  max-width: 100%;
+}
+
+/* ─── Menu Overlays inside Canvas ─── */
+.canvas-overlay {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  right: 30px;
+  bottom: 30px;
+  border-radius: 12px;
+  background: rgba(10, 8, 16, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  z-index: 10;
+  overflow-y: auto;
+}
+
+.canvas-overlay.blurred {
+  background: rgba(10, 8, 16, 0.7);
+  backdrop-filter: blur(4px);
+}
+
+.canvas-overlay h2 {
+  font-family: "Geist", sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-top: 0;
+  margin-bottom: 8px;
+  color: #ffffff;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #ffffff, #c2a4ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.canvas-overlay h2.glow-red {
+  background: linear-gradient(90deg, #ffffff, #ff5555);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 20px rgba(255, 85, 85, 0.3);
+}
+
+.canvas-overlay h2.glow-green {
+  background: linear-gradient(90deg, #ffffff, #50fa7b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 20px rgba(80, 250, 123, 0.3);
+}
+
+.canvas-overlay .subtitle {
+  font-family: "Geist", sans-serif;
+  font-size: 12px;
+  color: rgba(234, 229, 236, 0.5);
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+.menu-highscore {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: #f1fa8c;
+  text-shadow: 0 0 8px rgba(241, 250, 140, 0.4);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.canvas-overlay p {
+  font-family: "Geist", sans-serif;
+  font-size: 13px;
+  color: rgba(234, 229, 236, 0.7);
+  margin-bottom: 25px;
+  margin-top: 0;
+}
+
+/* ─── Level Selector Layout ─── */
+.level-selector-title {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: rgba(234, 229, 236, 0.6);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.level-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  width: 100%;
+  max-width: 460px;
+  margin-bottom: 24px;
+}
+
+.level-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(194, 164, 255, 0.15);
+  border-radius: 8px;
+  padding: 10px 4px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.level-card:hover {
+  background: rgba(194, 164, 255, 0.08);
+  border-color: rgba(194, 164, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.level-card.selected {
+  background: rgba(168, 124, 255, 0.15);
+  border-color: #a87cff;
+  box-shadow: 0 0 15px rgba(168, 124, 255, 0.25);
+}
+
+.level-num {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.level-card.selected .level-num {
+  color: #a87cff;
+  text-shadow: 0 0 5px rgba(168, 124, 255, 0.5);
+}
+
+.level-desc {
+  font-family: "Geist", sans-serif;
+  font-size: 8px;
+  color: rgba(234, 229, 236, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+.level-info-box {
+  min-height: 32px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.level-info-text {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: #c2a4ff;
+}
+
+.controls-guide {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  margin-bottom: 25px;
+  align-items: center;
+  justify-content: center;
+}
+
+.controls-guide div {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: rgba(234, 229, 236, 0.6);
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.controls-guide span {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  padding: 1px 5px;
+  color: #a87cff;
+}
+
+/* ─── Arcade Buttons ─── */
+.arcade-btn {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  padding: 12px 28px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  text-transform: uppercase;
+}
+
+.arcade-btn.primary {
+  background: #a87cff;
+  color: #0b080c;
+  border: 1px solid #a87cff;
+  box-shadow: 0 4px 20px rgba(127, 64, 255, 0.25);
+}
+
+.arcade-btn.primary:hover {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #0b080c;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+}
+
+.arcade-btn.secondary {
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(234, 229, 236, 0.85);
+  border: 1px solid rgba(194, 164, 255, 0.15);
+}
+
+.arcade-btn.secondary:hover {
+  background: rgba(194, 164, 255, 0.08);
+  border-color: rgba(194, 164, 255, 0.4);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.arcade-btn.red-btn {
+  background: #ff5555;
+  color: #0b080c;
+  border: 1px solid #ff5555;
+  box-shadow: 0 4px 20px rgba(255, 85, 85, 0.25);
+}
+
+.arcade-btn.red-btn:hover {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #0b080c;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+}
+
+.arcade-btn:active {
+  transform: translateY(0);
+}
+
+/* ─── Animations ─── */
+@keyframes arcadeFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes arcadeSlideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive dimensions */
+@media (max-width: 768px) {
+  .game-hud {
+    padding: 12px 20px;
+  }
+  .canvas-wrapper {
+    padding: 15px;
+  }
+  .canvas-overlay h2 {
+    font-size: 20px;
+  }
+  .canvas-overlay .subtitle {
+    font-size: 10px;
+    margin-bottom: 15px;
+  }
+  .level-grid {
+    gap: 4px;
+  }
+  .level-card {
+    padding: 8px 2px;
+  }
+  .level-num {
+    font-size: 12px;
+  }
+  .level-desc {
+    font-size: 7px;
+  }
+  .controls-guide {
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 15px;
+  }
+}
+
+/* ─── Floating Game Trigger Button ─── */
+.game-toggle-btn {
+  position: fixed;
+  top: 100px;
+  right: 180px; /* Offset to float right next to music toggle */
+  z-index: 1000000005; /* High enough to overlay everything */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 8px 15px;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  color: rgba(255, 255, 255, 0.85);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.game-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.game-toggle-btn:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .game-toggle-btn {
+    top: 90px;
+    right: 145px; /* Offset for mobile */
+    padding: 6px 12px;
+    font-size: 9px;
+  }
+}
