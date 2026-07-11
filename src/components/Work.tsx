@@ -54,7 +54,7 @@ const projectsList: Project[] = [
       "/images/study_showcase_landing.png",
       "/images/study_showcase_dashboard.png"
     ],
-    link: "https://github.com/omen18"
+    link: "https://github.com/omen18/ai-study-companion"
   },
   {
     title: "AmritKrishi 2.0",
@@ -66,7 +66,7 @@ const projectsList: Project[] = [
       "/images/krishi_showcase_analysis.png",
       "/images/krishi_showcase_chart.png"
     ],
-    link: "https://github.com/omen18"
+    link: "https://github.com/omen18/amritkrishi2.0/tree/master"
   },
   {
     title: "AI Delivery Route Planner",
