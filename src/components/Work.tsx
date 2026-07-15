@@ -82,6 +82,17 @@ const projectsList: Project[] = [
     ],
     link: "https://github.com/omen18/AI-delivery-route-planner",
     liveLink: "https://ai-delivery-route-planner.vercel.app/"
+  },
+  {
+    title: "Sentinel",
+    subtitle: "AI Road Incident Intelligence Platform",
+    category: "AI Emergency Grid & Perception",
+    tools: "React, Node.js, Express, YOLOv8, AccidentCNN, RAG, WebSockets",
+    images: [
+      "/images/sentinel_showcase_1.png",
+      "/images/sentinel_showcase_2.png"
+    ],
+    link: "https://github.com/omen18/Sentinel"
   }
 ];
 
