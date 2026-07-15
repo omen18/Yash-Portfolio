@@ -90,7 +90,10 @@ const projectsList: Project[] = [
     tools: "React, Node.js, Express, YOLOv8, AccidentCNN, RAG, WebSockets",
     images: [
       "/images/sentinel_showcase_1.png",
-      "/images/sentinel_showcase_2.png"
+      "/images/sentinel_showcase_2.png",
+      "/images/sentinel_showcase_3.png",
+      "/images/sentinel_showcase_4.png",
+      "/images/sentinel_showcase_5.png"
     ],
     link: "https://github.com/omen18/Sentinel"
   }
