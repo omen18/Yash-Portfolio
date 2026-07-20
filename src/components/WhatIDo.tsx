@@ -154,7 +154,10 @@ const WhatIDo = () => {
                   </div>
                 </div>
               </div>
-              <div className="what-arrow"></div>
+              <div className="what-arrow-wrapper">
+                <span className="what-scroll-hint">SCROLL</span>
+                <div className="what-arrow"></div>
+              </div>
             </div>
           </div>
           <div
@@ -220,7 +223,10 @@ const WhatIDo = () => {
                   </div>
                 </div>
               </div>
-              <div className="what-arrow"></div>
+              <div className="what-arrow-wrapper">
+                <span className="what-scroll-hint">SCROLL</span>
+                <div className="what-arrow"></div>
+              </div>
             </div>
           </div>
         </div>
