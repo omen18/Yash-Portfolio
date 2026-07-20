@@ -47,7 +47,7 @@
   transition: 0.5s;
   /* border: 0.5px dashed rgba(255, 255, 255, 0.3); */
   position: relative;
-  padding: 50px;
+  padding: 25px 50px; /* Reduced default padding to allow scrollbar & content visibility */
   box-sizing: border-box;
 }
 
@@ -245,7 +245,7 @@
 }
 .skills-scroll-container {
   flex-grow: 1;
-  overflow-y: auto;
+  overflow-y: scroll; /* Force scrollbar to be always present */
   margin-top: 15px;
   margin-bottom: 10px;
   padding-right: 8px;
@@ -267,21 +267,22 @@
 /* Custom minimal scrollbar */
 .skills-scroll-container {
   scrollbar-width: thin;
-  scrollbar-color: var(--accentColor) rgba(255, 255, 255, 0.03);
+  scrollbar-color: #c2a4ff rgba(255, 255, 255, 0.05); /* Explicit hex color */
 }
 .skills-scroll-container::-webkit-scrollbar {
   width: 6px;
+  display: block !important;
 }
 .skills-scroll-container::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 3px;
 }
 .skills-scroll-container::-webkit-scrollbar-thumb {
-  background: var(--accentColor);
+  background: #c2a4ff !important; /* Force solid purple hex */
   border-radius: 3px;
 }
 .skills-scroll-container::-webkit-scrollbar-thumb:hover {
-  background: #d8c4ff;
+  background: #d8c4ff !important;
 }
 .what-content-in h5 {
   font-weight: 300;
@@ -369,7 +370,7 @@
     margin-left: -50px;
   }
   .what-content {
-    padding: 50px;
+    padding: 25px 50px; /* Reduced default padding */
     width: 500px;
   }
   .what-content p {
