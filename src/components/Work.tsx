@@ -96,6 +96,20 @@ const projectsList: Project[] = [
       "/images/sentinel_showcase_5.png"
     ],
     link: "https://github.com/omen18/Sentinel"
+  },
+  {
+    title: "QuillAI",
+    subtitle: "Semantic BI & Local DB Analytics Engine",
+    category: "Semantic Web Layer & Local Database Engine",
+    tools: "React, WebAssembly, DuckDB, WebGPU, BI Analytics, Malloy",
+    images: [
+      "/images/quill_3.png",
+      "/images/quill_1.png",
+      "/images/quill_5.png",
+      "/images/quill_4.png",
+      "/images/quill_2.png"
+    ],
+    link: "https://github.com/omen18/QuillAI"
   }
 ];
 
