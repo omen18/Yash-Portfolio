@@ -94,6 +94,10 @@ const WhatIDo = () => {
                 frontends to robust backend architectures.
               </p>
               
+              <div className="what-interaction-hint">
+                <span>+ VIEW SKILLS</span>
+              </div>
+              
               <div className="skills-scroll-container" data-cursor="disable">
                 <div className="skills-category">
                   <h5 className="skills-category-title">Programming Languages</h5>
@@ -185,6 +189,10 @@ const WhatIDo = () => {
                 Designing generative AI pipelines, fine-tuning LLMs,
                 and building intelligent agentic systems.
               </p>
+              
+              <div className="what-interaction-hint">
+                <span>+ VIEW SKILLS</span>
+              </div>
               
               <div className="skills-scroll-container" data-cursor="disable">
                 <div className="skills-category">

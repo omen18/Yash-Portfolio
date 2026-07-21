@@ -480,3 +480,46 @@
     line-height: 6.8rem;
   }
 }
+
+/* Permanent subtle hint to invite interaction */
+.what-interaction-hint {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  display: flex;
+  align-items: center;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  color: var(--accentColor);
+  opacity: 0.6;
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  animation: hintPulse 2.5s infinite ease-in-out;
+}
+
+.what-noTouch:hover .what-interaction-hint,
+.what-content-active .what-interaction-hint {
+  opacity: 0;
+  transform: translateY(-5px);
+}
+
+@keyframes hintPulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(2px);
+  }
+}
+
+/* Adjust position of hint in smaller viewports */
+@media only screen and (max-width: 900px) {
+  .what-interaction-hint {
+    font-size: 10px;
+  }
+}
+
