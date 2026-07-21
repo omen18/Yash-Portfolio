@@ -501,8 +501,10 @@
 
 .what-noTouch:hover .what-interaction-hint,
 .what-content-active .what-interaction-hint {
-  opacity: 0;
+  opacity: 0 !important;
+  visibility: hidden !important;
   transform: translateY(-5px);
+  animation: none !important;
 }
 
 @keyframes hintPulse {
