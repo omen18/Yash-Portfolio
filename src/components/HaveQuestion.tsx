@@ -21,7 +21,7 @@ gsap.registerPlugin(ScrollTrigger);
 const USE_GOOGLE_FORM = false; 
 
 // 1. Web3Forms Configuration (Direct Email Forwarding)
-const WEB3FORMS_ACCESS_KEY = "b45efdf4-d800-43af-9cf2-8d491175fa14";
+const WEB3FORMS_ACCESS_KEY = "faef0e2c-f255-47a6-bfa7-f084f0ea0ef9";
 
 // 2. Google Form Configuration
 const GOOGLE_FORM_ACTION =
