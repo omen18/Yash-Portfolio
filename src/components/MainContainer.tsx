@@ -12,6 +12,7 @@ import Exploring from "./Exploring";
 import AskYash from "./AskYash";
 import ResearchLab from "./ResearchLab";
 import OpenTo from "./OpenTo";
+import HaveQuestion from "./HaveQuestion";
 import setSplitText from "./utils/splitText";
 import ImpactMarquee from "./ImpactMarquee";
 import { useAudio } from "../context/AudioContext";
@@ -142,6 +143,7 @@ const MainContainer = ({ children }: PropsWithChildren) => {
             <Exploring />
             <AskYash />
             <OpenTo />
+            <HaveQuestion />
             <Contact />
           </div>
         </div>
