@@ -249,6 +249,18 @@
   margin-top: 15px;
   margin-bottom: 10px;
   padding-right: 8px;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;
+}
+.what-noTouch:hover .skills-scroll-container,
+.what-content-active .skills-scroll-container {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+  transform: translateY(0);
 }
 .skills-category {
   margin-bottom: 15px;
