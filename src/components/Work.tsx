@@ -110,6 +110,43 @@ const projectsList: Project[] = [
       "/images/quill_2.png"
     ],
     link: "https://github.com/omen18/QuillAI"
+  },
+  {
+    title: "GitPulse",
+    subtitle: "Interactive GitHub Repository Visualizer & AI Summarizer",
+    category: "Developer Tools & AI Repository Analytics",
+    tools: "React, Node.js, Graph Visualization, AI Code Summaries, GitHub API",
+    images: [
+      "/images/gitpulse_landing.png",
+      "/images/gitpulse_dashboard.png"
+    ],
+    link: "https://github.com/omen18/GitPluse.git"
+  },
+  {
+    title: "CutisAI",
+    subtitle: "Clinical AI Dermatology & Skin Lesion Screening Engine",
+    category: "AI Medical Perception & Clinical Intelligence",
+    tools: "ResUNet, EfficientNet-B0, React, ONNX, ISIC Dataset, Clinical AI",
+    images: [
+      "/images/cutis_showcase_landing.png",
+      "/images/cutis_showcase_clinical.png",
+      "/images/cutis_showcase_portals.png",
+      "/images/cutis_showcase_patient.png",
+      "/images/cutis_showcase_splash.png"
+    ],
+    link: "https://github.com/omen18/CutisAI.git"
+  },
+  {
+    title: "CodeStride",
+    subtitle: "Open-Source Developer Productivity & Goal Tracking Dashboard",
+    category: "Developer Productivity & Open-Source Analytics",
+    tools: "React, Next.js, GitHub OAuth API, Contribution Heatmaps, PR Velocity",
+    images: [
+      "/images/codestride_landing.png",
+      "/images/codestride_features.png",
+      "/images/codestride_auth.png"
+    ],
+    link: "https://github.com/omen18/CodeStride.git"
   }
 ];
 
@@ -163,7 +200,7 @@ const WorkCard = ({ project, index }: { project: Project; index: number }) => {
     <div className={`work-box ${isEven ? "even-card" : ""}`} ref={cardRef}>
       <div className="work-info">
         <div className="work-title">
-          <h3>0{index + 1}</h3>
+          <h3>{String(index + 1).padStart(2, "0")}</h3>
           <div>
             <h4>{project.title}</h4>
             <p>{project.subtitle}</p>
