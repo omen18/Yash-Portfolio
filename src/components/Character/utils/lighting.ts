@@ -3,8 +3,7 @@ import { RGBELoader } from "three-stdlib";
 import { gsap } from "gsap";
 
 const setLighting = (scene: THREE.Scene) => {
-  const directionalLight = new THREE.DirectionalLight(0xc7a9ff, 0);
-  directionalLight.intensity = 0;
+  const directionalLight = new THREE.DirectionalLight(0xc7a9ff, 1);
   directionalLight.position.set(-0.47, -0.32, -1);
   directionalLight.castShadow = true;
   directionalLight.shadow.mapSize.width = 1024;
@@ -23,7 +22,7 @@ const setLighting = (scene: THREE.Scene) => {
     .load("char_enviorment.hdr", function (texture) {
       texture.mapping = THREE.EquirectangularReflectionMapping;
       scene.environment = texture;
-      scene.environmentIntensity = 0;
+      scene.environmentIntensity = 0.64;
       scene.environmentRotation.set(5.76, 85.85, 1);
     });
 
