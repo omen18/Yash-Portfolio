@@ -155,10 +155,6 @@ const WorkCard = ({ project, index }: { project: Project; index: number }) => {
     project.images && project.images.length > 0 ? project.images[0] : project.image || ""
   );
 
-  const changeImage = (newImg: string) => {
-    setActiveImage(newImg);
-  };
-
   useEffect(() => {
     const images = project.images;
     if (!images || images.length <= 1) return;
@@ -197,19 +193,6 @@ const WorkCard = ({ project, index }: { project: Project; index: number }) => {
           link={project.link} 
           liveLink={project.liveLink} 
         />
-        {project.images && project.images.length > 1 && (
-          <div className="work-gallery-thumbnails">
-            {project.images.map((img, i) => (
-              <div 
-                key={i}
-                className={`work-gallery-thumbnail ${activeImage === img ? "active" : ""}`}
-                onClick={() => changeImage(img)}
-              >
-                <img src={img} alt={`${project.title} screenshot ${i + 1}`} />
-              </div>
-            ))}
-          </div>
-        )}
       </div>
     </div>
   );

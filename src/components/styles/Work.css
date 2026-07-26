@@ -248,10 +248,7 @@
 }
 
 .work-gallery-thumbnails {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  margin-top: 5px;
+  display: none !important;
 }
 
 .work-gallery-thumbnail {
