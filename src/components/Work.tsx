@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import "./styles/Work.css";
 import WorkImage from "./WorkImage";
 import gsap from "gsap";
@@ -151,32 +151,12 @@ const projectsList: Project[] = [
 ];
 
 const WorkCard = ({ project, index }: { project: Project; index: number }) => {
-  const cardRef = useRef<HTMLDivElement>(null);
   const [activeImage, setActiveImage] = useState(
     project.images && project.images.length > 0 ? project.images[0] : project.image || ""
   );
 
   const changeImage = (newImg: string) => {
-    if (activeImage === newImg) return;
-    const imgEl = cardRef.current?.querySelector(".work-image img");
-    if (!imgEl) {
-      setActiveImage(newImg);
-      return;
-    }
-
-    gsap.to(imgEl, {
-      opacity: 0.3,
-      duration: 0.2,
-      ease: "power1.in",
-      onComplete: () => {
-        setActiveImage(newImg);
-        gsap.to(imgEl, {
-          opacity: 1,
-          duration: 0.3,
-          ease: "power1.out",
-        });
-      }
-    });
+    setActiveImage(newImg);
   };
 
   useEffect(() => {
@@ -188,20 +168,7 @@ const WorkCard = ({ project, index }: { project: Project; index: number }) => {
 
     const interval = setInterval(() => {
       idx = (idx + 1) % images.length;
-      const nextImg = images[idx];
-      const imgEl = cardRef.current?.querySelector(".work-image img");
-      if (imgEl) {
-        gsap.to(imgEl, {
-          opacity: 0.3,
-          duration: 0.25,
-          onComplete: () => {
-            setActiveImage(nextImg);
-            gsap.to(imgEl, { opacity: 1, duration: 0.35 });
-          }
-        });
-      } else {
-        setActiveImage(nextImg);
-      }
+      setActiveImage(images[idx]);
     }, 4500);
 
     return () => clearInterval(interval);
@@ -210,7 +177,7 @@ const WorkCard = ({ project, index }: { project: Project; index: number }) => {
   const isEven = index % 2 === 1;
 
   return (
-    <div className={`work-box ${isEven ? "even-card" : ""}`} ref={cardRef}>
+    <div className={`work-box ${isEven ? "even-card" : ""}`}>
       <div className="work-info">
         <div className="work-title">
           <h3>{String(index + 1).padStart(2, "0")}</h3>
