@@ -165,17 +165,15 @@ const WorkCard = ({ project, index }: { project: Project; index: number }) => {
     }
 
     gsap.to(imgEl, {
-      opacity: 0,
-      scale: 0.95,
-      duration: 0.25,
-      ease: "power2.in",
+      opacity: 0.3,
+      duration: 0.2,
+      ease: "power1.in",
       onComplete: () => {
         setActiveImage(newImg);
         gsap.to(imgEl, {
           opacity: 1,
-          scale: 1,
-          duration: 0.35,
-          ease: "power2.out",
+          duration: 0.3,
+          ease: "power1.out",
         });
       }
     });
@@ -185,14 +183,29 @@ const WorkCard = ({ project, index }: { project: Project; index: number }) => {
     const images = project.images;
     if (!images || images.length <= 1) return;
 
+    let idx = images.indexOf(activeImage);
+    if (idx === -1) idx = 0;
+
     const interval = setInterval(() => {
-      const currentIndex = images.indexOf(activeImage);
-      const nextIndex = (currentIndex === -1 ? 0 : currentIndex + 1) % images.length;
-      changeImage(images[nextIndex]);
-    }, 3000);
+      idx = (idx + 1) % images.length;
+      const nextImg = images[idx];
+      const imgEl = cardRef.current?.querySelector(".work-image img");
+      if (imgEl) {
+        gsap.to(imgEl, {
+          opacity: 0.3,
+          duration: 0.25,
+          onComplete: () => {
+            setActiveImage(nextImg);
+            gsap.to(imgEl, { opacity: 1, duration: 0.35 });
+          }
+        });
+      } else {
+        setActiveImage(nextImg);
+      }
+    }, 4500);
 
     return () => clearInterval(interval);
-  }, [activeImage, project.images]);
+  }, [project.images]);
 
   const isEven = index % 2 === 1;
 
@@ -217,6 +230,19 @@ const WorkCard = ({ project, index }: { project: Project; index: number }) => {
           link={project.link} 
           liveLink={project.liveLink} 
         />
+        {project.images && project.images.length > 1 && (
+          <div className="work-gallery-thumbnails">
+            {project.images.map((img, i) => (
+              <div 
+                key={i}
+                className={`work-gallery-thumbnail ${activeImage === img ? "active" : ""}`}
+                onClick={() => changeImage(img)}
+              >
+                <img src={img} alt={`${project.title} screenshot ${i + 1}`} />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
