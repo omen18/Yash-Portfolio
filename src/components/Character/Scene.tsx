@@ -63,9 +63,11 @@ const Scene = () => {
           scene.add(character);
           headBone = character.getObjectByName("spine006") || null;
           screenLight = character.getObjectByName("screenlight") || null;
-          light.turnOnLights();
           progress.loaded().then(() => {
-            animations.startIntro();
+            setTimeout(() => {
+              light.turnOnLights();
+              animations.startIntro();
+            }, 2500);
           });
           window.addEventListener("resize", () =>
             handleResize(renderer, camera, canvasDiv, character)
