@@ -154,8 +154,11 @@ const projectsList: Project[] = [
     category: "iOS & macOS Native Systems Architecture",
     tools: "Swift 5.9, SwiftUI, ScreenCaptureKit, VideoToolbox, Network.framework, CoreGraphics",
     images: [
-      "/images/macdeck_landing.png",
-      "/images/macdeck_features.png"
+      "/images/macdeck_screen_display.png",
+      "/images/macdeck_guest_guard.png",
+      "/images/macdeck_file_explorer.png",
+      "/images/macdeck_power_control.png",
+      "/images/macdeck_terminal_shell.png"
     ],
     link: "https://github.com/omen18/MacDeck"
   }
