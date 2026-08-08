@@ -90,11 +90,11 @@ const Career = () => {
                 <h4>iOS Developer</h4>
                 <h5>Self-Driven · Swift & Native Systems</h5>
               </div>
-              <h3>2024 - NOW</h3>
+              <h3>JAN 2025 - NOW</h3>
             </div>
             <div className="career-info-box-right">
               <p>
-                Self-driven iOS developer focused on writing code, learning, and crafting native iOS applications with Swift, SwiftUI, and low-latency system-level Apple APIs. Built production iOS apps including interactive Dynamic Island tools and ultra-low-latency remote Mac control suites.
+                Self-driven iOS developer focused on writing code, continuously learning more about developing native iOS apps, and crafting high-performance applications with Swift, SwiftUI, and low-latency system-level Apple APIs. Built production iOS apps including interactive Dynamic Island tools and ultra-low-latency remote Mac control suites.
               </p>
               <div className="career-links">
                 <a
