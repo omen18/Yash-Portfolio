@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { FaGithub } from "react-icons/fa";
 import "./styles/Career.css";
 
 const careerRoles = [
@@ -74,13 +75,56 @@ const Career = () => {
             </div>
             <div className="career-info-box-right">
               <p>
-                Actively developing expertise in full stack development with
-                React, Next.js, Node.js, and Python while diving deep into
-                Generative AI — working with LLMs, LangChain, RAG pipelines,
-                prompt engineering, and fine-tuning models. Continuously building
-                projects, contributing to open-source, and turning ideas into
-                production-ready AI-powered applications.
+                Actively building expertise as a Full Stack Developer, GenAI / LLM Engineer, and iOS Developer. Crafting production-ready web systems with React, Next.js, Node.js, and Python, while engineering Generative AI pipelines — working with LLMs, LangChain, RAG architectures, prompt engineering, and fine-tuning. Continuously learning, writing code, and developing native iOS & macOS applications using Swift, SwiftUI, and low-latency Apple system APIs.
               </p>
+              <div className="career-links">
+                <a
+                  href="https://github.com/omen18/IslandPet"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="career-link-badge"
+                >
+                  <FaGithub size={14} />
+                  IslandPet (iOS)
+                  <svg
+                    className="career-link-arrow"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <line x1="7" y1="17" x2="17" y2="7" />
+                    <polyline points="7 7 17 7 17 17" />
+                  </svg>
+                </a>
+                <a
+                  href="https://github.com/omen18/MacDeck"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="career-link-badge"
+                >
+                  <FaGithub size={14} />
+                  MacDeck (iOS/macOS)
+                  <svg
+                    className="career-link-arrow"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <line x1="7" y1="17" x2="17" y2="7" />
+                    <polyline points="7 7 17 7 17 17" />
+                  </svg>
+                </a>
+              </div>
             </div>
           </div>
           <div className="career-info-box">
