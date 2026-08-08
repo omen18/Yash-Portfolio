@@ -237,6 +237,75 @@ const WhatIDo = () => {
               </div>
             </div>
           </div>
+
+          <div
+            className="what-content what-noTouch"
+            ref={(el) => setRef(el, 2)}
+          >
+            <div className="what-border1">
+              <svg height="100%">
+                <line
+                  x1="0"
+                  y1="100%"
+                  x2="100%"
+                  y2="100%"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeDasharray="6,6"
+                />
+              </svg>
+            </div>
+            <div className="what-corner"></div>
+            <div className="what-content-in">
+              <h3>iOS DEVELOPER</h3>
+              <h4>Native Systems & Apple APIs</h4>
+              <p>
+                Crafting native, low-latency iOS & macOS apps with Swift, SwiftUI, Xcode, and high-performance system frameworks.
+              </p>
+              
+              <div className="what-interaction-hint">
+                <span>+ VIEW SKILLS</span>
+              </div>
+              
+              <div className="skills-scroll-container" data-cursor="disable">
+                <div className="skills-category">
+                  <h5 className="skills-category-title">Core Languages & IDE</h5>
+                  <div className="what-content-flex">
+                    <div className="what-tags">Swift</div>
+                    <div className="what-tags">SwiftUI</div>
+                    <div className="what-tags">Xcode</div>
+                    <div className="what-tags">Objective-C</div>
+                  </div>
+                </div>
+
+                <div className="skills-category">
+                  <h5 className="skills-category-title">System & Media Frameworks</h5>
+                  <div className="what-content-flex">
+                    <div className="what-tags">ScreenCaptureKit</div>
+                    <div className="what-tags">VideoToolbox</div>
+                    <div className="what-tags">Network.framework</div>
+                    <div className="what-tags">CoreGraphics</div>
+                    <div className="what-tags">AXUIElement</div>
+                    <div className="what-tags">AVFoundation</div>
+                  </div>
+                </div>
+
+                <div className="skills-category">
+                  <h5 className="skills-category-title">iOS Features & Architecture</h5>
+                  <div className="what-content-flex">
+                    <div className="what-tags">Dynamic Island</div>
+                    <div className="what-tags">Combine</div>
+                    <div className="what-tags">UIKit Interop</div>
+                    <div className="what-tags">H.264 Video Encoding</div>
+                  </div>
+                </div>
+              </div>
+              <div className="what-arrow-wrapper">
+                <span className="what-scroll-hint">SCROLL</span>
+                <div className="what-arrow"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
