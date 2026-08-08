@@ -18,6 +18,7 @@ import ImpactMarquee from "./ImpactMarquee";
 import { useAudio } from "../context/AudioContext";
 import { useLoading } from "../context/LoadingProvider";
 import TechSnake from "./TechSnake";
+import GithubHeatmap from "./GithubHeatmap";
 import "./styles/Audio.css";
 
 const TechStack = lazy(() => import("./TechStack"));
@@ -133,6 +134,7 @@ const MainContainer = ({ children }: PropsWithChildren) => {
             <WhatIDo />
             <Career />
             <Work />
+            <GithubHeatmap />
             {isDesktopView && (
               <Suspense fallback={<div>Loading....</div>}>
                 <TechStack />
