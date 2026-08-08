@@ -147,6 +147,17 @@ const projectsList: Project[] = [
       "/images/codestride_auth.png"
     ],
     link: "https://github.com/omen18/CodeStride.git"
+  },
+  {
+    title: "MacDeck",
+    subtitle: "Low-Latency Remote Desktop & Element-Snapping Controller for Mac & iPhone",
+    category: "iOS & macOS Native Systems Architecture",
+    tools: "Swift 5.9, SwiftUI, ScreenCaptureKit, VideoToolbox, Network.framework, CoreGraphics",
+    images: [
+      "/images/macdeck_landing.png",
+      "/images/macdeck_features.png"
+    ],
+    link: "https://github.com/omen18/MacDeck"
   }
 ];
 
