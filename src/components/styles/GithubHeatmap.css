@@ -17,6 +17,8 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  align-items: center;
+  text-align: center;
 }
 
 .github-header-badge {
@@ -195,6 +197,18 @@
   width: 100%;
   overflow-x: auto;
   padding-bottom: 10px;
+  transition: opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.heatmap-matrix-wrapper.grid-fade-out {
+  opacity: 0;
+  transform: translateY(8px) scale(0.98);
+}
+
+.heatmap-matrix-wrapper.grid-fade-in {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 .heatmap-loading {
@@ -276,8 +290,9 @@
   height: 13px;
   border-radius: 3px;
   cursor: pointer;
-  transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
   position: relative;
+  will-change: transform;
 }
 
 .heatmap-cell.level-0 {
@@ -287,33 +302,41 @@
 
 .heatmap-cell.level-1 {
   background-color: #381f5c;
-  box-shadow: inset 0 0 2px rgba(194, 164, 255, 0.2);
+  box-shadow: inset 0 0 3px rgba(194, 164, 255, 0.15);
 }
 
 .heatmap-cell.level-2 {
   background-color: #6732a3;
-  box-shadow: 0 0 4px rgba(158, 89, 247, 0.3);
+  box-shadow: 0 0 5px rgba(158, 89, 247, 0.25);
 }
 
 .heatmap-cell.level-3 {
   background-color: #9d57f7;
-  box-shadow: 0 0 8px rgba(158, 89, 247, 0.5);
+  box-shadow: 0 0 8px rgba(158, 89, 247, 0.45);
 }
 
 .heatmap-cell.level-4 {
   background-color: #c2a4ff;
-  box-shadow: 0 0 10px rgba(194, 164, 255, 0.8);
+  box-shadow: 0 0 10px rgba(194, 164, 255, 0.7);
+  animation: cellPulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes cellPulse {
+  0% { box-shadow: 0 0 8px rgba(194, 164, 255, 0.5); }
+  100% { box-shadow: 0 0 14px rgba(194, 164, 255, 0.9); }
 }
 
 .heatmap-cell:hover {
-  transform: scale(1.4);
+  transform: scale(1.6);
   z-index: 10;
-  border: 1px solid #ffffff;
-  box-shadow: 0 0 12px #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 16px rgba(194, 164, 255, 0.9), 0 0 4px #ffffff;
+  border-radius: 4px;
 }
 
 .heatmap-cell.dimmed {
-  opacity: 0.15;
+  opacity: 0.12;
+  transition: opacity 0.4s ease;
 }
 
 /* Footer & Legend */
@@ -386,22 +409,37 @@
 .heatmap-tooltip {
   position: fixed;
   transform: translate(-50%, -120%);
-  background-color: #1a1226;
-  border: 1px solid var(--accentColor);
-  border-radius: 8px;
-  padding: 8px 12px;
+  background-color: rgba(20, 14, 30, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(194, 164, 255, 0.5);
+  border-radius: 10px;
+  padding: 10px 14px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: 3px;
   pointer-events: none;
   z-index: 1000;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8), 0 0 15px rgba(194, 164, 255, 0.3);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(194, 164, 255, 0.25);
+  animation: tooltipIn 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes tooltipIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -100%) scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -120%) scale(1);
+  }
 }
 
 .heatmap-tooltip strong {
   font-size: 12px;
   color: var(--accentColor);
+  font-weight: 700;
 }
 
 .heatmap-tooltip span {

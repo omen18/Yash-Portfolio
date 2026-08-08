@@ -248,6 +248,30 @@ const Work = () => {
           {projectsList.map((project, index) => (
             <WorkCard project={project} index={index} key={index} />
           ))}
+
+          {/* Coming Soon Card */}
+          <div className="work-box coming-soon-card">
+            <div className="coming-soon-inner">
+              <div className="coming-soon-glow"></div>
+              <div className="coming-soon-content">
+                <span className="coming-soon-badge">NEXT UP</span>
+                <h3>{String(projectsList.length + 1).padStart(2, "0")}</h3>
+                <h4>Coming Soon</h4>
+                <p className="coming-soon-desc">
+                  Next project is based on <span className="coming-soon-highlight">Machine Learning</span> — building intelligent systems that learn, adapt, and predict.
+                </p>
+                <div className="coming-soon-tags">
+                  <span>ML Pipelines</span>
+                  <span>Neural Networks</span>
+                  <span>Data Science</span>
+                  <span>Model Deployment</span>
+                </div>
+                <div className="coming-soon-dots">
+                  <span></span><span></span><span></span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

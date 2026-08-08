@@ -26,6 +26,15 @@ const finderFolders: FinderFolder[] = [
     fileDetails: "4 items • 4.2 KB",
   },
   {
+    id: "software-engineer",
+    sidebarLabel: "Software Engineer",
+    title: "Software Engineer",
+    description: "Designing scalable backend systems, building robust APIs, and shipping production-grade software with clean architecture and test coverage.",
+    tags: ["System Design", "REST/GraphQL", "Microservices", "Testing"],
+    iconType: "folder",
+    fileDetails: "4 items • 7.8 KB",
+  },
+  {
     id: "research",
     sidebarLabel: "AI Research",
     title: "AI Research",
@@ -42,6 +51,15 @@ const finderFolders: FinderFolder[] = [
     tags: ["React", "Next.js", "FastAPI", "Docker"],
     iconType: "folder",
     fileDetails: "4 items • 8.6 KB",
+  },
+  {
+    id: "product-manager",
+    sidebarLabel: "Product Manager",
+    title: "Product Manager",
+    description: "Constantly learning and developing skills for product management — bridging technical depth with user empathy to drive product strategy, roadmap planning, and cross-functional delivery.",
+    tags: ["Product Strategy", "Roadmap Planning", "User Research", "A/B Testing", "Agile/Scrum", "Data-Driven Decisions", "Stakeholder Mgmt", "PRDs"],
+    iconType: "openFolder",
+    fileDetails: "8 items • 9.4 KB",
   },
   {
     id: "cloud",

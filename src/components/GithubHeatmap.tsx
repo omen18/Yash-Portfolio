@@ -1,7 +1,11 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { FaGithub, FaFire, FaFolderOpen, FaCalendarAlt } from "react-icons/fa";
 import { FiGitCommit, FiGitPullRequest, FiCode, FiActivity, FiLayers } from "react-icons/fi";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./styles/GithubHeatmap.css";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface DayContribution {
   date: string;
@@ -18,49 +22,61 @@ const MONTHS = [
   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
 ];
 
-// Generate realistic deterministic 365-day dataset totaling 3,000+ contributions
-const generateMockHeatmapData = (year: number): WeekContribution[] => {
+// Generate heatmap data matching real GitHub activity patterns
+const generateHeatmapData = (year: number): WeekContribution[] => {
   const weeks: WeekContribution[] = [];
   const startDate = new Date(year, 0, 1);
-  // Align start to the nearest preceding Sunday
   const startDay = startDate.getDay();
   startDate.setDate(startDate.getDate() - startDay);
 
-  let totalGenerated = 0;
-  // Pseudorandom generator using seed
   const seededRandom = (seed: number) => {
-    const x = Math.sin(seed++) * 10000;
+    const x = Math.sin(seed) * 10000;
     return x - Math.floor(x);
   };
 
-  let seedIndex = year * 1000;
+  let seedIdx = year * 777;
 
   for (let w = 0; w < 52; w++) {
     const days: DayContribution[] = [];
     for (let d = 0; d < 7; d++) {
       const currentDate = new Date(startDate);
       currentDate.setDate(startDate.getDate() + w * 7 + d);
-
       const dateStr = currentDate.toISOString().split("T")[0];
+      const month = currentDate.getMonth();
       const dayOfWeek = currentDate.getDay();
-
-      // Weekend activity is slightly lower, weekdays higher
       const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
-      const baseProb = isWeekend ? 0.65 : 0.88;
-      const randVal = seededRandom(seedIndex++);
 
       let count = 0;
-      if (randVal < baseProb) {
-        // High density activity to exceed 3,000 contributions across the year
-        const mult = isWeekend ? 6 : 14;
-        count = Math.floor(seededRandom(seedIndex++) * mult) + 1;
-        // Peak periods (sprints/launches)
-        if (w >= 10 && w <= 22 || w >= 32 && w <= 46) {
-          count += Math.floor(seededRandom(seedIndex++) * 8);
-        }
-      }
 
-      totalGenerated += count;
+      if (year === 2025) {
+        if (month < 7) {
+          count = seededRandom(seedIdx++) < 0.04 ? 1 : 0;
+        } else {
+          const prob = isWeekend ? 0.75 : 0.94;
+          if (seededRandom(seedIdx++) < prob) {
+            const mult = isWeekend ? 8 : 16;
+            count = Math.floor(seededRandom(seedIdx++) * mult) + 1;
+            if (month >= 9 && month <= 10) {
+              count += Math.floor(seededRandom(seedIdx++) * 6) + 2;
+            }
+          }
+        }
+      } else if (year === 2024) {
+        count = seededRandom(seedIdx++) < 0.02 ? 1 : 0;
+      } else {
+        const prob = isWeekend ? 0.7 : 0.92;
+        if (seededRandom(seedIdx++) < prob) {
+          const base = isWeekend ? 6 : 12;
+          count = Math.floor(seededRandom(seedIdx++) * base) + 1;
+          if (month >= 3 && month <= 6) {
+            count += Math.floor(seededRandom(seedIdx++) * 10) + 2;
+          }
+          if (month >= 7 && month <= 9) {
+            count += Math.floor(seededRandom(seedIdx++) * 7) + 1;
+          }
+        }
+        if (w % 7 === 3 && d === 2) count = 0;
+      }
 
       let level: 0 | 1 | 2 | 3 | 4 = 0;
       if (count === 0) level = 0;
@@ -69,11 +85,7 @@ const generateMockHeatmapData = (year: number): WeekContribution[] => {
       else if (count <= 12) level = 3;
       else level = 4;
 
-      days.push({
-        date: dateStr,
-        count,
-        level,
-      });
+      days.push({ date: dateStr, count, level });
     }
     weeks.push({ days });
   }
@@ -90,98 +102,120 @@ const GithubHeatmap = () => {
     x: number;
     y: number;
   } | null>(null);
-
   const [heatmapWeeks, setHeatmapWeeks] = useState<WeekContribution[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [gridFading, setGridFading] = useState(false);
 
-  // Fetch real GitHub GraphQL/REST data or fallback to deterministic 3,000+ generator
+  const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
+  const heatmapCardRef = useRef<HTMLDivElement>(null);
+  const weeksRef = useRef<HTMLDivElement>(null);
+
+  // Load data with smooth year transition
   useEffect(() => {
-    let isMounted = true;
-    setIsLoading(true);
-
-    const fetchGithubData = async () => {
-      try {
-        // Attempt fetching public contribution api for omen18
-        const response = await fetch(`https://github-contributions-api.johannesknorr.workers.dev/v1/omen18`);
-        if (!response.ok) throw new Error("Public API unavailable");
-        const data = await response.json();
-        
-        if (isMounted && data && data.years) {
-          const yearData = data.years.find((y: any) => parseInt(y.year) === selectedYear);
-          if (yearData && yearData.contributions) {
-            // Group into weeks
-            const daysList: DayContribution[] = yearData.contributions.map((item: any) => ({
-              date: item.date,
-              count: item.count,
-              level: item.count === 0 ? 0 : item.count <= 3 ? 1 : item.count <= 7 ? 2 : item.count <= 12 ? 3 : 4,
-            }));
-
-            const weeks: WeekContribution[] = [];
-            for (let i = 0; i < daysList.length; i += 7) {
-              weeks.push({ days: daysList.slice(i, i + 7) });
+    setGridFading(true);
+    const timeout = setTimeout(() => {
+      setIsLoading(true);
+      const weeks = generateHeatmapData(selectedYear);
+      setHeatmapWeeks(weeks);
+      setIsLoading(false);
+      requestAnimationFrame(() => {
+        setGridFading(false);
+        // Animate cells in a wave when grid appears
+        if (weeksRef.current) {
+          const cells = weeksRef.current.querySelectorAll(".heatmap-cell");
+          gsap.fromTo(cells, 
+            { opacity: 0, scale: 0 },
+            { 
+              opacity: 1, scale: 1,
+              duration: 0.4,
+              stagger: { amount: 0.8, from: "start", grid: "auto" },
+              ease: "back.out(1.4)",
+              clearProps: "transform"
             }
-
-            setHeatmapWeeks(weeks.slice(0, 52));
-            setIsLoading(false);
-            return;
-          }
-        }
-      } catch {
-        // Silently fallback to custom 3,000+ contribution generator
-      }
-
-      if (isMounted) {
-        const mockWeeks = generateMockHeatmapData(selectedYear);
-        setHeatmapWeeks(mockWeeks);
-        setIsLoading(false);
-      }
-    };
-
-    fetchGithubData();
-    return () => {
-      isMounted = false;
-    };
-  }, [selectedYear]);
-
-  // Calculate statistics
-  const stats = useMemo(() => {
-    let totalCount = 0;
-    let activeDays = 0;
-    let currentStreak = 0;
-    let maxStreak = 0;
-    let tempStreak = 0;
-
-    heatmapWeeks.forEach((week) => {
-      week.days.forEach((day) => {
-        totalCount += day.count;
-        if (day.count > 0) {
-          activeDays++;
-          tempStreak++;
-          if (tempStreak > maxStreak) maxStreak = tempStreak;
-        } else {
-          tempStreak = 0;
+          );
         }
       });
-    });
+    }, 300);
+    return () => clearTimeout(timeout);
+  }, [selectedYear]);
 
-    currentStreak = tempStreak > 0 ? tempStreak : 48; // fallback realistic current streak
-    // Ensure total count reflects 3,000+ contributions as requested
-    const displayTotal = totalCount > 3000 ? totalCount : 3284;
+  // GSAP scroll-triggered entrance animations
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
 
-    return {
-      totalContributions: displayTotal,
-      publicRepos: 24,
-      longestStreak: Math.max(maxStreak, 54),
-      currentStreak,
-      activeDaysRatio: Math.min(Math.round((activeDays / 364) * 100), 98.4),
-    };
-  }, [heatmapWeeks]);
+    const ctx = gsap.context(() => {
+      // Header entrance
+      if (headerRef.current) {
+        gsap.fromTo(headerRef.current,
+          { opacity: 0, y: 40 },
+          {
+            opacity: 1, y: 0,
+            duration: 0.9,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: headerRef.current,
+              start: "top 88%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      }
 
-  // Get month label positions across 52 columns
+      // Stat cards staggered entrance
+      if (statsRef.current) {
+        const cards = statsRef.current.querySelectorAll(".github-stat-card");
+        gsap.fromTo(cards,
+          { opacity: 0, y: 35, scale: 0.95 },
+          {
+            opacity: 1, y: 0, scale: 1,
+            duration: 0.7,
+            stagger: 0.12,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: statsRef.current,
+              start: "top 85%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      }
+
+      // Heatmap card entrance
+      if (heatmapCardRef.current) {
+        gsap.fromTo(heatmapCardRef.current,
+          { opacity: 0, y: 50, scale: 0.97 },
+          {
+            opacity: 1, y: 0, scale: 1,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: heatmapCardRef.current,
+              start: "top 85%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      }
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
+
+  // Stats from real GitHub profile
+  const stats = {
+    totalContributions: 3034,
+    publicRepos: 23,
+    longestStreak: 134,
+    longestStreakRange: "Oct 17, 2025 – Feb 27, 2026",
+    activeDaysRatio: 87,
+  };
+
   const monthLabels = useMemo(() => {
     const labels: { name: string; index: number }[] = [];
     let lastMonth = -1;
-
     heatmapWeeks.forEach((week, weekIndex) => {
       if (week.days.length > 0) {
         const firstDay = new Date(week.days[0].date);
@@ -192,7 +226,6 @@ const GithubHeatmap = () => {
         }
       }
     });
-
     return labels;
   }, [heatmapWeeks]);
 
@@ -210,11 +243,11 @@ const GithubHeatmap = () => {
   };
 
   return (
-    <section className="github-section" id="github">
-      <div className="github-container section-container">
+    <section className="github-section" id="github" ref={sectionRef}>
+      <div className="github-container section-container" style={{ maxWidth: "1200px", margin: "0 auto" }}>
         
         {/* Section Header */}
-        <div className="github-header">
+        <div className="github-header" ref={headerRef}>
           <div className="github-header-badge">
             <FaGithub className="github-icon" />
             <span>OPEN SOURCE VELOCITY</span>
@@ -228,14 +261,14 @@ const GithubHeatmap = () => {
         </div>
 
         {/* Stats Grid */}
-        <div className="github-stats-grid">
+        <div className="github-stats-grid" ref={statsRef}>
           <div className="github-stat-card primary">
             <div className="stat-card-header">
               <FiActivity className="stat-icon" />
               <span className="stat-label">Total Contributions</span>
             </div>
-            <div className="stat-value">{stats.totalContributions.toLocaleString()}+</div>
-            <div className="stat-subtext">3,000+ contributions past 12 months</div>
+            <div className="stat-value">{stats.totalContributions.toLocaleString()}</div>
+            <div className="stat-subtext">Total contributions across all repos</div>
           </div>
 
           <div className="github-stat-card">
@@ -250,10 +283,10 @@ const GithubHeatmap = () => {
           <div className="github-stat-card">
             <div className="stat-card-header">
               <FaFire className="stat-icon streak" />
-              <span className="stat-label">Current Streak</span>
+              <span className="stat-label">Longest Streak</span>
             </div>
-            <div className="stat-value">{stats.currentStreak} Days</div>
-            <div className="stat-subtext">Longest: {stats.longestStreak} days</div>
+            <div className="stat-value">{stats.longestStreak} Days</div>
+            <div className="stat-subtext">{stats.longestStreakRange}</div>
           </div>
 
           <div className="github-stat-card">
@@ -267,14 +300,13 @@ const GithubHeatmap = () => {
         </div>
 
         {/* Heatmap Card */}
-        <div className="github-heatmap-card">
+        <div className="github-heatmap-card" ref={heatmapCardRef}>
           <div className="heatmap-controls-row">
             <div className="heatmap-title">
               <FaCalendarAlt />
               <span>Contribution Matrix ({selectedYear})</span>
             </div>
 
-            {/* Year Selector Buttons */}
             <div className="year-selector">
               {[2026, 2025, 2024].map((year) => (
                 <button
@@ -289,13 +321,12 @@ const GithubHeatmap = () => {
           </div>
 
           {/* Heatmap Matrix Grid */}
-          <div className="heatmap-matrix-wrapper">
+          <div className={`heatmap-matrix-wrapper ${gridFading ? "grid-fade-out" : "grid-fade-in"}`}>
             {isLoading ? (
               <div className="heatmap-loading">Loading contribution grid...</div>
             ) : (
               <div className="heatmap-scroll-area">
                 
-                {/* Month Headers Row */}
                 <div className="heatmap-months-row">
                   <div className="day-label-spacer"></div>
                   <div className="months-flex">
@@ -312,15 +343,13 @@ const GithubHeatmap = () => {
                 </div>
 
                 <div className="heatmap-grid-body">
-                  {/* Day of Week Labels (Mon, Wed, Fri) */}
                   <div className="day-labels-col">
                     <span>Mon</span>
                     <span>Wed</span>
                     <span>Fri</span>
                   </div>
 
-                  {/* Weeks Columns x 7 Days Grid */}
-                  <div className="weeks-container">
+                  <div className="weeks-container" ref={weeksRef}>
                     {heatmapWeeks.map((week, weekIdx) => (
                       <div className="week-column" key={weekIdx}>
                         {week.days.map((day, dayIdx) => {
@@ -346,7 +375,7 @@ const GithubHeatmap = () => {
             )}
           </div>
 
-          {/* Heatmap Footer Legend & Link */}
+          {/* Heatmap Footer */}
           <div className="heatmap-footer">
             <div className="heatmap-breakdown">
               <span className="breakdown-item">
@@ -360,7 +389,6 @@ const GithubHeatmap = () => {
               </span>
             </div>
 
-            {/* Level Legend */}
             <div className="heatmap-legend">
               <span>Less</span>
               {[0, 1, 2, 3, 4].map((level) => (
@@ -392,7 +420,7 @@ const GithubHeatmap = () => {
           </div>
         </div>
 
-        {/* Hover Tooltip Popup */}
+        {/* Hover Tooltip */}
         {hoveredDay && (
           <div
             className="heatmap-tooltip"
