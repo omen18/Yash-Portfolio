@@ -150,8 +150,8 @@ const projectsList: Project[] = [
   },
   {
     title: "MacDeck",
-    subtitle: "Low-Latency Remote Desktop & Element-Snapping Controller for Mac & iPhone",
-    category: "iOS & macOS Native Systems Architecture",
+    subtitle: "iOS and macOS App — Low-Latency Remote Desktop & Element-Snapping Controller",
+    category: "iOS and macOS Development",
     tools: "Swift 5.9, SwiftUI, ScreenCaptureKit, VideoToolbox, Network.framework, CoreGraphics",
     images: [
       "/images/macdeck_screen_display.png",
