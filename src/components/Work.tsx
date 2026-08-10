@@ -13,6 +13,7 @@ type Project = {
   tools: string;
   image?: string;
   images?: string[];
+  placeholderText?: string;
   link: string;
   liveLink?: string;
 };
@@ -176,6 +177,14 @@ const projectsList: Project[] = [
       "/images/musify_album.png"
     ],
     link: "https://github.com/omen18/Musify.git"
+  },
+  {
+    title: "Kartly",
+    subtitle: "Full-Stack E-Commerce Platform with Cart, Checkout & Order Tracking",
+    category: "Full Stack & E-Commerce Systems",
+    tools: "Next.js, JavaScript, Tailwind CSS, Prisma, PostgreSQL, REST APIs",
+    placeholderText: "Project pics will be live soon",
+    link: "https://github.com/omen18/Kartly.git"
   }
 ];
 
@@ -221,6 +230,7 @@ const WorkCard = ({ project, index }: { project: Project; index: number }) => {
           alt={project.title} 
           link={project.link} 
           liveLink={project.liveLink} 
+          placeholderText={project.placeholderText}
         />
       </div>
     </div>

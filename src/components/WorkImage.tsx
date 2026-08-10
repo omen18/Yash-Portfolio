@@ -3,11 +3,12 @@ import { FaGithub } from "react-icons/fa";
 import { FiGlobe } from "react-icons/fi";
 
 interface Props {
-  image: string;
+  image?: string;
   alt?: string;
   video?: string;
   link?: string;
   liveLink?: string;
+  placeholderText?: string;
 }
 
 const WorkImage = (props: Props) => {
@@ -31,7 +32,20 @@ const WorkImage = (props: Props) => {
         onMouseLeave={() => setIsVideo(false)}
         data-cursor={"disable"}
       >
-        <img src={props.image} alt={props.alt} />
+        {props.placeholderText || !props.image ? (
+          <div className="work-placeholder-card">
+            <div className="work-placeholder-glow"></div>
+            <div className="work-placeholder-content">
+              <div className="work-placeholder-badge">
+                <span className="placeholder-dot"></span>
+                <span>LIVE SOON</span>
+              </div>
+              <p>{props.placeholderText || "Project pics will be live soon"}</p>
+            </div>
+          </div>
+        ) : (
+          <img src={props.image} alt={props.alt} />
+        )}
         {isVideo && <video src={video} autoPlay muted playsInline loop></video>}
         
         <div className="work-links-container">

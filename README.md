@@ -7,22 +7,22 @@
 [![Physics](https://img.shields.io/badge/Rapier_Physics-3D-purple)](https://rapier.rs)
 [![License](https://img.shields.io/badge/License-PPL_1.0-orange.svg)](LICENSE)
 
-An immersive, high-performance 3D portfolio and interactive AI engineering lab built with **React**, **Three.js (React Three Fiber + Rapier Physics)**, and **GSAP**. It showcases a fusion of modern web aesthetics, interactive simulation, and full-stack software architecture.
+An immersive, high-performance 3D portfolio and interactive AI engineering lab built with **React**, **Three.js (React Three Fiber + Rapier Physics)**, and **GSAP**. It showcases a fusion of modern web aesthetics, interactive simulation, full-stack software architecture, native iOS & macOS apps, and Machine Learning engineering.
 
 ---
 
 <p align="center">
-  <img width="1667" height="943" alt="ChatGPT Image Jul 8, 2026, 09_47_13 PM" src="https://github.com/user-attachments/assets/b6a9022d-ff24-41e6-ae3f-c97c8c7eafb5" />
-
+  <img width="1667" height="943" alt="Portfolio Preview" src="https://github.com/user-attachments/assets/b6a9022d-ff24-41e6-ae3f-c97c8c7eafb5" />
 </p>
 
 ---
 
 ## ✨ Immersive Interactive Features
 
-This portfolio is not just a static webpage—it is an interactive playground showing off engineering capabilities:
+This portfolio is an interactive engineering playground showcasing deep technical capabilities:
 
 *   **🎮 3D Rigid-Body Physics Skill Wall (`TechStack.tsx`)**: An interactive 3D physics simulation using `@react-three/rapier` and `N8AO` post-processing. Technologies fall as interactive spherical capsules that collide, roll, and respond to gravity.
+*   **📊 Live GitHub Contribution Grid (`GithubHeatmap.tsx`)**: Custom-rendered dark matrix tracking **3,000+ contributions**, **23 public repositories**, and a **134-day longest streak** with GSAP scroll and cell reveal animations.
 *   **💻 Interactive CLI Terminal (`AskYash.tsx`)**: A simulated command-line interface mimicking a booting systems kernel (`yash.exe`). Allows users to query specific topics (`current_focus`, `why_ai`, `featured_build`) via interactive command strings.
 *   **👤 Custom Decrypted 3D Avatar Engine (`Character/Scene.tsx`)**: Renders a 3D model with custom real-time mouse tracking (the model's head follows the cursor), dynamic lighting, and custom decryption/loading optimizations.
 *   **🧪 The Research Lab (`ResearchLab.tsx`)**: Interactive experiment cards with cursor-responsive hover glow tracking and custom modal popups showcasing classical Computer Vision and Machine Learning experiments.
@@ -39,39 +39,88 @@ This portfolio is not just a static webpage—it is an interactive playground sh
 *   **Post-processing**: `@react-three/postprocessing` (Ambient Occlusion via `N8AO`)
 *   **Animations**: GreenSock (GSAP) & `@gsap/react` for scroll triggers and timelines
 
-### **AI & Machine Learning Focus**
-*   PyTorch, TensorFlow, OpenCV, LangChain, OpenAI API, HuggingFace
-*   Focus on mechanistic interpretability, LLM agent pipelines, RAG, and autonomous perception
+### **Mobile & Native Systems**
+*   Swift 5.9, SwiftUI, Xcode, iOS SDK, ScreenCaptureKit, VideoToolbox, Network.framework, CoreGraphics, Flutter, Dart, Material 3
 
-### **Backend & DevOps**
-*   Node.js, Express, FastAPI, PostgreSQL, MongoDB, MySQL, Docker, AWS
+### **AI & Machine Learning Focus**
+*   PyTorch, TensorFlow, OpenCV, LangChain, OpenAI API, HuggingFace, YOLOv8, ResUNet, EfficientNet-B0, RAG Pipelines, Fine-Tuning
+
+### **Backend & Cloud Infrastructure**
+*   Node.js, Express, FastAPI, Next.js, PostgreSQL, MongoDB, MySQL, DuckDB, WebAssembly, Prisma, Docker, AWS
 
 ---
 
 ## 📂 Featured Projects Showcase
 
-The portfolio showcases five core engineering projects:
+The portfolio features 13 active engineering builds + 1 upcoming Machine Learning project:
 
-1.  **Ticket Booking System** 🎫  
-    *Full-Stack Booking Platform*  
+1.  **Ticket Booking System (Showpass)** 🎫  
+    *Full-Stack Booking Platform & Database Architecture*  
     *Tech*: React, TypeScript, Node.js, Express, MySQL  
-    *Link*: [GitHub Repo](https://github.com/omen18/Ticket-Booking-System)
+    *Links*: [GitHub Repo](https://github.com/omen18/Ticket-Booking-System) | [Live Demo](https://show-pass-lemon.vercel.app/)
+
 2.  **IslandPet** 🏝️  
     *Gamified Focus Companion iOS App*  
     *Tech*: Swift, SwiftUI, iOS SDK, Dynamic Island Integration  
-    *Link*: [GitHub Repo](https://github.com/omen18/IslandPet)
-3.  **AI Delivery Route Planner** 🚚  
-    *Interactive 3D Graph Optimization & Pathfinding*  
-    *Tech*: React, Three.js, Graph Theory, A* / Dijkstra Search  
-    *Link*: [GitHub Repo](https://github.com/omen18/AI-delivery-route-planner) | [Live Link](https://ai-delivery-route-planner.vercel.app/)
-4.  **AmritKrishi 2.0** 🌾  
-    *Agri-tech Platform for Crop Analytics*  
-    *Tech*: React, Node.js, Express, PostgreSQL, Crop Analytics  
-    *Link*: [GitHub Profile](https://github.com/omen18)
-5.  **AI Study Companion** 📚  
+    *Links*: [GitHub Repo](https://github.com/omen18/IslandPet)
+
+3.  **AI Study Companion** 📚  
     *LLM Personalized Learning Platform*  
     *Tech*: React, FastAPI, OpenAI API, LLM Agents  
-    *Link*: [GitHub Profile](https://github.com/omen18)
+    *Links*: [GitHub Repo](https://github.com/omen18/ai-study-companion)
+
+4.  **AmritKrishi 2.0** 🌾  
+    *Agri-tech Platform for Crop Insights & Analytics*  
+    *Tech*: React, Node.js, Express, PostgreSQL, Crop Analytics  
+    *Links*: [GitHub Repo](https://github.com/omen18/amritkrishi2.0/tree/master)
+
+5.  **AI Delivery Route Planner** 🚚  
+    *Interactive 3D Graph Optimization & Pathfinding*  
+    *Tech*: React, Three.js, Graph Theory, A* / Dijkstra Search  
+    *Links*: [GitHub Repo](https://github.com/omen18/AI-delivery-route-planner) | [Live Demo](https://ai-delivery-route-planner.vercel.app/)
+
+6.  **Sentinel** 🚨  
+    *AI Road Incident Intelligence & Emergency Perception Platform*  
+    *Tech*: React, Node.js, Express, YOLOv8, AccidentCNN, RAG, WebSockets  
+    *Links*: [GitHub Repo](https://github.com/omen18/Sentinel)
+
+7.  **QuillAI** ✒️  
+    *Semantic BI & Local DB Analytics Engine*  
+    *Tech*: React, WebAssembly, DuckDB, WebGPU, BI Analytics, Malloy  
+    *Links*: [GitHub Repo](https://github.com/omen18/QuillAI)
+
+8.  **GitPulse** ⚡  
+    *Interactive GitHub Repository Visualizer & AI Summarizer*  
+    *Tech*: React, Node.js, Graph Visualization, AI Code Summaries, GitHub API  
+    *Links*: [GitHub Repo](https://github.com/omen18/GitPluse.git)
+
+9.  **CutisAI** 🔬  
+    *Clinical AI Dermatology & Skin Lesion Screening Engine*  
+    *Tech*: ResUNet, EfficientNet-B0, React, ONNX, ISIC Dataset, Clinical AI  
+    *Links*: [GitHub Repo](https://github.com/omen18/CutisAI.git)
+
+10. **CodeStride** 🏃  
+    *Open-Source Developer Productivity & Goal Tracking Dashboard*  
+    *Tech*: React, Next.js, GitHub OAuth API, Contribution Heatmaps, PR Velocity  
+    *Links*: [GitHub Repo](https://github.com/omen18/CodeStride.git)
+
+11. **MacDeck** 🖥️  
+    *iOS and macOS App — Low-Latency Remote Desktop & Element-Snapping Controller*  
+    *Tech*: Swift 5.9, SwiftUI, ScreenCaptureKit, VideoToolbox, Network.framework, CoreGraphics  
+    *Links*: [GitHub Repo](https://github.com/omen18/MacDeck)
+
+12. **Musify** 🎵  
+    *Flutter Music Streaming & Offline Audio Player with Lyrics & SponsorBlock*  
+    *Tech*: Flutter, Dart, Material 3, YouTube API, Offline Audio Cache, SponsorBlock  
+    *Links*: [GitHub Repo](https://github.com/omen18/Musify.git)
+
+13. **Kartly** 🛒  
+    *Full-Stack E-Commerce Platform with Cart, Checkout & Order Tracking*  
+    *Tech*: Next.js, JavaScript, Tailwind CSS, Prisma, PostgreSQL, REST APIs  
+    *Links*: [GitHub Repo](https://github.com/omen18/Kartly.git) *(Project pics live soon)*
+
+14. **Coming Soon (#14)** 🤖  
+    *Machine Learning & Intelligent Autonomous Systems Engine*
 
 ---
 
@@ -81,8 +130,8 @@ Want to run the laboratory locally on your machine? Follow these commands:
 
 ### **1. Clone the repository**
 ```bash
-git clone https://github.com/omen18/portfolio.git
-cd portfolio
+git clone https://github.com/omen18/Yash-Portfolio.git
+cd Yash-Portfolio
 ```
 
 ### **2. Install dependencies**
@@ -113,12 +162,6 @@ This project uses trial versions of **GSAP Club plugins** (`gsap-trial`).
 > *   Repost it with minor text/content changes.
 > *   Use it for commercial or client projects.
 > *   Publish tutorials using this exact source code.
-
-### **3D Avatar Asset Protection**
-> [!CAUTION]  
-> *   The custom 3D avatar used in the live website is **not** included in this public repository. 
-> *   It is a proprietary asset that took over a month of custom creation.
-> *   Extracting or redistributing this avatar from the live site is strictly prohibited.
 
 ---
 
