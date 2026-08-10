@@ -162,6 +162,20 @@ const projectsList: Project[] = [
       "/images/macdeck_terminal_shell.png"
     ],
     link: "https://github.com/omen18/MacDeck"
+  },
+  {
+    title: "Musify",
+    subtitle: "Flutter Music Streaming & Offline Audio Player with Lyrics & SponsorBlock",
+    category: "Mobile & Audio Engineering",
+    tools: "Flutter, Dart, Material 3, YouTube API, Offline Audio Cache, SponsorBlock",
+    images: [
+      "/images/musify_banner.png",
+      "/images/musify_home.png",
+      "/images/musify_player.png",
+      "/images/musify_library.png",
+      "/images/musify_album.png"
+    ],
+    link: "https://github.com/omen18/Musify.git"
   }
 ];
 
