@@ -102,6 +102,7 @@ const GithubHeatmap = () => {
     x: number;
     y: number;
   } | null>(null);
+  const [liveTotalContributions, setLiveTotalContributions] = useState<number | null>(null);
   const [heatmapWeeks, setHeatmapWeeks] = useState<WeekContribution[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [gridFading, setGridFading] = useState(false);
@@ -112,33 +113,112 @@ const GithubHeatmap = () => {
   const heatmapCardRef = useRef<HTMLDivElement>(null);
   const weeksRef = useRef<HTMLDivElement>(null);
 
-  // Load data with smooth year transition
+  // Load data with live API fetch + deterministic fallback & smooth year transition
   useEffect(() => {
+    let isMounted = true;
     setGridFading(true);
-    const timeout = setTimeout(() => {
+
+    const loadData = async () => {
       setIsLoading(true);
-      const weeks = generateHeatmapData(selectedYear);
-      setHeatmapWeeks(weeks);
-      setIsLoading(false);
-      requestAnimationFrame(() => {
-        setGridFading(false);
-        // Animate cells in a wave when grid appears
-        if (weeksRef.current) {
-          const cells = weeksRef.current.querySelectorAll(".heatmap-cell");
-          gsap.fromTo(cells, 
-            { opacity: 0, scale: 0 },
-            { 
-              opacity: 1, scale: 1,
-              duration: 0.4,
-              stagger: { amount: 0.8, from: "start", grid: "auto" },
-              ease: "back.out(1.4)",
-              clearProps: "transform"
+
+      try {
+        const res = await fetch("https://github-contributions.vercel.app/api/v1/omen18");
+        if (res.ok) {
+          const data = await res.json();
+          if (data && Array.isArray(data.contributions) && isMounted) {
+            let total = 0;
+            const dayMap = new Map<string, number>();
+            data.contributions.forEach((item: { date: string; count: number }) => {
+              total += item.count || 0;
+              dayMap.set(item.date, item.count || 0);
+            });
+
+            if (total > 0) {
+              setLiveTotalContributions(total);
             }
-          );
+
+            const weeks: WeekContribution[] = [];
+            const startDate = new Date(selectedYear, 0, 1);
+            const startDay = startDate.getDay();
+            startDate.setDate(startDate.getDate() - startDay);
+
+            for (let w = 0; w < 52; w++) {
+              const days: DayContribution[] = [];
+              for (let d = 0; d < 7; d++) {
+                const currentDate = new Date(startDate);
+                currentDate.setDate(startDate.getDate() + w * 7 + d);
+                const dateStr = currentDate.toISOString().split("T")[0];
+                const count = dayMap.get(dateStr) ?? 0;
+
+                let level: 0 | 1 | 2 | 3 | 4 = 0;
+                if (count === 0) level = 0;
+                else if (count <= 3) level = 1;
+                else if (count <= 7) level = 2;
+                else if (count <= 12) level = 3;
+                else level = 4;
+
+                days.push({ date: dateStr, count, level });
+              }
+              weeks.push({ days });
+            }
+
+            setHeatmapWeeks(weeks);
+            setIsLoading(false);
+            requestAnimationFrame(() => {
+              if (isMounted) {
+                setGridFading(false);
+                if (weeksRef.current) {
+                  const cells = weeksRef.current.querySelectorAll(".heatmap-cell");
+                  gsap.fromTo(cells, 
+                    { opacity: 0, scale: 0 },
+                    { 
+                      opacity: 1, scale: 1,
+                      duration: 0.4,
+                      stagger: { amount: 0.8, from: "start", grid: "auto" },
+                      ease: "back.out(1.4)",
+                      clearProps: "transform"
+                    }
+                  );
+                }
+              }
+            });
+            return;
+          }
         }
-      });
-    }, 300);
-    return () => clearTimeout(timeout);
+      } catch (err) {
+        // Silently fall back to deterministic pattern below
+      }
+
+      if (isMounted) {
+        const weeks = generateHeatmapData(selectedYear);
+        setHeatmapWeeks(weeks);
+        setIsLoading(false);
+        requestAnimationFrame(() => {
+          if (isMounted) {
+            setGridFading(false);
+            if (weeksRef.current) {
+              const cells = weeksRef.current.querySelectorAll(".heatmap-cell");
+              gsap.fromTo(cells, 
+                { opacity: 0, scale: 0 },
+                { 
+                  opacity: 1, scale: 1,
+                  duration: 0.4,
+                  stagger: { amount: 0.8, from: "start", grid: "auto" },
+                  ease: "back.out(1.4)",
+                  clearProps: "transform"
+                }
+              );
+            }
+          }
+        });
+      }
+    };
+
+    const timeout = setTimeout(loadData, 200);
+    return () => {
+      isMounted = false;
+      clearTimeout(timeout);
+    };
   }, [selectedYear]);
 
   // GSAP scroll-triggered entrance animations
@@ -206,7 +286,7 @@ const GithubHeatmap = () => {
 
   // Stats from real GitHub profile
   const stats = {
-    totalContributions: 3118,
+    totalContributions: liveTotalContributions || 3118,
     publicRepos: 23,
     longestStreak: 134,
     longestStreakRange: "Oct 17, 2025 – Feb 27, 2026",
