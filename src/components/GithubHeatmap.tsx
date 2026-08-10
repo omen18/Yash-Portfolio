@@ -206,7 +206,7 @@ const GithubHeatmap = () => {
 
   // Stats from real GitHub profile
   const stats = {
-    totalContributions: 3146,
+    totalContributions: 3118,
     publicRepos: 23,
     longestStreak: 134,
     longestStreakRange: "Oct 17, 2025 – Feb 27, 2026",
