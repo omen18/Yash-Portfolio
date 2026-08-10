@@ -183,7 +183,9 @@ const projectsList: Project[] = [
     subtitle: "Full-Stack E-Commerce Platform with Cart, Checkout & Order Tracking",
     category: "Full Stack & E-Commerce Systems",
     tools: "Next.js, JavaScript, Tailwind CSS, Prisma, PostgreSQL, REST APIs",
-    placeholderText: "Project pics will be live soon",
+    images: [
+      "/images/kartly_placeholder.svg"
+    ],
     link: "https://github.com/omen18/Kartly.git"
   }
 ];

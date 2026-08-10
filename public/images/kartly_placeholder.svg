@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="714" viewBox="0 0 1200 714">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#140e1e"/>
+      <stop offset="50%" stop-color="#1a1228"/>
+      <stop offset="100%" stop-color="#0a080e"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#c2a4ff" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#c2a4ff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="714" fill="url(#bg)"/>
+  <circle cx="600" cy="300" r="350" fill="url(#glow)"/>
+  
+  <!-- Subtle Grid Lines -->
+  <g stroke="rgba(255,255,255,0.03)" stroke-width="1">
+    <line x1="0" y1="178" x2="1200" y2="178"/>
+    <line x1="0" y1="357" x2="1200" y2="357"/>
+    <line x1="0" y1="535" x2="1200" y2="535"/>
+    <line x1="300" y1="0" x2="300" y2="714"/>
+    <line x1="600" y1="0" x2="600" y2="714"/>
+    <line x1="900" y1="0" x2="900" y2="714"/>
+  </g>
+
+  <!-- Card Frame -->
+  <rect x="250" y="140" width="700" height="434" rx="20" fill="rgba(255,255,255,0.02)" stroke="rgba(194,164,255,0.25)" stroke-width="2"/>
+
+  <!-- Icon: Shopping Cart -->
+  <g transform="translate(560, 210)" stroke="#c2a4ff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="54" r="6" fill="#c2a4ff"/>
+    <circle cx="52" cy="54" r="6" fill="#c2a4ff"/>
+    <path d="M 0 0 L 12 0 L 22 40 L 60 40 L 70 12 L 18 12"/>
+  </g>
+
+  <!-- Project Title -->
+  <text x="600" y="340" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="44" font-weight="700" fill="#ffffff" letter-spacing="1">
+    Kartly
+  </text>
+  <text x="600" y="380" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="500" fill="#c2a4ff" letter-spacing="3">
+    FULL-STACK E-COMMERCE PLATFORM
+  </text>
+
+  <!-- Live Soon Badge -->
+  <rect x="470" y="425" width="260" height="44" rx="22" fill="rgba(194,164,255,0.12)" stroke="rgba(194,164,255,0.35)" stroke-width="1.5"/>
+  <circle cx="498" cy="447" r="5" fill="#c2a4ff"/>
+  <text x="610" y="453" text-anchor="middle" font-family="'JetBrains Mono', monospace, sans-serif" font-size="14" font-weight="700" fill="#ffffff" letter-spacing="1.5">
+    PICS LIVE SOON
+  </text>
+</svg>
