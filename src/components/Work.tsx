@@ -30,7 +30,8 @@ const projectsList: Project[] = [
       "/images/ticket_showpass_events.png",
       "/images/ticket_showpass_visit.png"
     ],
-    link: "https://github.com/omen18/Ticket-Booking-System"
+    link: "https://github.com/omen18/Ticket-Booking-System",
+    liveLink: "https://show-pass-lemon.vercel.app/"
   },
   {
     title: "IslandPet",
