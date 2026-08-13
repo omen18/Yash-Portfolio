@@ -1,0 +1,185 @@
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+% Font options
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0pt}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\vline height 0.35pt depth 0pt width \textwidth \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.15in]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Yash Raj Sharan} \\ \vspace{4pt}
+    \small +91 94714 44635 $|$ \href{mailto:yashrajsharan2006@gmail.com}{\underline{yashrajsharan2006@gmail.com}} $|$ 
+    \href{https://linkedin.com/in/yashraj10}{\underline{linkedin.com/in/yashraj10}} $|$
+    \href{https://github.com/omen18}{\underline{github.com/omen18}} $|$
+    \href{https://yash-dev-seven.vercel.app}{\underline{yash-dev-seven.vercel.app}} \\
+    \vspace{2pt}
+    \small Chennai, Tamil Nadu, India $|$ Full Stack Developer $\cdot$ AI \& Machine Learning Undergraduate at SRMIST
+\end{center}
+
+%-----------SUMMARY-----------
+\section{Summary}
+\small{
+Full stack developer building production-style web applications end to end --- responsive React + TypeScript frontends and Node.js / Express and FastAPI backends. Comfortable across REST and WebSocket API design, MySQL and MongoDB schema modelling, authentication, concurrency-safe transactions, and deploying performance-tuned apps, with applied AI/ML integrated into real product workflows.
+}
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: TypeScript, JavaScript (ES6+), Python, Java, SQL, Rust, Swift} \\
+     \textbf{Frontend}{: React 18/19, Next.js, Vite, HTML5, CSS3, Tailwind CSS, Three.js, GSAP, Responsive UI, REST/API integration} \\
+     \textbf{Backend}{: Node.js, Express.js, FastAPI, REST APIs, WebSockets, JWT \& bcrypt auth, concurrency control, transactional integrity} \\
+     \textbf{Databases}{: MySQL (schema design, indexing, atomic transactions), MongoDB} \\
+     \textbf{AI/ML}{: PyTorch, TensorFlow, ONNX Runtime, NumPy, Pandas, Generative AI / LLM integration} \\
+     \textbf{Tools}{: Git, GitHub, Postman, Vercel, Jupyter Notebook, Google Colab, Xcode}
+    }}
+ \end{itemize}
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{Developer Portfolio} $|$ \emph{React, TypeScript, Three.js, Express.js} $|$ \href{https://github.com/omen18}{\underline{GitHub}} $|$ \href{https://yash-dev-seven.vercel.app}{\underline{Live}}}{}
+          \resumeItemListStart
+            \resumeItem{Built a performance-tuned portfolio platform with Three.js 3D visuals, GSAP animation choreography, and live GitHub API integration.}
+            \resumeItem{Backed by an Express.js service with a secure contact pipeline and an AI ``Ask Me Anything'' chat widget served through an edge function.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{ShowPass} $|$ \emph{React, TypeScript, Node.js, MySQL} $|$ \href{https://github.com/omen18}{\underline{GitHub}}}{}
+          \resumeItemListStart
+            \resumeItem{Full stack event ticket booking platform with real-time seat selection, JWT + bcrypt authentication, and server-validated pricing.}
+            \resumeItem{Implemented atomic, concurrency-safe transactions and a seat-lock service that eliminates double booking under parallel load.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{CutisAI} $|$ \emph{React 18, FastAPI, PyTorch, ONNX Runtime} $|$ \href{https://github.com/omen18}{\underline{GitHub}}}{}
+          \resumeItemListStart
+            \resumeItem{Clinical-grade AI skin lesion segmentation and classification system powered by ResUNet, EfficientNet-B0, and INT8 ONNX Runtime.}
+            \resumeItem{Delivered as a responsive React 18 dashboard communicating over a high-throughput FastAPI inference API.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{MacDeck} $|$ \emph{Swift, ScreenCaptureKit, VideoToolbox, Bonjour} $|$ \href{https://github.com/omen18}{\underline{GitHub}}}{}
+          \resumeItemListStart
+            \resumeItem{macOS + iOS remote control over LAN featuring hardware-encoded H.264 screen streaming (\emph{ScreenCaptureKit $\rightarrow$ VideoToolbox $\rightarrow$ AVSampleBufferDisplayLayer}).}
+            \resumeItem{Engineered with a CGEvent input back-channel, Bonjour discovery, and TLS encryption requiring zero servers or external accounts.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{IslandPet} $|$ \emph{SwiftUI, SwiftData, ActivityKit, WidgetKit} $|$ \href{https://github.com/omen18}{\underline{GitHub}}}{}
+          \resumeItemListStart
+            \resumeItem{iOS focus app featuring a virtual pet living in the Dynamic Island via ActivityKit Live Activities, with gamified Pomodoro sessions and haptic-driven progression.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{AmritKrishi 2.0} $|$ \emph{Full Stack Web Platform} $|$ \href{https://github.com/omen18}{\underline{GitHub}}}{}
+          \resumeItemListStart
+            \resumeItem{Scalable agri-tech platform surfacing crop analytics, weather insights, and live market data through a responsive, data-driven interface.}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {SRM Institute of Science and Technology, Chennai}{2024 -- 2028}
+      {B.Tech in Computer Science and Engineering (AI \& ML)}{}
+    \resumeSubheading
+      {Swarajaya Senior Secondary School}{2023 -- 2024}
+      {Senior Secondary (Class XII) -- 76\%}{}
+  \resumeSubHeadingListEnd
+
+%-----------AWARDS & CERTIFICATIONS-----------
+\section{Awards \& Certifications}
+  \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+      \textbf{NIT Patna Hackathon} -- Participant \\
+      \textbf{Deloitte Technology Job Simulation} -- Completion Certificate \\
+      \textbf{GirlScript Summer of Code} -- Open Source Contributor \\
+      \textbf{GirlScript Summer of Code} -- AI Track \\
+      \textbf{Research Paper} -- Digital Image Processing
+    }}
+  \end{itemize}
+
+%-----------ADDITIONAL-----------
+\section{Additional Information}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Hindi, English, German} $|$ \textbf{Strengths}{: Problem solving, debugging, code optimization, system design}
+    }}
+ \end{itemize}
+
+\end{document}

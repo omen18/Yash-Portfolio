@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yash Raj Sharan - Resume</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #111827;
+      background-color: #f3f4f6;
+      padding: 2rem 1rem;
+      line-height: 1.45;
+      font-size: 10pt;
+    }
+
+    .paper {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 2.5rem 3rem;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 1.2rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 22pt;
+      font-weight: 700;
+      color: #000;
+      letter-spacing: -0.5px;
+      margin-bottom: 4px;
+    }
+
+    .contact-line {
+      font-size: 9.5pt;
+      color: #374151;
+      margin-bottom: 4px;
+    }
+
+    .contact-line a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    .contact-line a:hover {
+      text-decoration: underline;
+    }
+
+    .subtitle {
+      font-size: 10pt;
+      font-weight: 600;
+      color: #1f2937;
+    }
+
+    section {
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: 11pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #111827;
+      border-bottom: 1px solid #111827;
+      padding-bottom: 2px;
+      margin-bottom: 6px;
+    }
+
+    p.summary {
+      font-size: 9.5pt;
+      color: #374151;
+      text-align: justify;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 3px 12px;
+      font-size: 9.5pt;
+    }
+
+    .skills-label {
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .skills-val {
+      color: #374151;
+    }
+
+    .item {
+      margin-bottom: 8px;
+    }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 10pt;
+    }
+
+    .item-title {
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .item-title span.tech {
+      font-weight: 400;
+      font-style: italic;
+      color: #4b5563;
+      font-size: 9pt;
+    }
+
+    .item-date {
+      font-size: 9pt;
+      color: #4b5563;
+      font-weight: 500;
+    }
+
+    ul.bullets {
+      list-style-type: disc;
+      padding-left: 1.2rem;
+      margin-top: 3px;
+    }
+
+    ul.bullets li {
+      font-size: 9.2pt;
+      color: #374151;
+      margin-bottom: 2px;
+    }
+
+    .cert-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 16px;
+      font-size: 9.5pt;
+    }
+
+    .cert-item {
+      color: #374151;
+    }
+
+    .cert-item strong {
+      color: #111827;
+    }
+
+    @media print {
+      body {
+        background: none;
+        padding: 0;
+      }
+      .paper {
+        box-shadow: none;
+        padding: 0;
+        max-width: 100%;
+      }
+      a {
+        color: #000 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="paper">
+    <header>
+      <h1>Yash Raj Sharan</h1>
+      <div class="contact-line">
+        +91 94714 44635 &bull; 
+        <a href="mailto:yashrajsharan2006@gmail.com">yashrajsharan2006@gmail.com</a> &bull; 
+        <a href="https://linkedin.com/in/yashraj10" target="_blank">linkedin.com/in/yashraj10</a> &bull; 
+        <a href="https://github.com/omen18" target="_blank">github.com/omen18</a> &bull; 
+        <a href="https://yash-dev-seven.vercel.app" target="_blank">yash-dev-seven.vercel.app</a>
+      </div>
+      <div class="subtitle">Chennai, Tamil Nadu, India &bull; Full Stack Developer &middot; AI & Machine Learning Undergraduate at SRMIST</div>
+    </header>
+
+    <section>
+      <h2>Summary</h2>
+      <p class="summary">
+        Full stack developer building production-style web applications end to end — responsive React + TypeScript frontends and Node.js / Express and FastAPI backends. Comfortable across REST and WebSocket API design, MySQL and MongoDB schema modelling, authentication, concurrency-safe transactions, and deploying performance-tuned apps, with applied AI/ML integrated into real product workflows.
+      </p>
+    </section>
+
+    <section>
+      <h2>Technical Skills</h2>
+      <div class="skills-grid">
+        <div class="skills-label">Languages:</div>
+        <div class="skills-val">TypeScript, JavaScript (ES6+), Python, Java, SQL, Rust, Swift</div>
+
+        <div class="skills-label">Frontend:</div>
+        <div class="skills-val">React 18/19, Next.js, Vite, HTML5, CSS3, Tailwind CSS, Three.js, GSAP, Responsive UI, REST/API integration</div>
+
+        <div class="skills-label">Backend:</div>
+        <div class="skills-val">Node.js, Express.js, FastAPI, REST APIs, WebSockets, JWT & bcrypt auth, concurrency control, transactional integrity</div>
+
+        <div class="skills-label">Databases:</div>
+        <div class="skills-val">MySQL (schema design, indexing, atomic transactions), MongoDB</div>
+
+        <div class="skills-label">AI/ML:</div>
+        <div class="skills-val">PyTorch, TensorFlow, ONNX Runtime, NumPy, Pandas, Generative AI / LLM integration</div>
+
+        <div class="skills-label">Tools:</div>
+        <div class="skills-val">Git, GitHub, Postman, Vercel, Jupyter Notebook, Google Colab, Xcode</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Projects</h2>
+      
+      <div class="item">
+        <div class="item-header">
+          <div class="item-title">Developer Portfolio <span class="tech">— React, TypeScript, Three.js, Express.js</span></div>
+          <div class="item-date"><a href="https://github.com/omen18">GitHub</a> | <a href="https://yash-dev-seven.vercel.app">Live</a></div>
+        </div>
+        <ul class="bullets">
+          <li>Built a performance-tuned portfolio platform with Three.js 3D visuals, GSAP animation choreography, and live GitHub API integration.</li>
+          <li>Backed by an Express.js service with a secure contact pipeline and an AI "Ask Me Anything" chat widget served through an edge function.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="item-header">
+          <div class="item-title">ShowPass <span class="tech">— React, TypeScript, Node.js, MySQL</span></div>
+          <div class="item-date"><a href="https://github.com/omen18">GitHub</a></div>
+        </div>
+        <ul class="bullets">
+          <li>Full stack event ticket booking platform with real-time seat selection, JWT + bcrypt authentication, and server-validated pricing.</li>
+          <li>Implemented atomic, concurrency-safe transactions and a seat-lock service that eliminates double booking under parallel load.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="item-header">
+          <div class="item-title">CutisAI <span class="tech">— React 18, FastAPI, PyTorch, ONNX Runtime</span></div>
+          <div class="item-date"><a href="https://github.com/omen18">GitHub</a></div>
+        </div>
+        <ul class="bullets">
+          <li>Clinical-grade AI skin lesion segmentation and classification system powered by ResUNet, EfficientNet-B0, and INT8 ONNX Runtime.</li>
+          <li>Delivered as a responsive React 18 dashboard communicating over a high-throughput FastAPI inference API.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="item-header">
+          <div class="item-title">MacDeck <span class="tech">— Swift, ScreenCaptureKit, VideoToolbox, Bonjour</span></div>
+          <div class="item-date"><a href="https://github.com/omen18">GitHub</a></div>
+        </div>
+        <ul class="bullets">
+          <li>macOS + iOS remote control over LAN with hardware-encoded H.264 screen streaming (ScreenCaptureKit &rarr; VideoToolbox &rarr; AVSampleBufferDisplayLayer) and CGEvent input back-channel.</li>
+          <li>Bonjour discovery, TLS-encrypted, requiring no external servers or accounts.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="item-header">
+          <div class="item-title">IslandPet <span class="tech">— SwiftUI, SwiftData, ActivityKit, WidgetKit</span></div>
+          <div class="item-date"><a href="https://github.com/omen18">GitHub</a></div>
+        </div>
+        <ul class="bullets">
+          <li>iOS focus app featuring a virtual pet residing in the Dynamic Island via ActivityKit Live Activities, with gamified Pomodoro sessions and haptic-driven progression.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="item-header">
+          <div class="item-title">AmritKrishi 2.0 <span class="tech">— Full Stack Web Platform</span></div>
+          <div class="item-date"><a href="https://github.com/omen18">GitHub</a></div>
+        </div>
+        <ul class="bullets">
+          <li>Scalable agri-tech platform surfacing crop analytics, weather insights, and live market data through a responsive, data-driven interface.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <div class="item">
+        <div class="item-header">
+          <div class="item-title">SRM Institute of Science and Technology, Chennai</div>
+          <div class="item-date">2024 – 2028</div>
+        </div>
+        <div style="font-size: 9.5pt; color: #374151;">B.Tech in Computer Science & Engineering (AI & ML)</div>
+      </div>
+      <div class="item" style="margin-top: 4px;">
+        <div class="item-header">
+          <div class="item-title">Swarajaya Senior Secondary School</div>
+          <div class="item-date">2023 – 2024</div>
+        </div>
+        <div style="font-size: 9.5pt; color: #374151;">Senior Secondary (Class XII) &mdash; 76%</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Awards & Certifications</h2>
+      <div class="cert-list">
+        <div class="cert-item">&bull; <strong>NIT Patna Hackathon:</strong> Participant</div>
+        <div class="cert-item">&bull; <strong>Deloitte Technology Job Simulation</strong></div>
+        <div class="cert-item">&bull; <strong>GirlScript Summer of Code:</strong> Open Source Contributor</div>
+        <div class="cert-item">&bull; <strong>GirlScript Summer of Code:</strong> AI Track</div>
+        <div class="cert-item">&bull; <strong>Research Paper:</strong> Digital Image Processing</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Additional Information</h2>
+      <div style="font-size: 9.5pt; color: #374151;">
+        <strong>Languages:</strong> Hindi, English, German &nbsp;|&nbsp; 
+        <strong>Strengths:</strong> Problem solving, debugging, code optimization, system design
+      </div>
+    </section>
+  </div>
+</body>
+</html>
