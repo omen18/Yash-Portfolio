@@ -7,7 +7,6 @@ const careerRoles = [
   "iOS Developer",
   "AI Engineer",
   "GenAI Engineer",
-  "LLM Engineer",
 ];
 
 const Career = () => {
@@ -75,7 +74,7 @@ const Career = () => {
             </div>
             <div className="career-info-box-right">
               <p>
-                Actively building expertise as a Full Stack Developer, GenAI / LLM Engineer, and iOS Developer. Crafting production-ready web systems with React, Next.js, Node.js, and Python, while engineering Generative AI pipelines — working with LLMs, LangChain, RAG architectures, prompt engineering, and fine-tuning. Continuously learning, writing code, and developing native iOS & macOS applications using Swift, SwiftUI, and low-latency Apple system APIs.
+                Actively building expertise as a Full Stack Developer, GenAI Engineer, and iOS Developer. Crafting production-ready web systems with React, Next.js, Node.js, and Python, while engineering Generative AI pipelines — working with LLMs, LangChain, RAG architectures, prompt engineering, and fine-tuning. Continuously learning, writing code, and developing native iOS & macOS applications using Swift, SwiftUI, and low-latency Apple system APIs.
               </p>
               <div className="career-links">
                 <a

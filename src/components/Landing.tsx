@@ -5,7 +5,6 @@ const roles = [
   "Full Stack Dev",
   "AI Engineer",
   "GenAI Engineer",
-  "LLM Engineer",
 ];
 
 const Landing = ({ children }: PropsWithChildren) => {
