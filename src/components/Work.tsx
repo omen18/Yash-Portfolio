@@ -86,45 +86,6 @@ const projectsList: Project[] = [
     liveLink: "https://ai-delivery-route-planner.vercel.app/"
   },
   {
-    title: "Sentinel",
-    subtitle: "AI Road Incident Intelligence Platform",
-    category: "AI Emergency Grid & Perception",
-    tools: "React, Node.js, Express, YOLOv8, AccidentCNN, RAG, WebSockets",
-    images: [
-      "/images/sentinel_showcase_1.png",
-      "/images/sentinel_showcase_2.png",
-      "/images/sentinel_showcase_3.png",
-      "/images/sentinel_showcase_4.png",
-      "/images/sentinel_showcase_5.png"
-    ],
-    link: "https://github.com/omen18/Sentinel"
-  },
-  {
-    title: "QuillAI",
-    subtitle: "Semantic BI & Local DB Analytics Engine",
-    category: "Semantic Web Layer & Local Database Engine",
-    tools: "React, WebAssembly, DuckDB, WebGPU, BI Analytics, Malloy",
-    images: [
-      "/images/quill_3.png",
-      "/images/quill_1.png",
-      "/images/quill_5.png",
-      "/images/quill_4.png",
-      "/images/quill_2.png"
-    ],
-    link: "https://github.com/omen18/QuillAI"
-  },
-  {
-    title: "GitPulse",
-    subtitle: "Interactive GitHub Repository Visualizer & AI Summarizer",
-    category: "Developer Tools & AI Repository Analytics",
-    tools: "React, Node.js, Graph Visualization, AI Code Summaries, GitHub API",
-    images: [
-      "/images/gitpulse_landing.png",
-      "/images/gitpulse_dashboard.png"
-    ],
-    link: "https://github.com/omen18/GitPluse.git"
-  },
-  {
     title: "CutisAI",
     subtitle: "Clinical AI Dermatology & Skin Lesion Screening Engine",
     category: "AI Medical Perception & Clinical Intelligence",
@@ -177,16 +138,6 @@ const projectsList: Project[] = [
       "/images/musify_album.png"
     ],
     link: "https://github.com/omen18/Musify.git"
-  },
-  {
-    title: "Kartly",
-    subtitle: "Full-Stack E-Commerce Platform with Cart, Checkout & Order Tracking",
-    category: "Full Stack & E-Commerce Systems",
-    tools: "Next.js, JavaScript, Tailwind CSS, Prisma, PostgreSQL, REST APIs",
-    images: [
-      "/images/kartly_placeholder.svg"
-    ],
-    link: "https://github.com/omen18/Kartly.git"
   }
 ];
 
