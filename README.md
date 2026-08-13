@@ -52,7 +52,7 @@ This portfolio is an interactive engineering playground showcasing deep technica
 
 ## 📂 Featured Projects Showcase
 
-The portfolio features 13 active engineering builds + 1 upcoming Machine Learning project:
+The portfolio features 9 active engineering builds + 1 upcoming Machine Learning project:
 
 1.  **Ticket Booking System (Showpass)** 🎫  
     *Full-Stack Booking Platform & Database Architecture*  
@@ -79,47 +79,27 @@ The portfolio features 13 active engineering builds + 1 upcoming Machine Learnin
     *Tech*: React, Three.js, Graph Theory, A* / Dijkstra Search  
     *Links*: [GitHub Repo](https://github.com/omen18/AI-delivery-route-planner) | [Live Demo](https://ai-delivery-route-planner.vercel.app/)
 
-6.  **Sentinel** 🚨  
-    *AI Road Incident Intelligence & Emergency Perception Platform*  
-    *Tech*: React, Node.js, Express, YOLOv8, AccidentCNN, RAG, WebSockets  
-    *Links*: [GitHub Repo](https://github.com/omen18/Sentinel)
-
-7.  **QuillAI** ✒️  
-    *Semantic BI & Local DB Analytics Engine*  
-    *Tech*: React, WebAssembly, DuckDB, WebGPU, BI Analytics, Malloy  
-    *Links*: [GitHub Repo](https://github.com/omen18/QuillAI)
-
-8.  **GitPulse** ⚡  
-    *Interactive GitHub Repository Visualizer & AI Summarizer*  
-    *Tech*: React, Node.js, Graph Visualization, AI Code Summaries, GitHub API  
-    *Links*: [GitHub Repo](https://github.com/omen18/GitPluse.git)
-
-9.  **CutisAI** 🔬  
+6.  **CutisAI** 🔬  
     *Clinical AI Dermatology & Skin Lesion Screening Engine*  
     *Tech*: ResUNet, EfficientNet-B0, React, ONNX, ISIC Dataset, Clinical AI  
     *Links*: [GitHub Repo](https://github.com/omen18/CutisAI.git)
 
-10. **CodeStride** 🏃  
+7.  **CodeStride** 🏃  
     *Open-Source Developer Productivity & Goal Tracking Dashboard*  
     *Tech*: React, Next.js, GitHub OAuth API, Contribution Heatmaps, PR Velocity  
     *Links*: [GitHub Repo](https://github.com/omen18/CodeStride.git)
 
-11. **MacDeck** 🖥️  
+8.  **MacDeck** 🖥️  
     *iOS and macOS App — Low-Latency Remote Desktop & Element-Snapping Controller*  
     *Tech*: Swift 5.9, SwiftUI, ScreenCaptureKit, VideoToolbox, Network.framework, CoreGraphics  
     *Links*: [GitHub Repo](https://github.com/omen18/MacDeck)
 
-12. **Musify** 🎵  
+9.  **Musify** 🎵  
     *Flutter Music Streaming & Offline Audio Player with Lyrics & SponsorBlock*  
     *Tech*: Flutter, Dart, Material 3, YouTube API, Offline Audio Cache, SponsorBlock  
     *Links*: [GitHub Repo](https://github.com/omen18/Musify.git)
 
-13. **Kartly** 🛒  
-    *Full-Stack E-Commerce Platform with Cart, Checkout & Order Tracking*  
-    *Tech*: Next.js, JavaScript, Tailwind CSS, Prisma, PostgreSQL, REST APIs  
-    *Links*: [GitHub Repo](https://github.com/omen18/Kartly.git) *(Project pics live soon)*
-
-14. **Coming Soon (#14)** 🤖  
+10. **Coming Soon (#10)** 🤖  
     *Machine Learning & Intelligent Autonomous Systems Engine*
 
 ---
