@@ -65,17 +65,14 @@ const SocialIcons = () => {
 
   const handleDownload = () => {
     setShowDialog(false);
-    const link = document.createElement("a");
-    link.href = "/resume.pdf";
-    link.download = "Yash_Raj_Sharan_Resume.pdf";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    // Direct Google Drive download URL
+    window.open("https://drive.google.com/uc?export=download&id=1jBwSPItbX3k2b1rJ7vel3c4JM8PuX2qG", "_blank");
   };
 
   const handleView = () => {
     setShowDialog(false);
-    window.open("/resume.pdf", "_blank");
+    // View Google Drive URL
+    window.open("https://drive.google.com/file/d/1jBwSPItbX3k2b1rJ7vel3c4JM8PuX2qG/view?usp=sharing", "_blank");
   };
 
   return (
