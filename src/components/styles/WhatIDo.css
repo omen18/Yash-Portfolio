@@ -42,26 +42,26 @@
 }
 .what-content {
   width: 450px;
-  height: 33.333%;
-  min-height: 33.333%;
+  height: 50%;
+  min-height: 50%;
   transition: 0.5s;
   /* border: 0.5px dashed rgba(255, 255, 255, 0.3); */
   position: relative;
-  padding: 20px 40px; /* Reduced default padding for 3 cards layout */
+  padding: 30px 40px;
   box-sizing: border-box;
 }
 
 .what-noTouch:hover,
 .what-content-active {
-  min-height: 56%;
+  min-height: 65%;
   padding: 30px 40px;
 }
 
 .what-noTouch:hover ~ .what-content,
 .what-box-in:hover .what-noTouch:not(:hover),
 .what-content.what-sibling {
-  min-height: 22%;
-  padding: 10px 40px;
+  min-height: 35%;
+  padding: 15px 40px;
 }
 .what-content h3 {
   font-size: 35px;
