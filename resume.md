@@ -8,7 +8,12 @@
 ---
 
 ## Summary
-Full stack developer building production-style web applications end to end — responsive React + TypeScript frontends and Node.js / Express and FastAPI backends. Comfortable across REST and WebSocket API design, MySQL and MongoDB schema modelling, authentication, concurrency-safe transactions, and deploying performance-tuned apps, with applied AI/ML integrated into real product workflows.
+Full stack developer building production-style web applications end to end — responsive React + TypeScript frontends and Node.js / Express and FastAPI backends. Comfortable across REST and WebSocket API design, MySQL and MongoDB schema modelling, authentication, concurrency-safe transactions, and deploying performance-tuned apps, with applied AI/ML integrated into real product workflows. Open source contributor with merged code in IBM’s Machine Learning for Kids platform.
+
+---
+
+## Education
+- **SRM Institute of Science and Technology, Chennai** — B.Tech, Computer Science & Engineering (AI & ML) (2024–2028)
 
 ---
 
@@ -22,46 +27,39 @@ Full stack developer building production-style web applications end to end — r
 
 ---
 
-## Projects
-
-### Developer Portfolio — *React, TypeScript, Three.js, Express.js* | [GitHub](https://github.com/omen18) | [Live](https://yash-dev-seven.vercel.app)
-- Built a performance-tuned portfolio platform with Three.js 3D visuals, GSAP animation choreography, and live GitHub API data.
-- Backed by an Express.js service with a secure contact pipeline and an AI "Ask Me Anything" chat widget served through an edge function.
-
-### ShowPass — *React, TypeScript, Node.js, MySQL* | [GitHub](https://github.com/omen18)
-- Full stack event ticket booking platform with real-time seat selection, JWT + bcrypt authentication, and server-validated pricing.
-- Implemented atomic, concurrency-safe transactions and a seat-lock service that eliminates double booking under parallel load.
-
-### CutisAI — *React 18, FastAPI, PyTorch, ONNX Runtime* | [GitHub](https://github.com/omen18)
-- Clinical-grade AI skin lesion segmentation and classification system powered by ResUNet, EfficientNet-B0, and INT8 ONNX Runtime, delivered as a React 18 dashboard over a FastAPI inference API.
-
-### MacDeck — *Swift, ScreenCaptureKit, VideoToolbox, Bonjour* | [GitHub](https://github.com/omen18)
-- macOS + iOS remote control over LAN featuring hardware-encoded H.264 screen streaming (`ScreenCaptureKit` → `VideoToolbox` → `AVSampleBufferDisplayLayer`) with a `CGEvent` input back-channel.
-- Designed with Bonjour discovery, TLS encryption, requiring no external servers or accounts.
-
-### IslandPet — *SwiftUI, SwiftData, ActivityKit, WidgetKit* | [GitHub](https://github.com/omen18)
-- iOS focus app featuring a virtual pet living in the Dynamic Island via ActivityKit Live Activities, with gamified Pomodoro sessions and haptic-driven progression.
-
-### AmritKrishi 2.0 — *Full Stack Web Platform* | [GitHub](https://github.com/omen18)
-- Scalable agri-tech platform surfacing crop analytics, weather insights, and live market data through a responsive, data-driven interface.
+## Open Source Contributions
+- **IBM/taxinomitis — Machine Learning for Kids** · *Node.js, JavaScript* | [PR #539 (Merged)](https://github.com/IBM/taxinomitis/pull/539)
+  - Extended the `isWikimedia` and `getImageName` utilities to support Wikimedia’s `thumb.wikimedia.org` CDN domain alongside `upload.wikimedia.org`, unblocking image URLs the validator previously rejected. Replaced hardcoded-URL test assertions with checks on dynamic domain and thumbnail sizing. Merged to master after code-owner review.
+- **refinedev/refine** · *TypeScript* | PR open — under review
+  - Refactored core permission helpers for cleaner semantics and early exit, and expanded unit test coverage in the core package with 9 new tests (+477 lines).
 
 ---
 
-## Education
-- **SRM Institute of Science and Technology, Chennai** — B.Tech CSE (AI & ML) (2024 – 2028)
-- **Swarajaya Senior Secondary School** — Senior Secondary, 76% (2023 – 2024)
+## Projects
+
+### CutisAI — *React 18, FastAPI, PyTorch, ONNX Runtime* | [GitHub](https://github.com/omen18)
+- Skin lesion segmentation and classification system pairing a ResUNet segmentation stage with an EfficientNet-B0 classifier, served through INT8-quantized ONNX Runtime for faster CPU inference. Delivered as a React 18 dashboard over a FastAPI inference API.
+
+### AmritKrishi 2.0 — *RAG, Retrieval Pipelines, Full Stack Web* | [GitHub](https://github.com/omen18)
+- Multilingual farming assistant for Indian smallholders, delivering crop advisory, mandi price lookups, and weather-driven sowing recommendations. Answers are grounded in government agricultural datasets through a RAG pipeline rather than free-form generation.
+
+### ShowPass — *React, TypeScript, Node.js, MySQL* | [GitHub](https://github.com/omen18)
+- Full stack event ticket booking platform with real-time seat selection, JWT + bcrypt authentication, and server-validated pricing. Implemented atomic, concurrency-safe transactions and a seat-lock service that eliminates double booking under parallel load.
+
+### MacDeck — *Swift, ScreenCaptureKit, VideoToolbox, Bonjour* | [GitHub](https://github.com/omen18)
+- macOS + iOS remote control over LAN. Hardware-encoded H.264 screen streaming (`ScreenCaptureKit` → `VideoToolbox` → `AVSampleBufferDisplayLayer`) with a `CGEvent` input back-channel. Bonjour discovery, TLS-encrypted, no servers or accounts.
+
+### Developer Portfolio — *React, TypeScript, Three.js, Express.js* | [GitHub](https://github.com/omen18) | [Live](https://yash-dev-seven.vercel.app)
+- Built a performance-tuned portfolio platform with Three.js 3D visuals, GSAP animation choreography, and live GitHub API data. Backed by an Express.js service with a secure contact pipeline and an AI “Ask Me Anything” chat widget served through an edge function.
 
 ---
 
 ## Awards & Certifications
-- **NIT Patna Hackathon** — Participant
-- **Deloitte Technology Job Simulation** — Certificate
-- **GirlScript Summer of Code** — Open Source Contributor
-- **GirlScript Summer of Code** — AI Track
-- **Research Paper** — Digital Image Processing
+- Networking Devices and Initial Configuration — Cisco Networking Academy
+- GirlScript Summer of Code (AI Track)
+- Research Paper — Digital Image Processing
 
 ---
 
-## Additional Information
+## Additional
 - **Languages:** Hindi, English, German
-- **Strengths:** Problem solving, debugging, code optimization, system design
