@@ -1,11 +1,12 @@
 import { GitHubCalendar } from 'react-github-calendar';
+import 'react-github-calendar/tooltips.css';
 import './styles/GithubHeatmap.css';
 
 const GithubHeatmap = () => {
   const formatDate = (dateString: string) => {
     const [year, month, day] = dateString.split('-');
     const date = new Date(Number(year), Number(month) - 1, Number(day));
-    const monthStr = date.toLocaleString('default', { month: 'short' });
+    const monthStr = date.toLocaleString('en-US', { month: 'short' });
     return `${monthStr} ${Number(day)}`;
   };
 
@@ -27,13 +28,26 @@ const GithubHeatmap = () => {
           <GitHubCalendar 
             username="omen18" 
             colorScheme="dark"
+            blockSize={14}
+            blockMargin={4}
+            blockRadius={3}
+            fontSize={12}
+            showTotalCount={false}
+            labels={{
+              legend: { less: '', more: '' },
+            }}
             theme={{
+              light: ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353'],
               dark: ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353'],
             }}
             tooltips={{
               activity: {
+                placement: 'top',
+                offset: 8,
+                hoverRestMs: 20,
+                withArrow: false,
                 text: (activity) => 
-                  `${activity.count === 0 ? 'No' : activity.count} contribution${activity.count !== 1 ? 's' : ''} · ${formatDate(activity.date)}`
+                  `${activity.count === 0 ? 'No' : activity.count} contribution${activity.count === 1 ? '' : 's'} · ${formatDate(activity.date)}`
               }
             }}
           />

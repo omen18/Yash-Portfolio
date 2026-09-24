@@ -16,12 +16,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 40px;
+  margin-bottom: 28px;
 }
 
 .heatmap-header h2 {
-  font-size: 3.5rem;
-  font-weight: 700;
+  font-size: 2.75rem;
+  font-weight: 600;
   color: #ffffff;
   letter-spacing: -0.02em;
   margin: 0;
@@ -30,7 +30,7 @@
 .view-profile-link {
   color: #888888;
   text-decoration: none;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   transition: color 0.2s ease;
   display: flex;
   align-items: center;
@@ -42,10 +42,10 @@
 }
 
 .calendar-container {
-  background: #000000;
+  background: #10141a;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  padding: 30px;
+  border-radius: 16px;
+  padding: 36px 32px;
   overflow-x: auto;
   display: flex;
   justify-content: center;
@@ -55,15 +55,59 @@
   color: #fff !important;
 }
 
-/* Tooltip Customization to match the exact image */
-.react-activity-calendar-tooltip {
+/* Footer & Legend - Align the 5 color blocks to the bottom left without text */
+.react-activity-calendar__footer {
+  display: flex !important;
+  justify-content: flex-start !important;
+  margin-top: 20px !important;
+}
+
+.react-activity-calendar__legend-colors {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  margin-left: 0 !important;
+}
+
+.react-activity-calendar__legend-colors > span {
+  display: none !important;
+}
+
+.react-activity-calendar__count {
+  display: none !important;
+}
+
+.react-activity-calendar__legend-month {
+  fill: #8b949e !important;
+  font-size: 11px !important;
+  font-family: inherit !important;
+}
+
+/* Tooltip Customization to match target screenshot exactly */
+.react-activity-calendar__tooltip {
   background-color: #ffffff !important;
-  color: #000000 !important;
-  border-radius: 6px !important;
-  padding: 8px 12px !important;
-  font-size: 0.85rem !important;
+  color: #0c0c0c !important;
+  border-radius: 9999px !important;
+  padding: 5px 14px !important;
+  font-size: 12.5px !important;
   font-weight: 500 !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
+  border: none !important;
+  pointer-events: none !important;
+  z-index: 999999 !important;
+  white-space: nowrap !important;
+  line-height: 1.3 !important;
+  letter-spacing: 0.01em !important;
+}
+
+.react-activity-calendar__tooltip[data-color-scheme='dark'] {
+  background-color: #ffffff !important;
+  color: #0c0c0c !important;
+}
+
+.react-activity-calendar__tooltip-arrow {
+  display: none !important;
 }
 
 .react-activity-calendar .color-scale-1 { fill: #0e4429; }
@@ -73,13 +117,13 @@
 
 @media (max-width: 768px) {
   .heatmap-header h2 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
   }
   .github-heatmap-section {
     padding: 60px 20px;
   }
   .calendar-container {
-    padding: 20px;
+    padding: 24px 16px;
   }
   .heatmap-header {
     flex-direction: column;
