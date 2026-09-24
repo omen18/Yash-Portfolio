@@ -10,7 +10,7 @@ import WhatIDo from "./WhatIDo";
 import Work from "./Work";
 import Exploring from "./Exploring";
 import AskYash from "./AskYash";
-import ResearchLab from "./ResearchLab";
+import GithubHeatmap from "./GithubHeatmap";
 import OpenTo from "./OpenTo";
 import HaveQuestion from "./HaveQuestion";
 import setSplitText from "./utils/splitText";
@@ -28,8 +28,7 @@ const MainContainer = ({ children }: PropsWithChildren) => {
   );
   
   const { isLoading } = useLoading();
-  const { isPlaying, showPrompt, setShowPrompt, toggleMusic, playMusic } = useAudio();
-  const [promptDismissing, setPromptDismissing] = useState(false);
+  const { isPlaying, toggleMusic } = useAudio();
   const [showGameModal, setShowGameModal] = useState(false);
 
   useEffect(() => {
@@ -43,30 +42,6 @@ const MainContainer = ({ children }: PropsWithChildren) => {
       window.removeEventListener("resize", resizeHandler);
     };
   }, [isDesktopView]);
-
-  useEffect(() => {
-    // When loading completes, show option prompt to play background music
-    if (!isLoading) {
-      setShowPrompt(true);
-    }
-  }, [isLoading, setShowPrompt]);
-
-  const handlePlay = () => {
-    setPromptDismissing(true);
-    setTimeout(() => {
-      playMusic();
-      setShowPrompt(false);
-      setPromptDismissing(false);
-    }, 400); // Match CSS transition duration
-  };
-
-  const handleSilence = () => {
-    setPromptDismissing(true);
-    setTimeout(() => {
-      setShowPrompt(false);
-      setPromptDismissing(false);
-    }, 400); // Match CSS transition duration
-  };
 
   return (
     <div className="container-main">
@@ -99,23 +74,7 @@ const MainContainer = ({ children }: PropsWithChildren) => {
         </button>
       )}
 
-      {/* Landing Page Play/Silence Music Prompt */}
-      {showPrompt && (
-        <div className={`music-prompt-overlay ${promptDismissing ? "fade-out" : ""}`}>
-          <div className="music-prompt-card">
-            <h3>Background Music</h3>
-            <p>Would you like to play ambient music to accompany your experience?</p>
-            <div className="music-prompt-actions">
-              <button onClick={handlePlay} className="music-prompt-btn primary">
-                Play Music
-              </button>
-              <button onClick={handleSilence} className="music-prompt-btn secondary">
-                No Thanks
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+
 
       {/* Retro Arcade Game Modal */}
       {showGameModal && (
@@ -139,7 +98,7 @@ const MainContainer = ({ children }: PropsWithChildren) => {
               </Suspense>
             )}
             <ImpactMarquee />
-            <ResearchLab />
+            <GithubHeatmap />
             <Exploring />
             <AskYash />
             <OpenTo />

@@ -33,6 +33,14 @@ h6 {
 body {
   overflow: hidden;
 }
+
+#smooth-wrapper {
+  overflow: hidden;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
 a {
   color: inherit;
   text-decoration: inherit;

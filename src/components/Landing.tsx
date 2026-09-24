@@ -2,8 +2,8 @@ import { PropsWithChildren, useEffect, useState } from "react";
 import "./styles/Landing.css";
 
 const roles = [
-  "Full Stack Dev",
   "AI Engineer",
+  "Full Stack Dev",
   "GenAI Engineer",
 ];
 
@@ -39,7 +39,7 @@ const Landing = ({ children }: PropsWithChildren) => {
             </h1>
           </div>
           <div className="landing-info">
-            <h3>A <span>Creative</span></h3>
+            <h3>Creative</h3>
             <div className="role-rotator">
               <div className={`role-track ${isSliding ? "role-sliding" : ""}`}>
                 <div className="role-item">{roles[currentIndex]}</div>

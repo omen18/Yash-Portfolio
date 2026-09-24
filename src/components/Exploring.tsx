@@ -5,322 +5,443 @@ import "./styles/Exploring.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
-type Track = {
-  title: string;
-  subtitle: string;
-  duration: string;
-  durationSeconds: number;
-  tags: string[];
-};
-
-const learningTracks: Track[] = [
-  {
-    title: "Transformers",
-    subtitle: "Attention behavior, token dynamics, and practical model debugging.",
-    duration: "3:45",
-    durationSeconds: 225,
-    tags: ["Attention", "Token Flow", "BERT", "GPT", "Debugging"],
-  },
-  {
-    title: "AI Agents",
-    subtitle: "Tool-using systems that can plan, remember, act, and explain decisions.",
-    duration: "2:51",
-    durationSeconds: 171,
-    tags: ["LangChain", "Tool Use", "Memory", "Planning", "ReAct"],
-  },
-  {
-    title: "Interpretability",
-    subtitle: "Small experiments that make neural models easier to inspect and compare.",
-    duration: "4:10",
-    durationSeconds: 250,
-    tags: ["Probing", "Feature Viz", "Mechanistic", "Ablation", "Circuits"],
-  },
-  {
-    title: "Autonomous Systems",
-    subtitle: "Perception, feedback loops, and edge intelligence for messy environments.",
-    duration: "3:15",
-    durationSeconds: 195,
-    tags: ["Perception", "Edge AI", "Sensors", "Control", "Safety"],
-  },
+// ─── 1. Lede Statement Data ───
+const LEDE_LINES = [
+  "Currently Exploring",
+  "Ideas in active rotation and compact focus areas",
+  "I keep returning to while building.",
 ];
 
-// Formats seconds to mm:ss format
-const formatTime = (seconds: number): string => {
-  const mins = Math.floor(seconds / 60);
-  const secs = Math.floor(seconds % 60);
-  return `${mins}:${secs < 10 ? "0" : ""}${secs}`;
+// ─── 2. Topic Exploration Cards ───
+export type TopicKey = "transformers" | "ai_agents" | "interpretability" | "autonomous_systems";
+
+export interface TopicItem {
+  id: TopicKey;
+  label: string;
+  badge: string;
+  question: string;
+  content: string;
+}
+
+const topics: Record<TopicKey, TopicItem> = {
+  transformers: {
+    id: "transformers",
+    label: "Transformers",
+    badge: "Architecture & Latents",
+    question: "What I'm currently exploring in Transformers",
+    content:
+      "Probing attention head dynamics, residual streams, and latent representation geometry. Exploring mechanistic layer dynamics, KV cache optimizations, and multimodal context compression to build models that process information with higher semantic density.",
+  },
+  ai_agents: {
+    id: "ai_agents",
+    label: "AI Agents",
+    badge: "Cognitive Loops",
+    question: "How I'm approaching AI Agents",
+    content:
+      "Architecting goal-driven autonomous workflows, tool-augmented reasoning loops, and multi-agent consensus protocols. Moving beyond simple prompts into self-correcting cognitive loops that plan, verify, and execute complex real-world tasks.",
+  },
+  interpretability: {
+    id: "interpretability",
+    label: "Interpretability",
+    badge: "Mechanistic Probes",
+    question: "My focus in Interpretability",
+    content:
+      "Mechanistic interpretability probes and activation patching. Mapping how internal neural circuits form world models and circuit-level reasoning paths, turning black-box neural networks into transparent, auditable decision engines.",
+  },
+  autonomous_systems: {
+    id: "autonomous_systems",
+    label: "Autonomous Systems",
+    badge: "Perception & Action",
+    question: "What excites me about Autonomous Systems",
+    content:
+      "Fusing perception, temporal planning, and edge inference into closed-loop physical systems. Exploring end-to-end sensor fusion, real-time spatial representations, and lightweight vision-language-action policies that adapt to uncertain physical environments.",
+  },
 };
+
+const topicKeys: TopicKey[] = [
+  "transformers",
+  "ai_agents",
+  "interpretability",
+  "autonomous_systems",
+];
 
 const Exploring = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const playerRef = useRef<HTMLDivElement>(null);
-  const progressBgRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
+  const ledeRef = useRef<HTMLDivElement>(null);
+  const cardSectionRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const demoCursorRef = useRef<HTMLDivElement>(null);
+  const pillRefs = useRef<Record<string, HTMLButtonElement | null>>({});
 
-  const [trackIndex, setTrackIndex] = useState(0);
-  const [elapsed, setElapsed] = useState(43); // Start at 0:43 as requested
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [activeTopic, setActiveTopic] = useState<TopicKey>("transformers");
+  const [displayedText, setDisplayedText] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
 
-  const currentTrack = learningTracks[trackIndex];
+  const currentIndexRef = useRef<number>(0);
+  const isGlidingRef = useRef<boolean>(false);
+  const hasStartedRef = useRef<boolean>(false);
 
-  // Skip track transition helper with premium GSAP fade and slide stagger
-  const changeTrack = useCallback((newIndex: number) => {
-    const content = contentRef.current;
-    if (!content) {
-      setTrackIndex(newIndex);
-      setElapsed(0);
-      return;
-    }
+  const typingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const autoTourTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const moveToNextTopicRef = useRef<() => void>(() => {});
 
-    // Slide/fade out
-    gsap.to(content.querySelectorAll(".exploring-track-title, .exploring-track-subtitle, .exploring-player-tag"), {
-      opacity: 0,
-      y: -10,
-      duration: 0.25,
-      stagger: 0.05,
-      ease: "power2.in",
-      onComplete: () => {
-        setTrackIndex(newIndex);
-        setElapsed(0);
-        
-        // Slide/fade back in
-        gsap.fromTo(
-          content.querySelectorAll(".exploring-track-title, .exploring-track-subtitle, .exploring-player-tag"),
-          { opacity: 0, y: 15 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.5,
-            stagger: 0.08,
-            ease: "power3.out",
-          }
-        );
-      }
-    });
-  }, []);
-
-  const handleNext = useCallback(() => {
-    const nextIdx = (trackIndex + 1) % learningTracks.length;
-    changeTrack(nextIdx);
-  }, [trackIndex, changeTrack]);
-
-  const handlePrev = useCallback(() => {
-    const prevIdx = (trackIndex - 1 + learningTracks.length) % learningTracks.length;
-    changeTrack(prevIdx);
-  }, [trackIndex, changeTrack]);
-
-  // Timer tick interval effect
+  // ─── 3. Scroll-Triggered Lede Character Scrub Animation ───
   useEffect(() => {
-    if (!isPlaying) return;
+    const ledeEl = ledeRef.current;
+    const cardSection = cardSectionRef.current;
+    if (!ledeEl || !cardSection) return;
 
-    const timer = setInterval(() => {
-      setElapsed((prev) => {
-        // Auto-advance each track in 15 seconds of real-time play.
-        // Ticking every 100ms means 150 ticks total to complete the track.
-        const increment = currentTrack.durationSeconds / 150;
-        const nextElapsed = prev + increment;
-        if (nextElapsed >= currentTrack.durationSeconds) {
-          handleNext();
-          return 0;
-        }
-        return nextElapsed;
+    const chars = ledeEl.querySelectorAll<HTMLSpanElement>(".sasha-char");
+    if (!chars.length) return;
+
+    const ctx = gsap.context(() => {
+      // Pin lede section for smooth scrub illumination
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ledeEl,
+          start: "top top",
+          end: "+=1200",
+          pin: true,
+          pinSpacing: true,
+          scrub: true,
+          invalidateOnRefresh: true,
+        },
       });
-    }, 100);
 
-    return () => clearInterval(timer);
-  }, [isPlaying, currentTrack.durationSeconds, handleNext]);
+      tl.fromTo(
+        chars,
+        {
+          opacity: 0.14,
+          color: "rgba(255, 255, 255, 0.14)",
+          y: "0.08em",
+          textShadow: "0 0 0px rgba(255, 255, 255, 0)",
+        },
+        {
+          opacity: 1,
+          color: "#ffffff",
+          y: "0em",
+          textShadow: "0 0 24px rgba(255, 255, 255, 0.65)",
+          stagger: {
+            each: 0.025,
+            ease: "linear",
+          },
+          ease: "none",
+          duration: 0.85,
+        }
+      ).to(ledeEl, {
+        opacity: 0.95,
+        duration: 0.15,
+      });
 
-  const togglePlayPause = () => {
-    setIsPlaying(!isPlaying);
-  };
-
-  // Click on timeline bar to seek coordinates
-  const handleScrubberClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    const bg = progressBgRef.current;
-    if (!bg) return;
-    const rect = bg.getBoundingClientRect();
-    const clickX = e.clientX - rect.left;
-    const width = rect.width;
-    const percent = Math.min(Math.max(clickX / width, 0), 1);
-    setElapsed(Math.round(percent * currentTrack.durationSeconds));
-  };
-
-  // Scroll Trigger Entrance Animation
-  useEffect(() => {
-    const section = sectionRef.current;
-    const player = playerRef.current;
-    if (!section || !player) return;
-
-    // Header animate
-    const header = section.querySelector(".exploring-header");
-    if (header) {
+      // Smooth entrance of the interactive card section
       gsap.fromTo(
-        header,
-        { opacity: 0, y: 35 },
+        cardSection,
+        {
+          opacity: 0,
+          y: 60,
+          scale: 0.97,
+        },
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
-          ease: "power3.out",
+          scale: 1,
+          duration: 1,
+          ease: "power2.out",
           scrollTrigger: {
-            trigger: header,
-            start: "top 88%",
-            toggleActions: "play none none reverse",
+            trigger: cardSection,
+            start: "top 80%",
+            end: "top 35%",
+            scrub: true,
+            invalidateOnRefresh: true,
           },
         }
       );
+    });
+
+    return () => {
+      ctx.revert();
+    };
+  }, []);
+
+  // ─── 4. Typewriter Content Streaming ───
+  const typeText = useCallback((targetText: string, onComplete?: () => void) => {
+    if (typingTimerRef.current) clearTimeout(typingTimerRef.current);
+    setIsTyping(true);
+    setDisplayedText("");
+
+    let currentLength = 0;
+    const speedMs = 14;
+
+    const stream = () => {
+      currentLength++;
+      setDisplayedText(targetText.slice(0, currentLength));
+
+      if (currentLength < targetText.length) {
+        typingTimerRef.current = setTimeout(stream, speedMs);
+      } else {
+        setIsTyping(false);
+        if (onComplete) onComplete();
+      }
+    };
+
+    typingTimerRef.current = setTimeout(stream, 40);
+  }, []);
+
+  // ─── 5. Automated Tour with Exactly 3-Second Pause After Completion ───
+  const scheduleNextTopic = useCallback(() => {
+    if (autoTourTimerRef.current) clearTimeout(autoTourTimerRef.current);
+
+    // EXACT USER SPECIFICATION: change after 3 sec of completing one content item
+    autoTourTimerRef.current = setTimeout(() => {
+      moveToNextTopicRef.current();
+    }, 3000);
+  }, []);
+
+  const moveToNextTopic = useCallback(() => {
+    const cursor = demoCursorRef.current;
+    const card = cardRef.current;
+    if (!cursor || !card) return;
+
+    if (isGlidingRef.current) return;
+    isGlidingRef.current = true;
+
+    // Clear any pending timers
+    if (typingTimerRef.current) clearTimeout(typingTimerRef.current);
+    if (autoTourTimerRef.current) clearTimeout(autoTourTimerRef.current);
+
+    // Cancel existing cursor tweens
+    gsap.killTweensOf(cursor);
+
+    // Advance to the NEXT topic in sequential order:
+    // 0: Transformers -> 1: AI Agents -> 2: Interpretability -> 3: Autonomous Systems -> 0: Transformers
+    currentIndexRef.current = (currentIndexRef.current + 1) % topicKeys.length;
+    const nextKey = topicKeys[currentIndexRef.current];
+    const targetPill = pillRefs.current[nextKey];
+
+    if (!targetPill) {
+      isGlidingRef.current = false;
+      return;
     }
 
-    // Player card animate
-    gsap.to(player, {
+    const cardRect = card.getBoundingClientRect();
+    const pillRect = targetPill.getBoundingClientRect();
+
+    const targetX = pillRect.left - cardRect.left + pillRect.width / 2 - 6;
+    const targetY = pillRect.top - cardRect.top + pillRect.height / 2 - 4;
+
+    // Glide automated cursor smoothly to the target pill
+    gsap.to(cursor, {
       opacity: 1,
-      y: 0,
-      duration: 0.9,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: player,
-        start: "top 88%",
-        toggleActions: "play none none reverse",
-      },
+      x: targetX,
+      y: targetY,
+      duration: 0.65,
+      ease: "power2.inOut",
       onComplete: () => {
-        player.classList.add("exploring-player-visible");
+        // Click effect with ripple
+        const ripple = cursor.querySelector(".exploring-cursor-ripple");
+        if (ripple) {
+          gsap.fromTo(
+            ripple,
+            { scale: 0.3, opacity: 0.9 },
+            { scale: 2.4, opacity: 0, duration: 0.45, ease: "power2.out" }
+          );
+        }
+
+        gsap.timeline()
+          .to(cursor, { scale: 0.8, duration: 0.1, ease: "power1.in" })
+          .call(() => {
+            // Activate next topic in state
+            setActiveTopic(nextKey);
+          })
+          .to(cursor, { scale: 1, duration: 0.12 })
+          .call(() => {
+            isGlidingRef.current = false;
+            // Stream the text for this topic, then wait 3s after completing before next
+            typeText(topics[nextKey].content, () => {
+              scheduleNextTopic();
+            });
+          });
+      },
+    });
+  }, [typeText, scheduleNextTopic]);
+
+  useEffect(() => {
+    moveToNextTopicRef.current = moveToNextTopic;
+  }, [moveToNextTopic]);
+
+  // Handle manual pill click
+  const handlePillClick = useCallback(
+    (key: TopicKey) => {
+      if (typingTimerRef.current) clearTimeout(typingTimerRef.current);
+      if (autoTourTimerRef.current) clearTimeout(autoTourTimerRef.current);
+
+      const cursor = demoCursorRef.current;
+      if (cursor) gsap.killTweensOf(cursor);
+      isGlidingRef.current = false;
+
+      // Sync index to clicked pill
+      currentIndexRef.current = topicKeys.indexOf(key);
+      setActiveTopic(key);
+
+      const card = cardRef.current;
+      const targetPill = pillRefs.current[key];
+
+      if (cursor && card && targetPill) {
+        const cardRect = card.getBoundingClientRect();
+        const pillRect = targetPill.getBoundingClientRect();
+        const targetX = pillRect.left - cardRect.left + pillRect.width / 2 - 6;
+        const targetY = pillRect.top - cardRect.top + pillRect.height / 2 - 4;
+
+        gsap.to(cursor, {
+          opacity: 1,
+          x: targetX,
+          y: targetY,
+          duration: 0.4,
+          ease: "power2.out",
+        });
+      }
+
+      typeText(topics[key].content, () => {
+        scheduleNextTopic();
+      });
+    },
+    [typeText, scheduleNextTopic]
+  );
+
+  // Initialize first topic and start automated tour when scrolled into view
+  useEffect(() => {
+    const cardEl = cardSectionRef.current;
+    if (!cardEl) return;
+
+    const trigger = ScrollTrigger.create({
+      trigger: cardEl,
+      start: "top 75%",
+      once: true,
+      onEnter: () => {
+        if (hasStartedRef.current) return;
+        hasStartedRef.current = true;
+
+        currentIndexRef.current = 0;
+        const firstKey = topicKeys[0]; // "transformers"
+        setActiveTopic(firstKey);
+
+        // Position cursor initially on the first pill
+        const card = cardRef.current;
+        const firstPill = pillRefs.current[firstKey];
+        const cursor = demoCursorRef.current;
+        if (card && firstPill && cursor) {
+          const cardRect = card.getBoundingClientRect();
+          const pillRect = firstPill.getBoundingClientRect();
+          gsap.set(cursor, {
+            x: pillRect.left - cardRect.left + pillRect.width / 2 - 6,
+            y: pillRect.top - cardRect.top + pillRect.height / 2 - 4,
+            opacity: 1,
+          });
+        }
+
+        typeText(topics[firstKey].content, () => {
+          scheduleNextTopic();
+        });
       },
     });
 
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => {
-        if (trigger.trigger && section.contains(trigger.trigger as Node)) {
-          trigger.kill();
-        }
-      });
+      trigger.kill();
+      if (typingTimerRef.current) clearTimeout(typingTimerRef.current);
+      if (autoTourTimerRef.current) clearTimeout(autoTourTimerRef.current);
+      if (demoCursorRef.current) gsap.killTweensOf(demoCursorRef.current);
     };
-  }, []);
+  }, [typeText, scheduleNextTopic]);
 
-  const progressPercent = (elapsed / currentTrack.durationSeconds) * 100;
+  const currentTopicData = topics[activeTopic];
 
   return (
-    <div
-      className="exploring-section section-container"
-      id="exploring"
-      ref={sectionRef}
-    >
-      {/* Header */}
-      <div className="exploring-header">
-        <h2>
-          <span className="exploring-title-exploring">Currently </span>
-          <span className="exploring-title-radar">Exploring</span>
-        </h2>
-        <p className="exploring-subtitle">
-          Ideas in active rotation.
-          <br />
-          Compact focus areas I keep returning to while building.
-        </p>
-      </div>
-
-      <div className="exploring-player-wrapper" ref={playerRef}>
-        <div className="exploring-player-card" ref={contentRef}>
-          {/* Header Row: Label & Equalizer */}
-          <div className="exploring-player-label-wrap">
-            <div className="exploring-player-label">
-              <span>🎧</span> Now Learning
-            </div>
-            
-            {/* Pulsing Audio Equalizer */}
-            <div className="exploring-equalizer">
-              {[...Array(4)].map((_, i) => (
-                <div
-                  key={i}
-                  className={`exploring-equalizer-bar ${
-                    isPlaying ? "exploring-equalizer-bar--active" : ""
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
-
-          <h3 className="exploring-track-title">
-            <span>▶</span> {currentTrack.title}
-          </h3>
-
-          <p className="exploring-track-subtitle">{currentTrack.subtitle}</p>
-
-          {/* Scrubber timeline progress slider */}
-          <div className="exploring-timeline-container">
-            <span className="exploring-timeline-time">{formatTime(elapsed)}</span>
-            <div
-              className="exploring-timeline-bar-bg"
-              ref={progressBgRef}
-              onClick={handleScrubberClick}
-            >
-              <div
-                className="exploring-timeline-bar-progress"
-                style={{ width: `${progressPercent}%` }}
-              />
-              <div
-                className="exploring-timeline-dot"
-                style={{ left: `${progressPercent}%` }}
-              />
-            </div>
-            <span className="exploring-timeline-time">{currentTrack.duration}</span>
-          </div>
-
-          {/* Player controls */}
-          <div className="exploring-player-controls">
-            <button
-              className="exploring-control-btn"
-              onClick={handlePrev}
-              type="button"
-              aria-label="Previous Track"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24">
-                <polygon points="19 20 9 12 19 4 19 20" />
-                <line x1="5" y1="5" x2="5" y2="19" strokeWidth="2" stroke="currentColor" />
-              </svg>
-            </button>
-
-            <button
-              className="exploring-control-btn exploring-control-btn--play-pause"
-              onClick={togglePlayPause}
-              type="button"
-              aria-label={isPlaying ? "Pause" : "Play"}
-            >
-              {isPlaying ? (
-                <svg width="18" height="18" viewBox="0 0 24 24">
-                  <rect x="6" y="4" width="4" height="16" />
-                  <rect x="14" y="4" width="4" height="16" />
-                </svg>
-              ) : (
-                <svg width="18" height="18" viewBox="0 0 24 24">
-                  <polygon points="5 3 19 12 5 21 5 3" />
-                </svg>
-              )}
-            </button>
-
-            <button
-              className="exploring-control-btn"
-              onClick={handleNext}
-              type="button"
-              aria-label="Next Track"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24">
-                <polygon points="5 4 15 12 5 20 5 4" />
-                <line x1="19" y1="5" x2="19" y2="19" strokeWidth="2" stroke="currentColor" />
-              </svg>
-            </button>
-          </div>
-
-          {/* Details tags */}
-          <div className="exploring-player-tags">
-            {currentTrack.tags.map((tag) => (
-              <span key={tag} className="exploring-player-tag">
-                {tag}
+    <div className="sasha-exploring-wrapper" ref={sectionRef} id="exploring">
+      {/* ─────────────────────────────────────────────────────────────
+          SECTION 1: Lede Section with GSAP Character Reveal Scrub
+          ───────────────────────────────────────────────────────────── */}
+      <section className="sasha-lede-section" ref={ledeRef}>
+        <div className="sasha-lede-container">
+          <h2 className="sasha-lede-statement">
+            {LEDE_LINES.map((line, lIdx) => (
+              <span key={lIdx} className="sasha-lede-line">
+                {line.split(" ").map((word, wIdx, arr) => (
+                  <span key={wIdx} className="sasha-lede-word">
+                    {word.split("").map((char, cIdx) => (
+                      <span key={cIdx} className="sasha-char">
+                        {char}
+                      </span>
+                    ))}
+                    {wIdx < arr.length - 1 && <span className="sasha-space">&nbsp;</span>}
+                  </span>
+                ))}
               </span>
             ))}
+          </h2>
+        </div>
+      </section>
+
+      {/* ─────────────────────────────────────────────────────────────
+          SECTION 2: Interactive Exploring Card
+          ───────────────────────────────────────────────────────────── */}
+      <section className="exploring-card-section" ref={cardSectionRef}>
+        {/* Floating Dark Glassmorphic Card */}
+        <div className="exploring-chat-card" ref={cardRef}>
+          {/* Automated Demo Cursor with Aesthetic Yellow Accent & Click Ripple */}
+          <div className="exploring-demo-cursor" ref={demoCursorRef} aria-hidden="true">
+            <span className="exploring-cursor-ripple" />
+            <svg
+              className="exploring-cursor-svg"
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+            >
+              <path
+                d="M9 2.8c0-1 .8-1.8 1.8-1.8s1.8.8 1.8 1.8v6.4l4.9 1.2c1.2.3 2 1.4 1.9 2.6l-.5 5.3a3.4 3.4 0 0 1-3.4 3.1h-4.7c-1 0-2-.5-2.7-1.3l-4-4.8c-.6-.7-.5-1.7.2-2.3.7-.6 1.7-.5 2.3.1L9 16.2V2.8z"
+                fill="#eee642"
+                stroke="#000000"
+                strokeWidth="1.6"
+                strokeLinejoin="round"
+              />
+            </svg>
           </div>
 
-          <div className="exploring-player-accent" />
+          {/* Card Top: Topic Question Placeholder */}
+          <div className="exploring-card-top">
+            <div className="exploring-topic-badge">
+              <span className="badge-pulse-dot" />
+              <span>{currentTopicData.badge}</span>
+            </div>
+            <h4 className="exploring-topic-question">{currentTopicData.question}</h4>
+          </div>
+
+          {/* Card Middle: Streaming Response Text */}
+          <div className="exploring-content-area">
+            <p className="exploring-stream-paragraph">
+              {displayedText}
+              {isTyping && <span className="exploring-typing-caret">|</span>}
+            </p>
+          </div>
+
+          {/* Card Bottom: Quick Topic Pills Row */}
+          <div className="exploring-pills-row">
+            {topicKeys.map((key) => {
+              const isActive = activeTopic === key;
+              return (
+                <button
+                  key={key}
+                  ref={(el) => (pillRefs.current[key] = el)}
+                  className={`exploring-topic-pill ${isActive ? "is-active" : ""}`}
+                  onClick={() => handlePillClick(key)}
+                  type="button"
+                >
+                  {topics[key].label}
+                </button>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };

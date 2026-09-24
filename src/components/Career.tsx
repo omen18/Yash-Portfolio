@@ -32,7 +32,7 @@ const Career = () => {
   const nextRoleIndex = (roleIndex + 1) % careerRoles.length;
 
   return (
-    <div className="career-section section-container">
+    <div className="career-section section-container" id="career">
       <div className="career-container">
         <h2>
           My career <span>&</span>

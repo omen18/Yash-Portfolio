@@ -2,12 +2,24 @@ import { SplitText } from "gsap/SplitText";
 import gsap from "gsap";
 import { smoother } from "../Navbar";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
 
 export function initialFX() {
   try {
+    // The body must stay vertically scrollable on BOTH mobile and desktop.
+    // ScrollSmoother does not replace native scrolling - it rides on it: it
+    // sets the body height to the content height, fixes #smooth-wrapper, and
+    // translates #smooth-content from the native window scroll position.
+    // `overflow: hidden` here propagates to the viewport and blocks user
+    // scrolling while still allowing programmatic scrolls, which presents
+    // as "the landing page is stuck, but the nav links still work".
+    document.body.style.overflowX = "hidden";
     document.body.style.overflowY = "auto";
-    if (smoother) {
-      smoother.paused(false);
+
+    const sm = ScrollSmoother.get() || smoother;
+    if (sm) {
+      sm.paused(false);
+      ScrollSmoother.refresh(true);
     }
     const mainEl = document.getElementsByTagName("main")[0];
     if (mainEl) {
@@ -107,9 +119,13 @@ export function initialFX() {
 
   } catch (error) {
     console.error("Error in initialFX:", error);
+    // Never leave the page unscrollable if the intro animation blew up.
+    document.body.style.overflowX = "hidden";
     document.body.style.overflowY = "auto";
-    if (smoother) {
-      smoother.paused(false);
+    const sm = ScrollSmoother.get() || smoother;
+    if (sm) {
+      sm.paused(false);
+      ScrollSmoother.refresh(true);
     }
     ScrollTrigger.refresh();
   }

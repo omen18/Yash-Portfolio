@@ -34,24 +34,8 @@ const finderFolders: FinderFolder[] = [
     iconType: "folder",
     fileDetails: "4 items • 7.8 KB",
   },
-  {
-    id: "ios-developer",
-    sidebarLabel: "iOS Developer",
-    title: "iOS Developer",
-    description: "Constantly learning, designing, and building native iOS apps with Swift, SwiftUI, and low-latency system-level Apple frameworks.",
-    tags: ["Swift", "SwiftUI", "iOS SDK", "Xcode", "ScreenCaptureKit", "VideoToolbox", "CoreGraphics", "Network.framework"],
-    iconType: "openFolder",
-    fileDetails: "7 items • 6.8 KB",
-  },
-  {
-    id: "research",
-    sidebarLabel: "AI Research",
-    title: "AI Research",
-    description: "Transformers, interpretability, autonomous systems, and human-AI workflows.",
-    tags: ["Transformers", "Interpretability", "Robotics", "Workflows"],
-    iconType: "openFolder",
-    fileDetails: "4 items • 5.1 KB",
-  },
+
+
   {
     id: "fullstack",
     sidebarLabel: "Full Stack / AIML Engineer",

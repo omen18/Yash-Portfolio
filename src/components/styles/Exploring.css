@@ -1,371 +1,304 @@
-/* ═══════════════════════════════════════════════════════
-   Currently Exploring — Now Learning Player Theme
-   ═══════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════════════════
+   Exploring — "Currently Exploring" + Interactive Focus Card
+   Pure black aesthetic (#000000), minimal glass card, automated cursor tour,
+   and smooth GSAP scrub transition.
+   ═══════════════════════════════════════════════════════════════════════ */
 
-.exploring-section {
+.sasha-exploring-wrapper {
+  position: relative;
+  width: 100%;
+  background: #000000;
+  color: #ffffff;
+  z-index: 20;
+  overflow: clip;
+  font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   SECTION 1: Scroll-Driven Editorial Lede Statement
+   Matching GSAP character-by-character scrub reveal
+   ─────────────────────────────────────────────────────────────────────── */
+.sasha-lede-section {
+  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   position: relative;
-  padding: 140px 0;
-  margin: auto;
-  overflow: hidden;
-  background: #0b080c; /* clean solid black background */
-}
-
-/* Remove all floating particles and ambient gradients */
-.exploring-particles,
-.exploring-section::before {
-  display: none !important;
-}
-
-/* ─── Header ─── */
-.exploring-header {
+  z-index: 21;
+  padding: 0 24px;
+  background: #000000;
   text-align: center;
-  margin-bottom: 70px;
-  position: relative;
-  z-index: 1;
+  box-sizing: border-box;
 }
 
-.exploring-header h2 {
-  font-size: 70px;
-  line-height: 75px;
-  font-weight: 400;
-  margin: 0 0 20px;
-}
-
-.exploring-header h2 .exploring-title-exploring {
-  color: #fff;
-}
-
-.exploring-header h2 .exploring-title-radar {
-  color: var(--accentColor);
-}
-
-.exploring-subtitle {
-  font-size: 16px;
-  font-weight: 300;
-  color: rgba(234, 229, 236, 0.45);
-  max-width: 440px;
+.sasha-lede-container {
+  max-width: 1100px;
   margin: 0 auto;
-  line-height: 1.7;
-}
-
-/* ─── Player Wrapper ─── */
-.exploring-player-wrapper {
-  width: 100%;
-  max-width: 680px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 2;
-}
-
-.exploring-player-card {
-  position: relative;
-  padding: 48px 44px;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.01);
-  border: 1px solid rgba(194, 164, 255, 0.06);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  transition: border-color 0.4s ease, box-shadow 0.4s ease;
-}
-
-.exploring-player-card:hover {
-  border-color: rgba(194, 164, 255, 0.15);
-  box-shadow: 0 25px 70px -30px rgba(127, 64, 255, 0.1);
-}
-
-/* Slide/fade content transitions */
-.exploring-player-content-wrap {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* ─── Player Label (🎧 NOW LEARNING) ─── */
-.exploring-player-label-wrap {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 28px;
+  justify-content: center;
 }
 
-.exploring-player-label {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: "JetBrains Mono", monospace;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--accentColor);
-}
-
-.exploring-player-label span {
-  font-size: 13px;
-}
-
-/* Mini Audio Equalizer */
-.exploring-equalizer {
-  display: flex;
-  align-items: flex-end;
-  gap: 3px;
-  height: 14px;
-}
-
-.exploring-equalizer-bar {
-  width: 2px;
-  height: 100%;
-  background: var(--accentColor);
-  border-radius: 1px;
-  transform-origin: bottom;
-  transform: scaleY(0.2);
-  transition: transform 0.3s ease;
-}
-
-.exploring-equalizer-bar--active {
-  animation: exploringEqualizerBounce 1.2s ease-in-out infinite alternate;
-}
-
-.exploring-equalizer-bar:nth-child(1) { animation-delay: 0.1s; }
-.exploring-equalizer-bar:nth-child(2) { animation-delay: 0.4s; }
-.exploring-equalizer-bar:nth-child(3) { animation-delay: 0.2s; }
-.exploring-equalizer-bar:nth-child(4) { animation-delay: 0.5s; }
-
-@keyframes exploringEqualizerBounce {
-  0% { transform: scaleY(0.25); }
-  100% { transform: scaleY(1); }
-}
-
-/* ─── Track Title (▶ Agentic AI) ─── */
-.exploring-track-title {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  font-size: 34px;
+.sasha-lede-statement {
+  font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: clamp(34px, 5.5vw, 78px);
+  line-height: 1.2;
   font-weight: 500;
-  color: #fff;
-  margin: 0 0 8px 0;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.028em;
+  margin: 0;
+  text-align: center;
+  user-select: none;
 }
 
-.exploring-track-title span {
-  font-size: 24px;
-  color: var(--accentColor);
-  opacity: 0.85;
+.sasha-lede-line {
+  display: block;
 }
 
-/* ─── Track Subtitle (by OpenAI • LangChain • MCP) ─── */
-.exploring-track-subtitle {
-  font-size: 16px;
-  font-weight: 300;
-  color: rgba(234, 229, 236, 0.45);
-  margin: 0 0 32px 0;
-  letter-spacing: 0.3px;
+.sasha-lede-line:first-child {
+  font-size: clamp(38px, 6.4vw, 88px);
+  font-weight: 600;
+  margin-bottom: 8px;
+  letter-spacing: -0.035em;
 }
 
-/* ─── Timeline Scrubber ─── */
-.exploring-timeline-container {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 32px;
+.sasha-lede-line:not(:first-child) {
+  font-size: clamp(22px, 3.4vw, 44px);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.25;
 }
 
-.exploring-timeline-time {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 11.5px;
-  color: rgba(234, 229, 236, 0.35);
-  min-width: 36px;
+.sasha-lede-word {
+  display: inline-block;
+  white-space: nowrap;
 }
 
-.exploring-timeline-bar-bg {
-  flex: 1;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 2px;
+.sasha-char {
+  display: inline-block;
+  opacity: 0.14;
+  color: rgba(255, 255, 255, 0.14);
+  transform: translateY(0.08em);
+  will-change: opacity, transform, color, text-shadow;
+  transition: text-shadow 0.25s ease;
+}
+
+.sasha-space {
+  display: inline-block;
+  width: 0.26em;
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   SECTION 2: Interactive Exploring Card Section
+   Completely pure black background (#000000)
+   ─────────────────────────────────────────────────────────────────────── */
+.exploring-card-section {
   position: relative;
-  cursor: pointer;
-  transition: background 0.3s ease;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px 120px;
+  box-sizing: border-box;
+  background: #000000;
+  z-index: 22;
 }
 
-.exploring-timeline-bar-bg:hover {
-  background: rgba(255, 255, 255, 0.1);
+/* ── Floating Dark Glassmorphic Card ── */
+.exploring-chat-card {
+  position: relative;
+  width: 100%;
+  max-width: 860px;
+  min-height: 380px;
+  border-radius: 26px;
+  background: rgba(14, 11, 22, 0.88);
+  border: 1px solid rgba(168, 85, 247, 0.18);
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.9),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 0 40px -15px rgba(168, 85, 247, 0.18);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  padding: 42px 46px 36px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
 }
 
-.exploring-timeline-bar-progress {
-  height: 100%;
-  border-radius: 2px;
-  background: var(--accentColor);
+/* ── Automated Demo Cursor ── */
+.exploring-demo-cursor {
   position: absolute;
   top: 0;
   left: 0;
+  pointer-events: none;
+  z-index: 60;
+  will-change: transform, opacity;
+  filter: drop-shadow(0 3px 8px rgba(238, 230, 66, 0.5));
 }
 
-.exploring-timeline-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--accentColor);
+.exploring-cursor-ripple {
   position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 0 8px var(--accentColor);
-  transition: transform 0.2s ease;
-}
-
-.exploring-timeline-bar-bg:hover .exploring-timeline-dot {
-  transform: translate(-50%, -50%) scale(1.3);
-}
-
-/* ─── Player Controls ─── */
-.exploring-player-controls {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 28px;
-  margin-top: 10px;
-}
-
-.exploring-control-btn {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.exploring-control-btn svg {
-  fill: rgba(234, 229, 236, 0.5);
-  transition: fill 0.3s ease;
-}
-
-.exploring-control-btn:hover svg {
-  fill: #fff;
-}
-
-.exploring-control-btn:active {
-  transform: scale(0.92);
-}
-
-.exploring-control-btn--play-pause {
-  width: 52px;
-  height: 52px;
+  top: -8px;
+  left: -8px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 2px solid #eee642;
+  opacity: 0;
+  pointer-events: none;
 }
 
-.exploring-control-btn--play-pause svg {
-  fill: var(--accentColor);
+.exploring-cursor-svg {
+  display: block;
 }
 
-.exploring-control-btn--play-pause:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.15);
-  transform: scale(1.05);
+/* ── Card Header: Topic Question ── */
+.exploring-card-top {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
 }
 
-.exploring-control-btn--play-pause:hover svg {
-  fill: #fff;
-  filter: drop-shadow(0 0 6px var(--accentColor));
+.exploring-topic-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: rgba(168, 85, 247, 0.12);
+  border: 1px solid rgba(168, 85, 247, 0.22);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #c084fc;
+  margin-bottom: 14px;
 }
 
-.exploring-control-btn--play-pause:active {
-  transform: scale(0.95);
+.badge-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #c084fc;
+  box-shadow: 0 0 8px #c084fc;
 }
 
-/* ─── Tags spec display ─── */
-.exploring-player-tags {
+.exploring-topic-question {
+  font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: clamp(22px, 2.6vw, 30px);
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.018em;
+  line-height: 1.3;
+  min-height: 2.6em;
+  display: flex;
+  align-items: center;
+}
+
+/* ── Card Content: Streaming Response Area ── */
+.exploring-content-area {
+  min-height: 140px;
+  margin: 16px 0 28px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.exploring-stream-paragraph {
+  font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: clamp(15px, 1.7vw, 18px);
+  line-height: 1.75;
+  color: rgba(240, 235, 252, 0.9);
+  margin: 0;
+  font-weight: 400;
+}
+
+.exploring-typing-caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.15em;
+  background: #eee642;
+  margin-left: 4px;
+  vertical-align: middle;
+  animation: blinkCaret 0.8s infinite;
+}
+
+@keyframes blinkCaret {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ── Card Bottom: Quick Topic Pills Row ── */
+.exploring-pills-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 36px;
-  padding-top: 24px;
-  border-top: 1px dashed rgba(255, 255, 255, 0.05);
+  gap: 10px;
+  margin-top: auto;
 }
 
-.exploring-player-tag {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 11px;
-  color: rgba(234, 229, 236, 0.4);
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  padding: 5px 12px;
-  transition: all 0.3s ease;
+.exploring-topic-pill {
+  font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 9px 20px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  user-select: none;
 }
 
-.exploring-player-card:hover .exploring-player-tag {
-  border-color: rgba(194, 164, 255, 0.15);
-  color: rgba(234, 229, 236, 0.65);
+.exploring-topic-pill:hover {
+  background: rgba(168, 85, 247, 0.16);
+  border-color: rgba(168, 85, 247, 0.4);
+  color: #ffffff;
+  transform: translateY(-1px);
 }
 
-.exploring-player-tag:hover {
-  background: rgba(194, 164, 255, 0.08) !important;
-  border-color: var(--accentColor) !important;
-  color: var(--accentColor) !important;
+.exploring-topic-pill.is-active {
+  background: rgba(168, 85, 247, 0.28);
+  border-color: rgba(192, 132, 252, 0.85);
+  color: #ffffff;
+  box-shadow: 0 0 22px rgba(168, 85, 247, 0.4);
+  transform: translateY(-1px);
 }
 
-/* ─── GSAP entrance ─── */
-.exploring-player-wrapper {
-  opacity: 0;
-  transform: translateY(40px);
-}
-
-.exploring-player-wrapper.exploring-player-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ─── Responsive ─── */
-@media only screen and (max-width: 1400px) {
-  .exploring-header h2 {
-    font-size: 55px;
-    line-height: 60px;
+/* ───────────────────────────────────────────────────────────────────────
+   Responsive Breakpoints
+   ─────────────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .sasha-lede-section {
+    padding: 60px 20px 20px;
+    min-height: 85vh;
   }
-  .exploring-track-title {
-    font-size: 28px;
+  .sasha-lede-line:first-child {
+    font-size: clamp(30px, 8vw, 52px);
   }
-  .exploring-track-subtitle {
-    font-size: 14px;
+  .sasha-lede-line:not(:first-child) {
+    font-size: clamp(18px, 4.5vw, 26px);
   }
-}
-
-@media only screen and (max-width: 1025px) {
-  .exploring-section {
-    padding: 100px 0;
+  .exploring-card-section {
+    padding: 60px 16px 80px;
   }
-}
-
-@media only screen and (max-width: 900px) {
-  .exploring-header h2 {
-    font-size: 45px;
-    line-height: 48px;
+  .exploring-chat-card {
+    padding: 28px 22px 24px;
+    border-radius: 20px;
+    min-height: 360px;
   }
-  .exploring-player-card {
-    padding: 36px 30px;
+  .exploring-pills-row {
+    gap: 8px;
   }
-}
-
-@media only screen and (max-width: 600px) {
-  .exploring-section {
-    padding: 60px 0;
-  }
-  .exploring-header h2 {
-    font-size: 34px;
-    line-height: 38px;
-  }
-  .exploring-track-title {
-    font-size: 22px;
-  }
-  .exploring-track-title span {
-    font-size: 18px;
-  }
-  .exploring-player-card {
-    padding: 28px 20px;
+  .exploring-topic-pill {
+    font-size: 12px;
+    padding: 7px 14px;
   }
 }

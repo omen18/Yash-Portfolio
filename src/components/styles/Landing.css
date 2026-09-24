@@ -124,6 +124,7 @@
   transform: translateX(-50%);
   z-index: 9;
   position: absolute;
+  pointer-events: none;
 }
 .character-model::before {
   content: "";
@@ -135,6 +136,7 @@
   transform: translateX(-50%);
   z-index: 9;
   position: absolute;
+  pointer-events: none;
 }
 .character-loaded .character-rim {
   animation: backlight 3s forwards;
@@ -158,13 +160,13 @@
 }
 .landing-intro {
   position: absolute;
-  z-index: 9;
+  z-index: 25;
   top: 12%;
   left: 0;
 }
 .landing-intro h2 {
-  margin: 0;
-  color: var(--accentColor);
+  margin: 0 0 6px 0;
+  color: #c2a4ff;
   font-size: 22px;
   font-weight: 300;
   letter-spacing: 2px;
@@ -174,14 +176,16 @@
   margin: 0;
   letter-spacing: 2px;
   font-size: 28px;
-  line-height: 28px;
-  font-weight: 500;
+  line-height: 1.1;
+  font-weight: 600;
   font-family: "Geist", sans-serif;
+  color: #ffffff;
 }
 
-/* .landing-intro h1 span {
-   font-weight: 200; 
-} */
+.landing-intro h1 span {
+  color: #ffffff;
+  font-weight: 600;
+}
 
 .landing-info {
   position: absolute;
@@ -189,14 +193,14 @@
   transform: translateX(50%);
   bottom: 40px;
   top: inherit;
-  z-index: 9;
+  z-index: 25;
 }
 .landing-info h3 {
   font-size: 22px;
   letter-spacing: 2px;
   font-weight: 300;
-  color: var(--accentColor);
-  margin: 0;
+  color: #ffffff;
+  margin: 0 0 4px 0;
 }
 .landing-info h3 span {
   color: #ffffff;
@@ -298,12 +302,13 @@
     left: auto;
     right: 68.5%;
     transform: translate(0%, -50%);
+    z-index: 25;
   }
 
   .landing-info {
     bottom: auto;
     top: 51%;
-    z-index: inherit;
+    z-index: 25;
     text-align: left;
     transform: translate(0%, -50%);
     right: auto;
@@ -316,12 +321,13 @@
     left: auto;
     right: 72.5%;
     transform: translate(0%, -50%);
+    z-index: 25;
   }
 
   .landing-info {
     bottom: auto;
     top: 51%;
-    z-index: inherit;
+    z-index: 25;
     text-align: left;
     transform: translate(0%, -50%);
     right: auto;
