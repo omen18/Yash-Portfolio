@@ -10,31 +10,36 @@ const GithubHeatmap = () => {
   };
 
   return (
-    <div className="github-heatmap-section" id="github-heatmap">
-      <div className="heatmap-header">
-        <h2>GitHub activity</h2>
-        <a 
-          href="https://github.com/omen18" 
-          target="_blank" 
-          rel="noreferrer"
-          className="view-profile-link"
-        >
-          View profile ↗
-        </a>
+    <section className="github-heatmap-wrapper" id="github-heatmap">
+      <div className="github-heatmap-section">
+        <div className="heatmap-header">
+          <h2>GitHub activity</h2>
+          <a 
+            href="https://github.com/omen18" 
+            target="_blank" 
+            rel="noreferrer"
+            className="view-profile-link"
+          >
+            View profile ↗
+          </a>
+        </div>
+        <div className="calendar-container">
+          <GitHubCalendar 
+            username="omen18" 
+            colorScheme="dark"
+            theme={{
+              dark: ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353'],
+            }}
+            tooltips={{
+              activity: {
+                text: (activity) => 
+                  `${activity.count === 0 ? 'No' : activity.count} contribution${activity.count !== 1 ? 's' : ''} · ${formatDate(activity.date)}`
+              }
+            }}
+          />
+        </div>
       </div>
-      <div className="calendar-container">
-        <GitHubCalendar 
-          username="omen18" 
-          colorScheme="dark"
-          tooltips={{
-            activity: {
-              text: (activity) => 
-                `${activity.count === 0 ? 'No' : activity.count} contribution${activity.count !== 1 ? 's' : ''} · ${formatDate(activity.date)}`
-            }
-          }}
-        />
-      </div>
-    </div>
+    </section>
   );
 };
 
