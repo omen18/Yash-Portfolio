@@ -28,7 +28,7 @@ const MainContainer = ({ children }: PropsWithChildren) => {
   );
   
   const { isLoading } = useLoading();
-  const { isPlaying, toggleMusic } = useAudio();
+  const { isPlaying, toggleMusic, currentTrack, nextTrack } = useAudio();
   const [showGameModal, setShowGameModal] = useState(false);
 
   useEffect(() => {
@@ -47,31 +47,51 @@ const MainContainer = ({ children }: PropsWithChildren) => {
     <div className="container-main">
       <Cursor />
       
-      {/* Floating Background Music Control - Only visible after loading screen ends */}
+      {/* Floating Controls: Game Trigger & Music Player - Only visible after loading screen ends */}
       {!isLoading && (
-        <button 
-          className={`music-toggle-btn ${isPlaying ? "music-playing" : ""}`}
-          onClick={toggleMusic}
-          aria-label="Toggle background music"
-        >
-          <div className="equalizer">
-            <span className="equalizer-bar"></span>
-            <span className="equalizer-bar"></span>
-            <span className="equalizer-bar"></span>
-          </div>
-          <span>{isPlaying ? "Music: On" : "Music: Off"}</span>
-        </button>
-      )}
+        <div className="top-right-floating-controls">
+          <button 
+            className="game-toggle-btn"
+            onClick={() => setShowGameModal(true)}
+            aria-label="Play Snake Game"
+          >
+            <span>🎮 Play Snake</span>
+          </button>
 
-      {/* Floating Game Trigger - Only visible after loading screen ends */}
-      {!isLoading && (
-        <button 
-          className="game-toggle-btn"
-          onClick={() => setShowGameModal(true)}
-          aria-label="Play Snake Game"
-        >
-          <span>🎮 Play Snake</span>
-        </button>
+          <div className={`music-control-capsule ${isPlaying ? "music-playing" : ""}`}>
+            <button 
+              className="music-toggle-btn"
+              onClick={toggleMusic}
+              aria-label={isPlaying ? "Pause music" : "Play music"}
+              title={isPlaying ? `Pause: ${currentTrack.title} (${currentTrack.artist})` : `Play: ${currentTrack.title}`}
+            >
+              <div className="equalizer">
+                <span className="equalizer-bar"></span>
+                <span className="equalizer-bar"></span>
+                <span className="equalizer-bar"></span>
+              </div>
+              <span className="music-label">
+                {isPlaying ? `${currentTrack.title} · ${currentTrack.artist}` : "Music: Off"}
+              </span>
+            </button>
+
+            {isPlaying && (
+              <button
+                className="music-skip-btn"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  nextTrack();
+                }}
+                title="Next Track"
+                aria-label="Skip to next track"
+              >
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M5 4v16l11-8L5 4zm13 0v16h2V4h-2z" />
+                </svg>
+              </button>
+            )}
+          </div>
+        </div>
       )}
 
 

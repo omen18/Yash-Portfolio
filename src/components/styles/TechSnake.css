@@ -501,10 +501,6 @@
 
 /* ─── Floating Game Trigger Button ─── */
 .game-toggle-btn {
-  position: fixed;
-  top: 100px;
-  right: 180px; /* Offset to float right next to music toggle */
-  z-index: 1000000005; /* High enough to overlay everything */
   display: flex;
   align-items: center;
   gap: 8px;
@@ -523,6 +519,7 @@
   font-weight: 500;
   letter-spacing: 1px;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .game-toggle-btn:hover {
@@ -539,8 +536,6 @@
 
 @media (max-width: 768px) {
   .game-toggle-btn {
-    top: 90px;
-    right: 145px; /* Offset for mobile */
     padding: 6px 12px;
     font-size: 9px;
   }
