@@ -10,11 +10,11 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  min-height: 65vh;
-  padding: 180px 20px;
+  min-height: 50vh;
+  padding: 180px 20px 70px;
   background: #0b080c;
   overflow: hidden;
-  margin: 120px auto;
+  margin: 100px auto 40px;
   box-sizing: border-box;
 }
 
@@ -411,9 +411,9 @@
 
 @media only screen and (max-width: 900px) {
   .havequestion-section {
-    min-height: 50vh;
-    padding: 140px 20px;
-    margin: 80px auto;
+    min-height: 40vh;
+    padding: 130px 20px 50px;
+    margin: 60px auto 30px;
   }
   .havequestion-banner {
     gap: 28px;
@@ -430,9 +430,9 @@
 
 @media only screen and (max-width: 600px) {
   .havequestion-section {
-    min-height: 40vh;
-    padding: 100px 16px;
-    margin: 60px auto;
+    min-height: 35vh;
+    padding: 90px 16px 40px;
+    margin: 40px auto 20px;
   }
   .havequestion-banner {
     flex-direction: column;
