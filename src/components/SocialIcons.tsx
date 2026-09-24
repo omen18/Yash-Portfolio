@@ -2,8 +2,8 @@ import {
   FaGithub,
   FaInstagram,
   FaLinkedinIn,
-  FaXTwitter,
 } from "react-icons/fa6";
+import { SiGmail } from "react-icons/si";
 import "./styles/SocialIcons.css";
 import { TbNotes } from "react-icons/tb";
 import { useEffect, useState } from "react";
@@ -93,8 +93,8 @@ const SocialIcons = () => {
             </a>
           </span>
           <span>
-            <a href="https://x.com/therealyash_17" target="_blank">
-              <FaXTwitter />
+            <a href="mailto:yashrajsharan2006@gmail.com" title="Email: yashrajsharan2006@gmail.com">
+              <SiGmail />
             </a>
           </span>
           <span>
