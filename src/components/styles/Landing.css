@@ -305,12 +305,12 @@
   }
   .landing-intro {
     top: 50%;
-    left: clamp(24px, 4vw, 80px);
+    left: clamp(24px, 4vw, 70px);
     right: auto;
     transform: translateY(-50%);
     z-index: 25;
     text-align: left;
-    max-width: 400px;
+    max-width: calc(50% - 180px);
   }
 
   .landing-info {
@@ -319,38 +319,38 @@
     z-index: 25;
     text-align: left;
     transform: translateY(-50%);
-    right: clamp(24px, 4vw, 80px);
-    left: auto;
-    max-width: 460px;
+    left: calc(50% + 175px);
+    right: auto;
+    max-width: calc(50% - 190px);
   }
   .landing-intro h2 {
-    font-size: clamp(18px, 1.8vw, 26px);
+    font-size: clamp(18px, 1.6vw, 24px);
   }
   .landing-intro h1 {
-    font-size: clamp(32px, 3.2vw, 52px);
+    font-size: clamp(28px, 2.8vw, 48px);
     line-height: 1.1;
   }
   .landing-info h3 {
-    font-size: clamp(18px, 1.6vw, 24px);
+    font-size: clamp(18px, 1.5vw, 22px);
   }
   .role-item {
-    font-size: clamp(20px, 2.5vw, 40px);
+    font-size: clamp(18px, 2.1vw, 34px);
   }
 }
 @media screen and (min-width: 1440px) {
   .landing-intro {
-    left: clamp(40px, 5.5vw, 120px);
-    max-width: 440px;
+    left: clamp(40px, 5vw, 100px);
+    max-width: calc(50% - 210px);
   }
   .landing-info {
-    right: clamp(40px, 5.5vw, 120px);
-    max-width: 520px;
+    left: calc(50% + 205px);
+    max-width: calc(50% - 220px);
   }
   .landing-intro h1 {
-    font-size: clamp(38px, 3.2vw, 58px);
+    font-size: clamp(34px, 3vw, 54px);
   }
   .role-item {
-    font-size: clamp(24px, 2.6vw, 46px);
+    font-size: clamp(22px, 2.3vw, 42px);
   }
 }
 @media screen and (min-width: 1600px) {

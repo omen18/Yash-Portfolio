@@ -322,22 +322,46 @@ const Navbar = () => {
 
     // Dedicated bottom trigger: whenever user reaches the bottom of the page, ensure Contact is active
     const pageBottomTrigger = ScrollTrigger.create({
-      start: () => Math.max(0, ScrollTrigger.maxScroll(window) - 180),
+      start: () => {
+        const max = ScrollTrigger.maxScroll(window);
+        return max > 1000 ? max - 180 : 999999;
+      },
       end: () => ScrollTrigger.maxScroll(window) + 100,
       onEnter: () => {
-        if (!isClickingRef.current) {
+        const currentScroll = ScrollSmoother.get()?.scrollTop() ?? window.scrollY;
+        if (!isClickingRef.current && currentScroll > 800) {
           setActiveTab("contact");
           animatePillToTab("contact", false);
         }
       },
       onEnterBack: () => {
-        if (!isClickingRef.current) {
+        const currentScroll = ScrollSmoother.get()?.scrollTop() ?? window.scrollY;
+        if (!isClickingRef.current && currentScroll > 800) {
           setActiveTab("contact");
           animatePillToTab("contact", false);
         }
       },
     });
     triggers.push(pageBottomTrigger);
+
+    // Guaranteed top reset: when scroll is near top (Hero), active tab is always empty
+    const heroScrollReset = ScrollTrigger.create({
+      start: 0,
+      end: 350,
+      onEnter: () => {
+        if (!isClickingRef.current) {
+          setActiveTab("");
+          animatePillToTab(null, false);
+        }
+      },
+      onEnterBack: () => {
+        if (!isClickingRef.current) {
+          setActiveTab("");
+          animatePillToTab(null, false);
+        }
+      },
+    });
+    triggers.push(heroScrollReset);
 
     return () => {
       triggers.forEach((t) => t.kill());
