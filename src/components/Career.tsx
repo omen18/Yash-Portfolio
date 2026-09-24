@@ -3,10 +3,10 @@ import { FaGithub } from "react-icons/fa";
 import "./styles/Career.css";
 
 const careerRoles = [
-  "Full Stack Developer",
-  "iOS Developer",
+  "Full Stack Dev",
   "AI Engineer",
   "GenAI Engineer",
+  "iOS Developer",
 ];
 
 const Career = () => {
@@ -48,7 +48,10 @@ const Career = () => {
                 <h4>B.Tech CSE with AIML</h4>
                 <h5>SRM Institute of Science and Technology</h5>
               </div>
-              <h3>2024 - 2028</h3>
+              <h3 className="career-date">
+                <span className="career-date-part">2024 -</span>
+                <span className="career-date-part">2028</span>
+              </h3>
             </div>
             <div className="career-info-box-right">
               <p>
@@ -70,7 +73,10 @@ const Career = () => {
                 </div>
                 <h5>Self-Driven · Building & Shipping</h5>
               </div>
-              <h3>2024 - NOW</h3>
+              <h3 className="career-date">
+                <span className="career-date-part">2024 -</span>
+                <span className="career-date-part">NOW</span>
+              </h3>
             </div>
             <div className="career-info-box-right">
               <p>
@@ -132,7 +138,10 @@ const Career = () => {
                 <h4>GSSoC Contributor</h4>
                 <h5>Open Source Track · AI Agent Track</h5>
               </div>
-              <h3>MAY 2025 - NOW</h3>
+              <h3 className="career-date">
+                <span className="career-date-part">MAY 2025 -</span>
+                <span className="career-date-part">NOW</span>
+              </h3>
             </div>
             <div className="career-info-box-right">
               <p>
