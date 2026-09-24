@@ -290,8 +290,8 @@ const Navbar = () => {
       ...(isDesktopView ? [{ id: "techstack", selector: "#techstack", endTrigger: "#github-heatmap", start: "top 50%", end: "top 50%" }] : []),
       { id: "github-heatmap", selector: "#github-heatmap", endTrigger: "#askyash", start: "top 50%", end: "top 50%" },
       { id: "askyash", selector: "#askyash", endTrigger: "#opento", start: "top 50%", end: "top 50%" },
-      { id: "opento", selector: "#opento", endTrigger: "#contact", start: "top 50%", end: "top 85%" },
-      { id: "contact", selector: "#contact", endTrigger: undefined, start: "top 85%", end: "bottom bottom" },
+      { id: "opento", selector: "#opento", endTrigger: "#contact", start: "top 50%", end: "top 80%" },
+      { id: "contact", selector: "#contact", endTrigger: undefined, start: "top 80%", end: "max" },
     ];
 
     sectionConfigs.forEach(({ id, selector, endTrigger, start, end }) => {
@@ -319,6 +319,25 @@ const Navbar = () => {
 
       triggers.push(trigger);
     });
+
+    // Dedicated bottom trigger: whenever user reaches the bottom of the page, ensure Contact is active
+    const pageBottomTrigger = ScrollTrigger.create({
+      start: () => Math.max(0, ScrollTrigger.maxScroll(window) - 180),
+      end: () => ScrollTrigger.maxScroll(window) + 100,
+      onEnter: () => {
+        if (!isClickingRef.current) {
+          setActiveTab("contact");
+          animatePillToTab("contact", false);
+        }
+      },
+      onEnterBack: () => {
+        if (!isClickingRef.current) {
+          setActiveTab("contact");
+          animatePillToTab("contact", false);
+        }
+      },
+    });
+    triggers.push(pageBottomTrigger);
 
     return () => {
       triggers.forEach((t) => t.kill());
