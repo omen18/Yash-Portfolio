@@ -1,133 +1,205 @@
-.github-heatmap-wrapper {
+.github-activity-wrapper {
   width: 100%;
   background-color: #000000;
 }
 
-.github-heatmap-section {
+.github-activity-section {
   padding: 80px 40px;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   box-sizing: border-box;
-  background-color: #000000;
 }
 
-.heatmap-header {
+.section-heading {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 28px;
+  align-items: flex-end;
+  gap: 2rem;
+  margin-bottom: 2.25rem;
 }
 
-.heatmap-header h2 {
-  font-size: 2.75rem;
-  font-weight: 600;
-  color: #ffffff;
-  letter-spacing: -0.02em;
+.section-heading h2 {
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+  max-width: 14ch;
   margin: 0;
+  font-size: clamp(2rem, 4vw, 3.75rem);
+  font-weight: 620;
+  color: #f2f7f5;
+  line-height: 1;
 }
 
-.view-profile-link {
-  color: #888888;
-  text-decoration: none;
-  font-size: 1.05rem;
-  transition: color 0.2s ease;
-  display: flex;
+.section-heading .view-profile-link {
+  min-height: 2.75rem;
+  color: #9da8a4;
   align-items: center;
-  gap: 4px;
+  gap: 0.45rem;
+  padding: 0.65rem 0;
+  font-size: 0.85rem;
+  transition: color 0.15s ease;
+  display: inline-flex;
+  text-decoration: none;
 }
 
-.view-profile-link:hover {
-  color: #ffffff;
+.section-heading .view-profile-link svg {
+  width: 0.95rem;
+  height: 0.95rem;
+  transition: transform 0.2s ease;
 }
 
-.calendar-container {
-  background: #10141a;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  padding: 36px 32px;
+.section-heading .view-profile-link:hover {
+  color: #f2f7f5;
+}
+
+.section-heading .view-profile-link:hover svg {
+  transform: translate(2px, -2px);
+}
+
+.github-activity-card {
+  border: 1px solid rgba(242, 247, 245, 0.12);
+  background: linear-gradient(145deg, rgba(53, 213, 164, 0.035), transparent 40%), #121616;
+  scrollbar-color: rgba(242, 247, 245, 0.22) transparent;
+  border-radius: 0.875rem;
+  min-width: 0;
+  padding: clamp(1.25rem, 3.5vw, 2.5rem);
   overflow-x: auto;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.04);
   display: flex;
   justify-content: center;
 }
 
-.react-activity-calendar {
-  color: #fff !important;
+.github-activity-inner {
+  min-width: max-content;
+  margin-inline: auto;
 }
 
-/* Footer & Legend - Align the 5 color blocks to the bottom left without text */
-.react-activity-calendar__footer {
-  display: flex !important;
-  justify-content: flex-start !important;
-  margin-top: 20px !important;
+.github-activity-months {
+  position: relative;
+  height: 16px;
+  margin-bottom: 8px;
+  font-size: 11px;
+  line-height: 16px;
+  color: #9da8a4;
+  user-select: none;
 }
 
-.react-activity-calendar__legend-colors {
-  display: flex !important;
-  align-items: center !important;
-  gap: 4px !important;
-  margin-left: 0 !important;
+.github-activity-month-label {
+  position: absolute;
+  white-space: nowrap;
 }
 
-.react-activity-calendar__legend-colors > span {
-  display: none !important;
+.github-activity-grid {
+  position: relative;
+  display: flex;
 }
 
-.react-activity-calendar__count {
-  display: none !important;
+.github-activity-column {
+  display: flex;
+  flex-direction: column;
 }
 
-.react-activity-calendar__legend-month {
-  fill: #8b949e !important;
-  font-size: 11px !important;
-  font-family: inherit !important;
+.github-activity-cell-wrapper {
+  position: relative;
+  cursor: pointer;
+  transition: filter 0.08s ease-out;
 }
 
-/* Tooltip Customization to match target screenshot exactly */
-.react-activity-calendar__tooltip {
-  background-color: #ffffff !important;
-  color: #0c0c0c !important;
-  border-radius: 9999px !important;
-  padding: 5px 14px !important;
-  font-size: 12.5px !important;
-  font-weight: 500 !important;
-  font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
-  border: none !important;
-  pointer-events: none !important;
-  z-index: 999999 !important;
-  white-space: nowrap !important;
-  line-height: 1.3 !important;
-  letter-spacing: 0.01em !important;
+.github-activity-cell {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  animation-name: twinkle, cellEntrance;
+  animation-timing-function: ease-in-out, cubic-bezier(0.16, 1, 0.3, 1);
+  animation-iteration-count: infinite, 1;
+  animation-fill-mode: none, backwards;
 }
 
-.react-activity-calendar__tooltip[data-color-scheme='dark'] {
-  background-color: #ffffff !important;
-  color: #0c0c0c !important;
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.76;
+    transform: scale(0.94);
+  }
 }
 
-.react-activity-calendar__tooltip-arrow {
-  display: none !important;
+@keyframes cellEntrance {
+  0% {
+    opacity: 0;
+    transform: scale(0.35) translateY(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
-.react-activity-calendar .color-scale-1 { fill: #0e4429; }
-.react-activity-calendar .color-scale-2 { fill: #006d32; }
-.react-activity-calendar .color-scale-3 { fill: #26a641; }
-.react-activity-calendar .color-scale-4 { fill: #39d353; }
+.github-activity-tooltip {
+  pointer-events: none;
+  position: fixed;
+  z-index: 999999;
+  white-space: nowrap;
+  border-radius: 9999px;
+  background-color: #f2f7f5;
+  color: #0b0d0d;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(242, 247, 245, 0.15);
+  transition: left 0.14s cubic-bezier(0.16, 1, 0.3, 1), top 0.14s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.1s ease;
+  line-height: 1.3;
+}
+
+.github-activity-legend {
+  margin-top: 18px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.github-activity-loading {
+  overflow-x: auto;
+}
+
+.github-activity-cell-skeleton {
+  background-color: #161b22;
+  animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.github-activity-error {
+  color: #9da8a4;
+  font-size: 0.9rem;
+  padding: 20px 0;
+  text-align: center;
+}
 
 @media (max-width: 768px) {
-  .heatmap-header h2 {
-    font-size: 2.2rem;
+  .section-heading {
+    align-items: start;
+    gap: 1rem;
+    display: grid;
+    margin-bottom: 1.5rem;
   }
-  .github-heatmap-section {
+  .section-heading h2 {
+    font-size: 2.45rem;
+  }
+  .github-activity-section {
     padding: 60px 20px;
   }
-  .calendar-container {
-    padding: 24px 16px;
-  }
-  .heatmap-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
+  .github-activity-card {
+    padding: 1rem 0.75rem;
   }
 }
