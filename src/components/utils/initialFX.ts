@@ -1,6 +1,5 @@
 import { SplitText } from "gsap/SplitText";
 import gsap from "gsap";
-import { smoother } from "../Navbar";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 
@@ -12,7 +11,7 @@ export function initialFX() {
     document.body.style.overflowX = "hidden";
     document.body.style.overflowY = "auto";
 
-    const sm = ScrollSmoother.get() || smoother;
+    const sm = ScrollSmoother.get();
     if (sm) {
       sm.paused(false);
       ScrollSmoother.refresh(true);
@@ -86,7 +85,7 @@ export function initialFX() {
     // Never leave the page unscrollable if the intro animation blew up.
     document.body.style.overflowX = "hidden";
     document.body.style.overflowY = "auto";
-    const sm = ScrollSmoother.get() || smoother;
+    const sm = ScrollSmoother.get();
     if (sm) {
       sm.paused(false);
       ScrollSmoother.refresh(true);

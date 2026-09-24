@@ -6,7 +6,7 @@ import "./styles/Navbar.css";
 import { useLoading } from "../context/LoadingProvider";
 
 gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
-export let smoother: ScrollSmoother;
+let smoother: ScrollSmoother;
 
 type NavTab = {
   id: string;
