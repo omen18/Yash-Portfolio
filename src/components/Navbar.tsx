@@ -373,6 +373,37 @@ const Navbar = () => {
   return (
     <>
       <header className="header">
+        {/* Left Brand: YRS Logo and Email */}
+        <div className="header-left">
+          <a
+            href="/#"
+            className="navbar-logo"
+            onClick={(e) => {
+              e.preventDefault();
+              const s = ScrollSmoother.get();
+              if (s) {
+                s.scrollTo(0, true);
+              } else {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }
+            }}
+            data-cursor="disable"
+            aria-label="Yash Raj Sharan Home"
+          >
+            <img src="/images/yrs_logo.jpg" alt="YRS Logo" className="navbar-logo-img" />
+            <span className="navbar-logo-text">YRS</span>
+          </a>
+
+          <a
+            href="mailto:yashrajsharan2006@gmail.com"
+            className="navbar-email"
+            data-cursor="disable"
+            title="Email: yashrajsharan2006@gmail.com"
+          >
+            yashrajsharan2006@gmail.com
+          </a>
+        </div>
+
         {/* Floating Bouncy Capsule Nav Dock */}
         <nav
           className="bouncy-nav-dock"
