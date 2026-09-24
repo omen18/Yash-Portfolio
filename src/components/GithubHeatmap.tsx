@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import './styles/GithubHeatmap.css';
 
 interface ContributionDay {
@@ -93,7 +94,7 @@ function formatTooltipText(item: ContributionDay): string {
   const dateObj = parseISODate(item.date) ?? new Date();
   const dateStr = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' }).format(dateObj);
   const word = item.count === 1 ? 'contribution' : 'contributions';
-  return `${item.count === 0 ? 'No' : item.count} ${word} · ${dateStr}`;
+  return `${item.count} ${word} · ${dateStr}`;
 }
 
 function getMonthLabel(week: ContributionDay[]): string | null {
@@ -163,12 +164,22 @@ const GithubHeatmap: React.FC = () => {
     return packIntoWeeks(filtered);
   }, [dataState]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setHovered(null);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   const handleCellHover = useCallback(
     (el: HTMLElement, item: ContributionDay, weekIndex: number, dayIndex: number) => {
       const rect = el.getBoundingClientRect();
       const placement = rect.top > 56 ? 'above' : 'below';
       const left = Math.min(Math.max(rect.left + rect.width / 2, 96), window.innerWidth - 96);
-      const top = placement === 'above' ? rect.top - 9 : rect.bottom + 9;
+      const top = placement === 'above' ? rect.top - 8 : rect.bottom + 8;
 
       setHovered({
         contribution: item,
@@ -183,8 +194,8 @@ const GithubHeatmap: React.FC = () => {
   );
 
   return (
-    <section className="github-activity-wrapper" id="github-heatmap">
-      <div className="github-activity-section">
+    <section className="github-activity-wrapper" id="github-heatmap" data-cursor="disable">
+      <div className="github-activity-section" data-cursor="disable">
         <div className="section-heading">
           <h2>GitHub activity</h2>
           <a
@@ -192,6 +203,7 @@ const GithubHeatmap: React.FC = () => {
             target="_blank"
             rel="noreferrer"
             className="view-profile-link"
+            data-cursor="disable"
           >
             View profile
             <svg
@@ -210,10 +222,10 @@ const GithubHeatmap: React.FC = () => {
           </a>
         </div>
 
-        <div className="github-activity-card">
+        <div className="github-activity-card" data-cursor="disable">
           {dataState.status === 'loading' && (
             <div className="github-activity-loading">
-              <div className="github-activity-grid" style={{ gap: CELL_GAP }}>
+              <div className="github-activity-grid" style={{ gap: CELL_GAP }} data-cursor="disable">
                 {Array.from({ length: 40 }).map((_, w) => (
                   <div key={w} className="github-activity-column" style={{ gap: CELL_GAP }}>
                     {Array.from({ length: 7 }).map((_, d) => (
@@ -239,7 +251,7 @@ const GithubHeatmap: React.FC = () => {
           )}
 
           {dataState.status === 'ready' && weeks.length > 0 && (
-            <div className="github-activity-inner">
+            <div className="github-activity-inner" data-cursor="disable">
               {/* Month Labels */}
               <div
                 className="github-activity-months"
@@ -269,6 +281,7 @@ const GithubHeatmap: React.FC = () => {
                 style={{ gap: CELL_GAP }}
                 role="img"
                 aria-label={`GitHub contribution calendar for ${GITHUB_USERNAME}`}
+                data-cursor="disable"
                 onMouseLeave={() => setHovered(null)}
               >
                 {weeks.map((week, weekIndex) => (
@@ -294,6 +307,7 @@ const GithubHeatmap: React.FC = () => {
                         <div
                           key={item.date}
                           className="github-activity-cell-wrapper"
+                          data-cursor="disable"
                           style={{
                             width: CELL_SIZE,
                             height: CELL_SIZE,
@@ -318,19 +332,21 @@ const GithubHeatmap: React.FC = () => {
                 ))}
               </div>
 
-              {/* Floating Pill Tooltip */}
-              {hovered && (
+              {/* Floating Pill Tooltip rendered into document.body to break out of transformed ScrollSmoother parent */}
+              {hovered && typeof document !== 'undefined' && createPortal(
                 <div
                   role="tooltip"
                   className="github-activity-tooltip"
+                  data-cursor="disable"
                   style={{
-                    left: hovered.left,
-                    top: hovered.top,
+                    left: `${hovered.left}px`,
+                    top: `${hovered.top}px`,
                     transform: `translate(-50%, ${hovered.placement === 'above' ? '-100%' : '0%'})`
                   }}
                 >
                   {formatTooltipText(hovered.contribution)}
-                </div>
+                </div>,
+                document.body
               )}
 
               {/* 5-Color Legend at Bottom-Left */}

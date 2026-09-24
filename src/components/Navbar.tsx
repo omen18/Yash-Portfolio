@@ -373,7 +373,7 @@ const Navbar = () => {
   return (
     <>
       <header className="header">
-        {/* Left Brand: YRS Logo and Email */}
+        {/* Left Brand: YRS Logo */}
         <div className="header-left">
           <a
             href="/#"
@@ -392,15 +392,6 @@ const Navbar = () => {
           >
             <img src="/images/yrs_logo.jpg" alt="YRS Logo" className="navbar-logo-img" />
             <span className="navbar-logo-text">YRS</span>
-          </a>
-
-          <a
-            href="mailto:yashrajsharan2006@gmail.com"
-            className="navbar-email"
-            data-cursor="disable"
-            title="Email: yashrajsharan2006@gmail.com"
-          >
-            yashrajsharan2006@gmail.com
           </a>
         </div>
 

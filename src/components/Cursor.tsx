@@ -46,6 +46,9 @@ const Cursor = () => {
     const onMouseOut = (e: MouseEvent) => {
       const target = (e.target as HTMLElement).closest("[data-cursor]") as HTMLElement;
       if (!target) return;
+      if (e.relatedTarget && target.contains(e.relatedTarget as Node)) {
+        return;
+      }
 
       cursor.classList.remove("cursor-disable", "cursor-icons");
       hover = false;
