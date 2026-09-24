@@ -106,7 +106,7 @@
   transform: translateX(-50%);
   width: 100%;
   left: 50%;
-  z-index: 0;
+  z-index: 1;
   bottom: 50px;
   pointer-events: inherit;
 }
@@ -122,7 +122,7 @@
   bottom: -50px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 9;
+  z-index: 1;
   position: absolute;
   pointer-events: none;
 }
@@ -134,7 +134,7 @@
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 9;
+  z-index: 1;
   position: absolute;
   pointer-events: none;
 }
@@ -146,7 +146,7 @@
 .character-model canvas {
   position: relative;
   pointer-events: none;
-  z-index: 2;
+  z-index: 1;
 }
 .character-hover {
   position: absolute;
@@ -166,10 +166,11 @@
 }
 .landing-intro h2 {
   margin: 0 0 6px 0;
-  color: #c2a4ff;
+  color: #c2a4ff !important;
   font-size: 22px;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 2px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
 }
 
 .landing-intro h1 {
@@ -177,14 +178,15 @@
   letter-spacing: 2px;
   font-size: 28px;
   line-height: 1.1;
-  font-weight: 600;
+  font-weight: 700;
   font-family: "Geist", sans-serif;
-  color: #ffffff;
+  color: #ffffff !important;
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.8);
 }
 
 .landing-intro h1 span {
-  color: #ffffff;
-  font-weight: 600;
+  color: #ffffff !important;
+  font-weight: 700;
 }
 
 .landing-info {
@@ -198,12 +200,13 @@
 .landing-info h3 {
   font-size: 22px;
   letter-spacing: 2px;
-  font-weight: 300;
-  color: #ffffff;
+  font-weight: 400;
+  color: #ffffff !important;
   margin: 0 0 4px 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
 }
 .landing-info h3 span {
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 /* Role Rotator — continuous sliding layout */
@@ -231,12 +234,13 @@
   display: flex;
   align-items: center;
   font-family: "Geist", sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: clamp(18px, 6.5vw, 32px); /* fluid font-size for mobile */
   line-height: 1;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: #c481ff;
+  color: #c481ff !important;
+  text-shadow: 0 2px 15px rgba(196, 129, 255, 0.4);
   white-space: nowrap;
 }
 
@@ -285,53 +289,68 @@
     font-size: clamp(28px, 5vw, 48px); /* fluid font-size */
   }
 }
-@media screen and (min-width: 1025px) {
+@media screen and (min-width: 1024px) {
   .character-model {
     height: 100vh;
     bottom: 0;
-    z-index: 11;
+    z-index: 1;
     position: fixed;
-    left: 48.5%;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
   }
   .character-model::after,
   .character-model::before {
-    display: none;
+    display: none !important;
   }
   .landing-intro {
     top: 50%;
-    left: auto;
-    right: 68.5%;
-    transform: translate(0%, -50%);
+    left: clamp(24px, 4vw, 80px);
+    right: auto;
+    transform: translateY(-50%);
     z-index: 25;
+    text-align: left;
+    max-width: 400px;
   }
 
   .landing-info {
     bottom: auto;
-    top: 51%;
+    top: 50%;
     z-index: 25;
     text-align: left;
-    transform: translate(0%, -50%);
-    right: auto;
-    left: 62%;
+    transform: translateY(-50%);
+    right: clamp(24px, 4vw, 80px);
+    left: auto;
+    max-width: 460px;
+  }
+  .landing-intro h2 {
+    font-size: clamp(18px, 1.8vw, 26px);
+  }
+  .landing-intro h1 {
+    font-size: clamp(32px, 3.2vw, 52px);
+    line-height: 1.1;
+  }
+  .landing-info h3 {
+    font-size: clamp(18px, 1.6vw, 24px);
+  }
+  .role-item {
+    font-size: clamp(20px, 2.5vw, 40px);
   }
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1440px) {
   .landing-intro {
-    top: 50%;
-    left: auto;
-    right: 72.5%;
-    transform: translate(0%, -50%);
-    z-index: 25;
+    left: clamp(40px, 5.5vw, 120px);
+    max-width: 440px;
   }
-
   .landing-info {
-    bottom: auto;
-    top: 51%;
-    z-index: 25;
-    text-align: left;
-    transform: translate(0%, -50%);
-    right: auto;
-    left: 64%;
+    right: clamp(40px, 5.5vw, 120px);
+    max-width: 520px;
+  }
+  .landing-intro h1 {
+    font-size: clamp(38px, 3.2vw, 58px);
+  }
+  .role-item {
+    font-size: clamp(24px, 2.6vw, 46px);
   }
 }
 @media screen and (min-width: 1600px) {
@@ -339,16 +358,16 @@
     --rotatorHeight: 70px;
   }
   .landing-intro h2 {
-    font-size: 35px;
+    font-size: 32px;
   }
   .landing-intro h1 {
     font-size: 60px;
     line-height: 55px;
   }
   .landing-info h3 {
-    font-size: 35px;
+    font-size: 32px;
   }
   .role-item {
-    font-size: clamp(45px, 3.5vw, 65px); /* fluid font-size */
+    font-size: clamp(30px, 2.8vw, 52px);
   }
 }

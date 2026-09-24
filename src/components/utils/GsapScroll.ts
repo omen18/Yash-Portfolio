@@ -67,8 +67,7 @@ export function setCharTimeline(
         .fromTo(character.rotation, { y: 0 }, { y: 0.7, duration: 1 }, 0)
         .to(camera.position, { z: 22, duration: 1 }, 0)
         .fromTo(".character-model", { x: 0 }, { x: "-33%", duration: 1 }, 0)
-        .to(".landing-container", { opacity: 0, duration: 0.3 }, 0)
-        .to(".landing-container", { y: "30%", duration: 0.4 }, 0)
+        .fromTo(".landing-container", { opacity: 1, y: "0%" }, { opacity: 0, y: "30%", duration: 0.4 }, 0)
         .fromTo(".about-me", { y: "-20%", opacity: 0 }, { y: "0%", opacity: 1, duration: 0.45 }, 0.65);
 
       tl2

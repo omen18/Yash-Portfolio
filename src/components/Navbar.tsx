@@ -20,7 +20,7 @@ const navTabs: NavTab[] = [
   { id: "work", label: "Work", href: "#work" },
   { id: "techstack", label: "Tech Stack", href: "#techstack" },
   { id: "github-heatmap", label: "GitHub Heatmap", href: "#github-heatmap" },
-  { id: "askyash", label: "ask yash.exe", href: "#askyash" },
+  { id: "askyash", label: "Ask Yash.Exe", href: "#askyash" },
   { id: "opento", label: "Open To Work", href: "#opento" },
   { id: "contact", label: "Contact", href: "#contact" },
 ];
