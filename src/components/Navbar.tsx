@@ -4,7 +4,6 @@ import { gsap } from "gsap";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import "./styles/Navbar.css";
 import { useLoading } from "../context/LoadingProvider";
-import { FaEnvelope } from "react-icons/fa6";
 
 gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
 export let smoother: ScrollSmoother;
@@ -20,6 +19,8 @@ const navTabs: NavTab[] = [
   { id: "career", label: "Experience", href: "#career" },
   { id: "work", label: "Work", href: "#work" },
   { id: "techstack", label: "Tech Stack", href: "#techstack" },
+  { id: "github-heatmap", label: "GitHub Heatmap", href: "#github-heatmap" },
+  { id: "askyash", label: "ask yash.exe", href: "#askyash" },
   { id: "opento", label: "Open To Work", href: "#opento" },
   { id: "contact", label: "Contact", href: "#contact" },
 ];
@@ -281,12 +282,14 @@ const Navbar = () => {
       triggers.push(landingTrigger);
     }
 
-    // Section triggers for About, Experience, Work, TechStack, Open To Work, Contact
+    // Section triggers for About, Experience, Work, TechStack, GitHub Heatmap, askyash, Open To Work, Contact
     const sectionConfigs = [
       { id: "about", selector: "#about", endTrigger: "#career", start: "top 50%", end: "top 50%" },
       { id: "career", selector: "#career", endTrigger: "#work", start: "top 50%", end: "top 50%" },
-      { id: "work", selector: "#work", endTrigger: isDesktopView ? "#techstack" : "#opento", start: "top 50%", end: "top 50%" },
-      ...(isDesktopView ? [{ id: "techstack", selector: "#techstack", endTrigger: "#opento", start: "top 50%", end: "top 50%" }] : []),
+      { id: "work", selector: "#work", endTrigger: isDesktopView ? "#techstack" : "#github-heatmap", start: "top 50%", end: "top 50%" },
+      ...(isDesktopView ? [{ id: "techstack", selector: "#techstack", endTrigger: "#github-heatmap", start: "top 50%", end: "top 50%" }] : []),
+      { id: "github-heatmap", selector: "#github-heatmap", endTrigger: "#askyash", start: "top 50%", end: "top 50%" },
+      { id: "askyash", selector: "#askyash", endTrigger: "#opento", start: "top 50%", end: "top 50%" },
       { id: "opento", selector: "#opento", endTrigger: "#contact", start: "top 50%", end: "top 85%" },
       { id: "contact", selector: "#contact", endTrigger: undefined, start: "top 85%", end: "bottom bottom" },
     ];
@@ -327,23 +330,7 @@ const Navbar = () => {
   return (
     <>
       <header className="header">
-        {/* Left: Email Link */}
-        <a
-          href="mailto:yashrajsharan2006@gmail.com"
-          className="navbar-connect-btn"
-          data-cursor="disable"
-          title="Send an email"
-          style={{ textDecoration: 'none' }}
-        >
-          <span className="navbar-connect-icon">
-            <FaEnvelope />
-          </span>
-          <span className="navbar-connect-text">
-            yashrajsharan2006@gmail.com
-          </span>
-        </a>
-
-        {/* Right: Floating Bouncy Capsule Nav Dock */}
+        {/* Floating Bouncy Capsule Nav Dock */}
         <nav
           className="bouncy-nav-dock"
           ref={navRef}

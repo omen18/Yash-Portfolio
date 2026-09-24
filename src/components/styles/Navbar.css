@@ -2,7 +2,7 @@
   display: flex;
   max-width: var(--cMaxWidth);
   width: var(--cWidth);
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 20px 0px;
   box-sizing: border-box;
@@ -18,50 +18,6 @@
   pointer-events: auto; /* Re-enable pointer events for interactive controls */
 }
 
-/* Left: Logo */
-.navbar-title {
-  font-family: "Geist", sans-serif;
-  font-weight: 700;
-  font-size: 16px;
-  letter-spacing: 0.5px;
-  color: #ffffff;
-  text-decoration: none;
-  cursor: pointer;
-  transition: opacity 0.25s ease, color 0.25s ease;
-  user-select: none;
-}
-
-.navbar-title:hover {
-  color: var(--accentColor);
-  opacity: 0.9;
-}
-
-/* Center: Email with Click-to-Copy Feedback */
-.navbar-connect-btn {
-  display: none;
-  align-items: center;
-  gap: 8px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(18, 14, 24, 0.45);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 9999px;
-  padding: 6px 14px;
-  color: rgba(255, 255, 255, 0.7);
-  font-family: "Geist", sans-serif;
-  font-size: 13.5px;
-  font-weight: 400;
-  letter-spacing: 0.3px;
-  cursor: pointer;
-  transition: 
-  opacity: 0;
-  transform: scale(0.85);
-  will-change: transform, width, opacity;
-}
-
 /* Nav Item / Links */
 .bouncy-nav-item {
   position: relative;
@@ -69,9 +25,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 7px 16px;
+  padding: 7px 13px;
   font-family: "Geist", sans-serif;
-  font-size: 13.5px;
+  font-size: 12.5px;
   font-weight: 500;
   letter-spacing: 0.2px;
   text-decoration: none;
@@ -95,18 +51,25 @@
   pointer-events: none;
 }
 
-/* Right: Floating Capsule Nav Dock */
+/* Center: Floating Capsule Nav Dock */
 .bouncy-nav-dock {
   position: relative;
   display: flex;
   align-items: center;
   gap: 2px;
   padding: 4px;
-  background: rgba(18, 14, 24, 0.45);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(18, 14, 24, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 9999px;
+  max-width: 96vw;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.bouncy-nav-dock::-webkit-scrollbar {
+  display: none;
 }
 
 /* Active White Pill (animated via GSAP) */
@@ -140,48 +103,35 @@
   .header {
     padding: 20px 0px;
   }
-  .navbar-title {
-    font-size: 16px;
-  }
 }
 
 @media only screen and (min-width: 900px) {
-  .navbar-connect-btn {
-    display: flex;
-  }
   .bouncy-nav-item {
-    padding: 8px 18px;
-    font-size: 14px;
+    padding: 7px 14px;
+    font-size: 13px;
   }
 }
 
 @media only screen and (min-width: 1200px) {
   .header {
-    padding: 30px 0px;
-  }
-  .navbar-title {
-    font-size: 18px;
-  }
-  .navbar-connect-btn {
-    font-size: 14px;
-    padding: 7px 16px;
+    padding: 24px 0px;
   }
   .bouncy-nav-item {
-    padding: 8px 20px;
-    font-size: 14px;
+    padding: 8px 16px;
+    font-size: 13px;
   }
 }
 
 @media only screen and (max-width: 480px) {
   .header {
-    padding: 14px 0px;
+    padding: 12px 0px;
   }
   .bouncy-nav-dock {
     padding: 3px;
     gap: 1px;
   }
   .bouncy-nav-item {
-    padding: 6px 11px;
-    font-size: 12px;
+    padding: 6px 10px;
+    font-size: 11.5px;
   }
 }
