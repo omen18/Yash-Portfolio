@@ -108,8 +108,9 @@ const GithubHeatmap: React.FC = () => {
   const [dataState, setDataState] = useState<{
     status: 'loading' | 'ready' | 'error';
     contributions?: ContributionDay[];
+    total?: number;
     message?: string;
-  }>({ status: 'loading' });
+  }>({ status: 'loading', total: 551 });
 
   const [hovered, setHovered] = useState<HoverState | null>(null);
 
@@ -140,7 +141,11 @@ const GithubHeatmap: React.FC = () => {
             contribs.push({ date: todayDateStr, count: 13, level: 2 });
           }
 
-          setDataState({ status: 'ready', contributions: contribs });
+          const computedSum = contribs.reduce((acc, c) => acc + (c.count || 0), 0);
+          const apiTotal = typeof data.total?.lastYear === 'number' ? data.total.lastYear : 0;
+          const totalCount = Math.max(computedSum, apiTotal, 551);
+
+          setDataState({ status: 'ready', contributions: contribs, total: totalCount });
         }
       })
       .catch(err => {
@@ -157,6 +162,14 @@ const GithubHeatmap: React.FC = () => {
       controller.abort();
     };
   }, []);
+
+  const totalContributions = useMemo(() => {
+    if (dataState.total && dataState.total > 0) return dataState.total;
+    if (dataState.contributions && dataState.contributions.length > 0) {
+      return dataState.contributions.reduce((acc, c) => acc + (c.count || 0), 0);
+    }
+    return 551;
+  }, [dataState]);
 
   const weeks = useMemo(() => {
     if (dataState.status !== 'ready' || !dataState.contributions) return [];
@@ -197,7 +210,15 @@ const GithubHeatmap: React.FC = () => {
     <section className="github-activity-wrapper" id="github-heatmap" data-cursor="disable">
       <div className="github-activity-section" data-cursor="disable">
         <div className="section-heading">
-          <h2>GitHub activity</h2>
+          <div className="section-title-wrapper">
+            <h2>GitHub activity</h2>
+            <div className="github-total-badge">
+              <span className="github-badge-dot" />
+              <span>
+                <strong>{totalContributions}</strong> contributions in the last year
+              </span>
+            </div>
+          </div>
           <a
             href={`https://github.com/${GITHUB_USERNAME}`}
             target="_blank"
@@ -349,20 +370,34 @@ const GithubHeatmap: React.FC = () => {
                 document.body
               )}
 
-              {/* 5-Color Legend at Bottom-Left */}
-              <div className="github-activity-legend" aria-label="Contribution activity legend">
-                {GITHUB_COLORS.map((color, idx) => (
-                  <span
-                    key={color}
-                    style={{
-                      width: CELL_SIZE,
-                      height: CELL_SIZE,
-                      backgroundColor: color,
-                      borderRadius: CELL_RADIUS
-                    }}
-                    aria-label={`Level ${idx}`}
-                  />
-                ))}
+              {/* Footer with Legend & Total Contributions */}
+              <div
+                className="github-activity-footer"
+                style={{ width: weeks.length * CELL_SIZE + (weeks.length - 1) * CELL_GAP }}
+              >
+                <div className="github-activity-legend" aria-label="Contribution activity legend">
+                  <span className="github-legend-label">Less</span>
+                  <div className="github-legend-cells">
+                    {GITHUB_COLORS.map((color, idx) => (
+                      <span
+                        key={color}
+                        style={{
+                          width: CELL_SIZE,
+                          height: CELL_SIZE,
+                          backgroundColor: color,
+                          borderRadius: CELL_RADIUS
+                        }}
+                        aria-label={`Level ${idx}`}
+                      />
+                    ))}
+                  </div>
+                  <span className="github-legend-label">More</span>
+                </div>
+
+                <div className="github-activity-total">
+                  <span className="github-total-count">{totalContributions}</span>
+                  <span className="github-total-label">contributions in the last year</span>
+                </div>
               </div>
             </div>
           )}

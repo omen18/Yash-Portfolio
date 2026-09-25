@@ -179,6 +179,52 @@
   }
 }
 
+/* ─── Open Source Contribution List ─── */
+.career-oss-list {
+  list-style: none;
+  padding: 0;
+  margin: 14px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.career-oss-list li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 15.5px;
+  line-height: 1.55;
+  font-weight: 300;
+  color: rgba(234, 229, 236, 0.85);
+}
+
+.career-oss-list li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 9px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--accentColor);
+  box-shadow: 0 0 8px var(--accentColor);
+}
+
+.career-oss-list li strong {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.career-oss-list code {
+  font-family: inherit;
+  background: rgba(194, 164, 255, 0.08);
+  border: 1px solid rgba(194, 164, 255, 0.15);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 13.5px;
+  color: var(--accentColor);
+}
+
 /* ─── Certificate / Badge Links ─── */
 .career-links {
   display: flex;
@@ -264,6 +310,13 @@
   .career-info-box-right p {
     font-size: 14px;
   }
+  .career-oss-list li {
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+  .career-oss-list code {
+    font-size: 12px;
+  }
   .career-info-in {
     width: 47%;
     gap: 16px;
@@ -346,5 +399,19 @@
     font-size: 12px;
     padding: 6px 12px;
     gap: 6px;
+  }
+  .career-oss-list {
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .career-oss-list li {
+    font-size: 12.5px;
+    padding-left: 15px;
+    line-height: 1.45;
+  }
+  .career-oss-list li::before {
+    top: 7px;
+    width: 4px;
+    height: 4px;
   }
 }

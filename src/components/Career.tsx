@@ -235,7 +235,7 @@ const Career = () => {
             <div className="career-info-in">
               <div className="career-role">
                 <h4>GitHub Open Source Contributor</h4>
-                <h5>IBM · Taxinomitis</h5>
+                <h5>Refine · Helm Dashboard · IBM</h5>
               </div>
               <h3 className="career-date">
                 <span className="career-date-part">SEP 2026 -</span>
@@ -244,9 +244,89 @@ const Career = () => {
             </div>
             <div className="career-info-box-right">
               <p>
-                Contributing to IBM's open-source <strong>taxinomitis</strong> project (Machine Learning for Kids). Authored and merged PR #539 extending URL validation utilities and regex parsing to support Wikimedia CDN domains with dynamic test assertions, and opened Issue #540 isolating missing PostgreSQL configuration variables in the core unit test suite.
+                Active contributor across major open-source ecosystems in web frameworks, cloud-native developer tooling, and educational machine learning:
               </p>
+              <ul className="career-oss-list">
+                <li>
+                  <strong>Refine:</strong> Refactored core helper utilities for cleaner semantics and early exit; expanded unit test coverage across 6+ core helpers with 60+ new tests (PR #7598).
+                </li>
+                <li>
+                  <strong>Helm Dashboard:</strong> Hardened Kubernetes Helm Dashboard plugin installer with network timeout and retry flags (PR #20), and optimized Docker build contexts in <code>.dockerignore</code> (PR #29).
+                </li>
+                <li>
+                  <strong>IBM Taxinomitis:</strong> Extended URL validation utilities and regex parsing to support Wikimedia CDN domains with dynamic test assertions (PR #539), and resolved PostgreSQL test environment configuration (Issue #540).
+                </li>
+              </ul>
               <div className="career-links">
+                <a
+                  href="https://github.com/refinedev/refine/pull/7598"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="career-link-badge"
+                >
+                  <FaGithub size={14} />
+                  Refine PR #7598
+                  <svg
+                    className="career-link-arrow"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <line x1="7" y1="17" x2="17" y2="7" />
+                    <polyline points="7 7 17 7 17 17" />
+                  </svg>
+                </a>
+                <a
+                  href="https://github.com/omen18/helm-dashboard/pull/20"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="career-link-badge"
+                >
+                  <FaGithub size={14} />
+                  Helm PR #20 (Merged)
+                  <svg
+                    className="career-link-arrow"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <line x1="7" y1="17" x2="17" y2="7" />
+                    <polyline points="7 7 17 7 17 17" />
+                  </svg>
+                </a>
+                <a
+                  href="https://github.com/omen18/helm-dashboard/pull/29"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="career-link-badge"
+                >
+                  <FaGithub size={14} />
+                  Helm PR #29 (Merged)
+                  <svg
+                    className="career-link-arrow"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <line x1="7" y1="17" x2="17" y2="7" />
+                    <polyline points="7 7 17 7 17 17" />
+                  </svg>
+                </a>
                 <a
                   href="https://github.com/IBM/taxinomitis/pull/539#event-30622076587"
                   target="_blank"

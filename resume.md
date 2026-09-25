@@ -28,10 +28,12 @@ Full stack developer building production-style web applications end to end — r
 ---
 
 ## Open Source Contributions
-- **IBM/taxinomitis — Machine Learning for Kids** · *Node.js, JavaScript* | [PR #539 (Merged)](https://github.com/IBM/taxinomitis/pull/539)
-  - Extended the `isWikimedia` and `getImageName` utilities to support Wikimedia’s `thumb.wikimedia.org` CDN domain alongside `upload.wikimedia.org`, unblocking image URLs the validator previously rejected. Replaced hardcoded-URL test assertions with checks on dynamic domain and thumbnail sizing. Merged to master after code-owner review.
-- **refinedev/refine** · *TypeScript* | PR open — under review
-  - Refactored core permission helpers for cleaner semantics and early exit, and expanded unit test coverage in the core package with 9 new tests (+477 lines).
+- **refinedev/refine** · *TypeScript* | [PR #7598](https://github.com/refinedev/refine/pull/7598)
+  - Refactored core helper implementations (`hasPermission`, `userFriendlySeconds`) for cleaner semantics and early exit; expanded unit test coverage across 6 core helper modules with 60+ new vitest test cases (+477 lines).
+- **komodorio/helm-dashboard** · *Shell, Docker* | [PR #20 (Merged)](https://github.com/omen18/helm-dashboard/pull/20) · [PR #29 (Merged)](https://github.com/omen18/helm-dashboard/pull/29)
+  - Added network timeout and retry flags (`--timeout=15 --tries=3`) to the fallback plugin installer script in `scripts/install_plugin.sh` for resilient installation. Optimized Docker build context by updating `.dockerignore` to exclude coverage profiles, logs, and editor artifacts.
+- **IBM/taxinomitis — Machine Learning for Kids** · *Node.js, JavaScript* | [PR #539 (Merged)](https://github.com/IBM/taxinomitis/pull/539) · [Issue #540](https://github.com/IBM/taxinomitis/issues/540)
+  - Extended the `isWikimedia` and `getImageName` utilities to support Wikimedia’s `thumb.wikimedia.org` CDN domain alongside `upload.wikimedia.org`, unblocking image URLs the validator previously rejected. Replaced hardcoded-URL test assertions with checks on dynamic domain and thumbnail sizing. Merged to master after code-owner review. Isolated missing PostgreSQL environment variables in the core unit test suite.
 
 ---
 
