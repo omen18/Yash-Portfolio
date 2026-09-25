@@ -231,6 +231,71 @@ const Career = () => {
               </div>
             </div>
           </div>
+          <div className="career-info-box">
+            <div className="career-info-in">
+              <div className="career-role">
+                <h4>GitHub Open Source Contributor</h4>
+                <h5>IBM · Taxinomitis</h5>
+              </div>
+              <h3 className="career-date">
+                <span className="career-date-part">SEP 2026 -</span>
+                <span className="career-date-part">NOW</span>
+              </h3>
+            </div>
+            <div className="career-info-box-right">
+              <p>
+                Contributing to IBM's open-source <strong>taxinomitis</strong> project (Machine Learning for Kids). Authored and merged PR #539 extending URL validation utilities and regex parsing to support Wikimedia CDN domains with dynamic test assertions, and opened Issue #540 isolating missing PostgreSQL configuration variables in the core unit test suite.
+              </p>
+              <div className="career-links">
+                <a
+                  href="https://github.com/IBM/taxinomitis/pull/539#event-30622076587"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="career-link-badge"
+                >
+                  <FaGithub size={14} />
+                  IBM PR #539 (Merged)
+                  <svg
+                    className="career-link-arrow"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <line x1="7" y1="17" x2="17" y2="7" />
+                    <polyline points="7 7 17 7 17 17" />
+                  </svg>
+                </a>
+                <a
+                  href="https://github.com/IBM/taxinomitis/issues/540#event-30856988608"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="career-link-badge"
+                >
+                  <FaGithub size={14} />
+                  IBM Issue #540
+                  <svg
+                    className="career-link-arrow"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <line x1="7" y1="17" x2="17" y2="7" />
+                    <polyline points="7 7 17 7 17 17" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

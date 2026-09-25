@@ -219,7 +219,11 @@ const Navbar = () => {
       if (window.innerWidth > 1024 && smoother) {
         ScrollSmoother.refresh(true);
       }
-      if (activeTab && tabRefs.current[activeTab]) {
+      const currentScroll = ScrollSmoother.get()?.scrollTop() ?? window.scrollY;
+      if (currentScroll < 350) {
+        setActiveTab("");
+        animatePillToTab(null, true);
+      } else if (activeTab && tabRefs.current[activeTab]) {
         animatePillToTab(activeTab, true);
       } else {
         animatePillToTab(null, true);
@@ -246,9 +250,15 @@ const Navbar = () => {
       // desktop too - not just the native-scroll (<=1024px) path.
       document.body.style.overflowY = "auto";
       document.body.style.overflowX = "hidden";
+
+      const currentScroll = ScrollSmoother.get()?.scrollTop() ?? window.scrollY;
+      if (currentScroll < 350) {
+        setActiveTab("");
+        animatePillToTab(null, true);
+      }
     }
     ScrollTrigger.refresh();
-  }, [isLoading]);
+  }, [isLoading, animatePillToTab]);
 
   // Initial pill positioning: hide pill on start (since user begins at Hero)
   useEffect(() => {
@@ -257,6 +267,8 @@ const Navbar = () => {
 
   // ScrollSpy with ScrollTrigger to update active tab on scroll
   useEffect(() => {
+    if (isLoading) return;
+
     const triggers: ScrollTrigger[] = [];
 
     // Hero trigger: when in Hero (#landingDiv), clear active tab & hide pill
@@ -266,6 +278,12 @@ const Navbar = () => {
         trigger: landingEl,
         start: "top top",
         end: "bottom 50%",
+        onToggle: (self) => {
+          if (self.isActive && !isClickingRef.current) {
+            setActiveTab("");
+            animatePillToTab(null, false);
+          }
+        },
         onEnter: () => {
           if (!isClickingRef.current) {
             setActiveTab("");
@@ -304,13 +322,17 @@ const Navbar = () => {
         start,
         end,
         onEnter: () => {
-          if (!isClickingRef.current) {
+          const currentScroll = ScrollSmoother.get()?.scrollTop() ?? window.scrollY;
+          if (!isClickingRef.current && currentScroll > 350) {
+            if (id === "contact" && currentScroll <= 800) return;
             setActiveTab(id);
             animatePillToTab(id, false);
           }
         },
         onEnterBack: () => {
-          if (!isClickingRef.current) {
+          const currentScroll = ScrollSmoother.get()?.scrollTop() ?? window.scrollY;
+          if (!isClickingRef.current && currentScroll > 350) {
+            if (id === "contact" && currentScroll <= 800) return;
             setActiveTab(id);
             animatePillToTab(id, false);
           }
@@ -348,6 +370,12 @@ const Navbar = () => {
     const heroScrollReset = ScrollTrigger.create({
       start: 0,
       end: 350,
+      onToggle: (self) => {
+        if (self.isActive && !isClickingRef.current) {
+          setActiveTab("");
+          animatePillToTab(null, false);
+        }
+      },
       onEnter: () => {
         if (!isClickingRef.current) {
           setActiveTab("");
@@ -363,10 +391,17 @@ const Navbar = () => {
     });
     triggers.push(heroScrollReset);
 
+    // Initial check on trigger creation: if at hero, reset immediately
+    const initialScroll = ScrollSmoother.get()?.scrollTop() ?? window.scrollY;
+    if (initialScroll < 350) {
+      setActiveTab("");
+      animatePillToTab(null, true);
+    }
+
     return () => {
       triggers.forEach((t) => t.kill());
     };
-  }, [animatePillToTab, isDesktopView]);
+  }, [isLoading, animatePillToTab, isDesktopView]);
 
 
 
@@ -380,6 +415,8 @@ const Navbar = () => {
             className="navbar-logo"
             onClick={(e) => {
               e.preventDefault();
+              setActiveTab("");
+              animatePillToTab(null, false);
               const s = ScrollSmoother.get();
               if (s) {
                 s.scrollTo(0, true);
