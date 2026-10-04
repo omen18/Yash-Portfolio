@@ -1,152 +1,173 @@
-# 🚀 Yash Raj Sharan | Personal Portfolio & Lab
+# ⚡ YASH RAJ SHARAN | 3D Interactive Lab & Portfolio
 
-[![React](https://img.shields.io/badge/React-18.3-61DAFB?logo=react&logoColor=white)](https://react.dev)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
-[![Three.js](https://img.shields.io/badge/Three.js-r168-black?logo=threedotjs&logoColor=white)](https://threejs.org)
-[![GSAP](https://img.shields.io/badge/GSAP-3.12-green?logo=greensock&logoColor=white)](https://gsap.com)
-[![Physics](https://img.shields.io/badge/Rapier_Physics-3D-purple)](https://rapier.rs)
-[![License](https://img.shields.io/badge/License-PPL_1.0-orange.svg)](LICENSE)
+<div align="center">
 
-An immersive, high-performance 3D portfolio and interactive AI engineering lab built with **React**, **Three.js (React Three Fiber + Rapier Physics)**, and **GSAP**. It showcases a fusion of modern web aesthetics, interactive simulation, full-stack software architecture, native iOS & macOS apps, and Machine Learning engineering.
+```ascii
+ __     __              _        ____            _ 
+ \ \   / /_ _ ___  ___ | |__    |  _ \ __ _     | |
+  \ \ / / _` / __|/ _ \| '_ \   | |_) / _` | _  | |
+   \ V / (_| \__ \ (_) | | | |  |  _ < (_| || |_| |
+    \_/ \__,_|___/\___/|_| |_|  |_| \_\__,_| \___/ 
+                                                    
+          [ NEXUS // SPATIAL 3D COMPUTING & AI LAB ]
+```
+
+[![Live Demo](https://img.shields.io/badge/LIVE%20DEMO-yashrajsharan.dev-00f0ff?style=for-the-badge&logo=vercel&logoColor=black)](https://yashrajsharan.dev)
+[![GitHub Profile](https://img.shields.io/badge/GITHUB-omen18-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/omen18)
+[![License](https://img.shields.io/badge/LICENSE-PPL--1.0-a855f7?style=for-the-badge)](LICENSE)
+
+<br/>
+
+**A bleeding-edge, high-performance 3D spatial portfolio and engineering lab converging Real-Time Computer Graphics, Rigid-Body Physics, Machine Learning Systems, Native Swift Apps, and Full-Stack Architectures.**
+
+<br/>
+
+[![React](https://img.shields.io/badge/React_18.3-20232A?style=flat-square&logo=react&logoColor=61DAFB)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript_5.5-007ACC?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Three.js](https://img.shields.io/badge/Three.js_r168-000000?style=flat-square&logo=threedotjs&logoColor=white)](https://threejs.org)
+[![React Three Fiber](https://img.shields.io/badge/R3F_v8-393939?style=flat-square&logo=three.js&logoColor=white)](https://docs.pmnd.rs/react-three-fiber)
+[![Rapier Physics](https://img.shields.io/badge/Rapier_3D_Physics-E056FD?style=flat-square&logo=rust&logoColor=white)](https://rapier.rs)
+[![GSAP](https://img.shields.io/badge/GSAP_v3-88CE02?style=flat-square&logo=greensock&logoColor=white)](https://gsap.com)
+[![Swift](https://img.shields.io/badge/Swift_5.9-FA7343?style=flat-square&logo=swift&logoColor=white)](https://swift.org)
+[![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)](https://pytorch.org)
+[![Vite](https://img.shields.io/badge/Vite_5.4-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vitejs.dev)
+
+</div>
 
 ---
 
 <p align="center">
-  <img width="1667" height="943" alt="Portfolio Preview" src="https://github.com/user-attachments/assets/b6a9022d-ff24-41e6-ae3f-c97c8c7eafb5" />
+  <img width="100%" alt="Portfolio UI Showcase" src="https://github.com/user-attachments/assets/b6a9022d-ff24-41e6-ae3f-c97c8c7eafb5" style="border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.8);" />
 </p>
 
 ---
 
-## ✨ Immersive Interactive Features
+## 🛰️ System Architecture & Interactive Modules
 
-This portfolio is an interactive engineering playground showcasing deep technical capabilities:
+This portfolio operates as an interactive computing dashboard. Each module is engineered from scratch for tactile feedback, extreme optimization, and visual fidelity:
 
-*   **🎮 3D Rigid-Body Physics Skill Wall (`TechStack.tsx`)**: An interactive 3D physics simulation using `@react-three/rapier` and `N8AO` post-processing. Technologies fall as interactive spherical capsules that collide, roll, and respond to gravity.
-*   **📊 Live GitHub Contribution Grid (`GithubHeatmap.tsx`)**: Custom-rendered dark matrix tracking **3,000+ contributions**, **23 public repositories**, and a **134-day longest streak** with GSAP scroll and cell reveal animations.
-*   **💻 Interactive CLI Terminal (`AskYash.tsx`)**: A simulated command-line interface mimicking a booting systems kernel (`yash.exe`). Allows users to query specific topics (`current_focus`, `why_ai`, `featured_build`) via interactive command strings.
-*   **👤 Custom Decrypted 3D Avatar Engine (`Character/Scene.tsx`)**: Renders a 3D model with custom real-time mouse tracking (the model's head follows the cursor), dynamic lighting, and custom decryption/loading optimizations.
-*   **🧪 The Research Lab (`ResearchLab.tsx`)**: Interactive experiment cards with cursor-responsive hover glow tracking and custom modal popups showcasing classical Computer Vision and Machine Learning experiments.
-*   **✨ Slick Motion Architecture**: High-fidelity scroll animations powered by GSAP, split-text letters reveals, and custom cursor trackers.
+```
+┌────────────────────────────────────────────────────────────────────────┐
+│                        YASH RAJ SHARAN PORTFOLIO                       │
+├───────────────────────────────────┬────────────────────────────────────┤
+│  👤 3D Avatar Kernel              │  🎮 3D Rigid-Body Physics Wall     │
+│  • Head Cursor Raycasting         │  • Rapier 3D WASM Engine           │
+│  • Dynamic Specular Shaders       │  • Gravity Collisions & N8AO       │
+├───────────────────────────────────┼────────────────────────────────────┤
+│  💻 yash.exe CLI Terminal         │  📊 Live Contribution Matrix       │
+│  • Simulated Kernel Boot          │  • 3,000+ GitHub Graph Commits     │
+│  • Realtime Interactive Querying  │  • Open Source PR Stream           │
+├───────────────────────────────────┼────────────────────────────────────┤
+│  💼 Role Dispatcher Hub           │  🎧 Audio Engine & HUD             │
+│  • Web Audio Procedural Sound     │  • Post Malone - Circles Stream    │
+│  • Web3Forms Secure Gateway       │  • Synced Genius Lyrics Engine     │
+└───────────────────────────────────┴────────────────────────────────────┘
+```
 
----
+### 🔹 1. Decrypted 3D Character Model (`src/components/Character/Scene.tsx`)
+- Renders an optimized 3D avatar with real-time vector raycasting where the character's head and eyes smoothly track cursor position across viewport space.
+- Configured with custom lighting rigs, ambient occlusion, and progressive decryption state loaders.
 
-## 🛠️ Tech Stack & Lab Architecture
+### 🔹 2. 3D Rigid-Body Physics Skill Matrix (`src/components/TechStack.tsx`)
+- Powered by `@react-three/rapier` (WebAssembly-based physics).
+- Tech capsules spawn with randomized restitution and mass, tumbling under simulated physical gravity, colliding with dynamic boundary colliders, and reacting to cursor drag impulses with `N8AO` screen-space ambient occlusion.
 
-### **Core Frontend & Graphics**
-*   **Framework**: React 18 & TypeScript (compiled with Vite)
-*   **3D Render Engine**: Three.js via `@react-three/fiber` & `@react-three/drei`
-*   **Physics Engine**: `@react-three/rapier` (high-performance rigid-body physics)
-*   **Post-processing**: `@react-three/postprocessing` (Ambient Occlusion via `N8AO`)
-*   **Animations**: GreenSock (GSAP) & `@gsap/react` for scroll triggers and timelines
+### 🔹 3. Sub-System CLI Console: `yash.exe` (`src/components/AskYash.tsx`)
+- An interactive retro-futuristic terminal emulator replicating a raw Unix/DOS shell.
+- Supports commands: `help`, `skills`, `projects`, `current_focus`, `why_ai`, `contact`, and `clear` with typing audio synthesis.
 
-### **Mobile & Native Systems**
-*   Swift 5.9, SwiftUI, Xcode, iOS SDK, ScreenCaptureKit, VideoToolbox, Network.framework, CoreGraphics, Flutter, Dart, Material 3
+### 🔹 4. Live Open-Source Contribution Heatmap (`src/components/GithubHeatmap.tsx`)
+- Custom-styled dark matrix displaying **3,000+ contributions**, **23+ public repositories**, and a **134-day streak**.
+- Highlights merged upstream contributions to notable open-source ecosystems (e.g. **Refine**, **Helm**, **IBM**).
 
-### **AI & Machine Learning Focus**
-*   PyTorch, TensorFlow, OpenCV, LangChain, OpenAI API, HuggingFace, YOLOv8, ResUNet, EfficientNet-B0, RAG Pipelines, Fine-Tuning
+### 🔹 5. Audio Synthesis & Genius Lyrics Sync (`src/components/Navbar.tsx`)
+- Persistent floating spatial music HUD streaming *Circles* with synchronized real-time lyrics telemetry and audio spectrum animations.
 
-### **Backend & Cloud Infrastructure**
-*   Node.js, Express, FastAPI, Next.js, PostgreSQL, MongoDB, MySQL, DuckDB, WebAssembly, Prisma, Docker, AWS
-
----
-
-## 📂 Featured Projects Showcase
-
-The portfolio features 9 active engineering builds + 1 upcoming Machine Learning project:
-
-1.  **Ticket Booking System (Showpass)** 🎫  
-    *Full-Stack Booking Platform & Database Architecture*  
-    *Tech*: React, TypeScript, Node.js, Express, MySQL  
-    *Links*: [GitHub Repo](https://github.com/omen18/Ticket-Booking-System) | [Live Demo](https://show-pass-lemon.vercel.app/)
-
-2.  **IslandPet** 🏝️  
-    *Gamified Focus Companion iOS App*  
-    *Tech*: Swift, SwiftUI, iOS SDK, Dynamic Island Integration  
-    *Links*: [GitHub Repo](https://github.com/omen18/IslandPet)
-
-3.  **AI Study Companion** 📚  
-    *LLM Personalized Learning Platform*  
-    *Tech*: React, FastAPI, OpenAI API, LLM Agents  
-    *Links*: [GitHub Repo](https://github.com/omen18/ai-study-companion)
-
-4.  **AmritKrishi 2.0** 🌾  
-    *Agri-tech Platform for Crop Insights & Analytics*  
-    *Tech*: React, Node.js, Express, PostgreSQL, Crop Analytics  
-    *Links*: [GitHub Repo](https://github.com/omen18/amritkrishi2.0/tree/master)
-
-5.  **AI Delivery Route Planner** 🚚  
-    *Interactive 3D Graph Optimization & Pathfinding*  
-    *Tech*: React, Three.js, Graph Theory, A* / Dijkstra Search  
-    *Links*: [GitHub Repo](https://github.com/omen18/AI-delivery-route-planner) | [Live Demo](https://ai-delivery-route-planner.vercel.app/)
-
-6.  **CutisAI** 🔬  
-    *Clinical AI Dermatology & Skin Lesion Screening Engine*  
-    *Tech*: ResUNet, EfficientNet-B0, React, ONNX, ISIC Dataset, Clinical AI  
-    *Links*: [GitHub Repo](https://github.com/omen18/CutisAI.git)
-
-7.  **CodeStride** 🏃  
-    *Open-Source Developer Productivity & Goal Tracking Dashboard*  
-    *Tech*: React, Next.js, GitHub OAuth API, Contribution Heatmaps, PR Velocity  
-    *Links*: [GitHub Repo](https://github.com/omen18/CodeStride.git)
-
-8.  **MacDeck** 🖥️  
-    *iOS and macOS App — Low-Latency Remote Desktop & Element-Snapping Controller*  
-    *Tech*: Swift 5.9, SwiftUI, ScreenCaptureKit, VideoToolbox, Network.framework, CoreGraphics  
-    *Links*: [GitHub Repo](https://github.com/omen18/MacDeck)
-
-9.  **Musify** 🎵  
-    *Flutter Music Streaming & Offline Audio Player with Lyrics & SponsorBlock*  
-    *Tech*: Flutter, Dart, Material 3, YouTube API, Offline Audio Cache, SponsorBlock  
-    *Links*: [GitHub Repo](https://github.com/omen18/Musify.git)
-
-10. **Coming Soon (#10)** 🤖  
-    *Machine Learning & Intelligent Autonomous Systems Engine*
+### 🔹 6. Open To Work Dispatcher & Sound Engine (`src/components/OpenTo.tsx`)
+- Interactive role switcher across **Internships**, **AI Research**, **Collaborations**, and **Open Source**.
+- Integrated with custom **Web Audio API** procedural oscillators generating instant acoustic feedback on hover, select, and modal invocation.
 
 ---
 
-## 🚀 Local Installation & Setup
+## 🗂️ Engineering Builds Showcase
 
-Want to run the laboratory locally on your machine? Follow these commands:
+<div align="center">
 
-### **1. Clone the repository**
+| Project | Domain / Type | Core Stack | Repository / Demo |
+|:---|:---|:---|:---|
+| **🎫 Showpass** | Full-Stack Platform | React • Node.js • Express • MySQL | [![GitHub](https://img.shields.io/badge/Repo-Showpass-blue?style=flat-square&logo=github)](https://github.com/omen18/Ticket-Booking-System) [![Demo](https://img.shields.io/badge/Demo-Live-green?style=flat-square)](https://show-pass-lemon.vercel.app/) |
+| **🔬 CutisAI** | Clinical AI Vision | ResUNet • EfficientNet • ONNX • React | [![GitHub](https://img.shields.io/badge/Repo-CutisAI-purple?style=flat-square&logo=github)](https://github.com/omen18/CutisAI.git) |
+| **🖥️ MacDeck** | iOS/macOS Systems | Swift 5.9 • ScreenCaptureKit • CoreGraphics | [![GitHub](https://img.shields.io/badge/Repo-MacDeck-orange?style=flat-square&logo=swift)](https://github.com/omen18/MacDeck) |
+| **🏝️ IslandPet** | iOS Dynamic Island | Swift • SwiftUI • ActivityKit • WidgetKit | [![GitHub](https://img.shields.io/badge/Repo-IslandPet-red?style=flat-square&logo=apple)](https://github.com/omen18/IslandPet) |
+| **📚 AI Study Companion** | GenAI / Agents | FastAPI • LangChain • OpenAI • React | [![GitHub](https://img.shields.io/badge/Repo-AI--Study-yellow?style=flat-square&logo=python)](https://github.com/omen18/ai-study-companion) |
+| **🌾 AmritKrishi 2.0** | AgriTech Full-Stack | React • Node.js • PostgreSQL • Express | [![GitHub](https://img.shields.io/badge/Repo-AmritKrishi-green?style=flat-square&logo=postgresql)](https://github.com/omen18/amritkrishi2.0/tree/master) |
+| **🚚 AI Route Planner** | 3D Graph Optimization | Three.js • A*/Dijkstra • React | [![GitHub](https://img.shields.io/badge/Repo-Route--Planner-blue?style=flat-square&logo=threedotjs)](https://github.com/omen18/AI-delivery-route-planner) [![Demo](https://img.shields.io/badge/Demo-Live-green?style=flat-square)](https://ai-delivery-route-planner.vercel.app/) |
+| **🏃 CodeStride** | Developer Analytics | Next.js • GitHub OAuth • Contribution APIs | [![GitHub](https://img.shields.io/badge/Repo-CodeStride-black?style=flat-square&logo=nextdotjs)](https://github.com/omen18/CodeStride.git) |
+| **🎵 Musify** | Mobile Audio Streamer | Flutter • Dart • Material 3 • YouTube API | [![GitHub](https://img.shields.io/badge/Repo-Musify-cyan?style=flat-square&logo=flutter)](https://github.com/omen18/Musify.git) |
+
+</div>
+
+---
+
+## 🛠️ Technology & Skill Matrix
+
+```
+[ FRONTEND & GRAPHICS ] ─── React 18 ── TypeScript ── Three.js ── R3F ── Rapier 3D ── GSAP ── Tailwind
+[ AI & MACHINE LEARNING] ── PyTorch ── TensorFlow ── OpenCV ── LangChain ── ResUNet ── YOLOv8 ── MLOps
+[ SYSTEMS & NATIVE APPS] ── Swift 5.9 ── SwiftUI ── ScreenCaptureKit ── Flutter ── Dart ── C++
+[ BACKEND & DATABASES  ] ── Node.js ── FastAPI ── Express ── Next.js ── PostgreSQL ── MySQL ── MongoDB
+[ CLOUD & DEVOPS       ] ── Docker ── AWS ── Git / GitHub Actions ── Vercel ── WebAssembly (WASM)
+```
+
+---
+
+## ⚡ Quickstart & Local Setup
+
+Deploy and test the laboratory locally on your workstation:
+
 ```bash
+# 1. Clone repository
 git clone https://github.com/omen18/Yash-Portfolio.git
+
+# 2. Enter workspace
 cd Yash-Portfolio
-```
 
-### **2. Install dependencies**
-```bash
+# 3. Install dependencies
 npm install
-```
 
-### **3. Run the development server**
-```bash
+# 4. Launch Vite development engine
 npm run dev
 ```
 
----
-
-## ⚠️ Important License & Usage Notices
-
-### **GSAP Trial License Warning**
-This project uses trial versions of **GSAP Club plugins** (`gsap-trial`). 
-*   These plugins are only intended for local learning and evaluation.
-*   They **cannot** be deployed to production or used for public hosting. 
-*   For official production deployment, check out [GSAP Installation Docs](https://gsap.com/docs/v3/Installation/).
-
-### **Design & Content Reuse**
-> [!IMPORTANT]  
-> This project is shared strictly for learning and inspiration.
-> Please **do NOT**:
-> *   Clone or replicate the full website structure/design.
-> *   Repost it with minor text/content changes.
-> *   Use it for commercial or client projects.
-> *   Publish tutorials using this exact source code.
+Your server will spin up locally at `http://localhost:5173`.
 
 ---
 
-## 📄 License
+## 📜 Motion Architecture & Licensing Protocols
 
-This project is licensed under the **Personal Portfolio License (PPL) v1.0**. See the [LICENSE](LICENSE) file for details.
+### 🎬 Animation & GSAP Motion
+- UI transitions and scroll velocity dynamics are driven by **GreenSock Animation Platform (GSAP)** and `@gsap/react`.
+- *Note:* If utilizing GSAP Club plugins (such as `gsap-trial`), remember that trial builds are strictly designated for local evaluation and research. For official production deployments requiring Club plugins, reference the [GSAP Installation Documentation](https://gsap.com/docs/v3/Installation/).
 
-Developed with 💻 and ☕ by [Yash Raj Sharan](https://github.com/omen18).
+### 🔒 Intellectual Property & Fair Use
+> [!IMPORTANT]
+> The source code in this repository represents custom design, visual assets, 3D layouts, and engineering logic.
+> - Feel free to inspect, learn, and draw inspiration for your own projects.
+> - Direct full cloning, uncredited mirroring, or commercial redistribution without prior written consent is prohibited.
+
+---
+
+<div align="center">
+
+```
+  ┌────────────────────────────────────────────────────────┐
+  │  Designed & Engineered by YASH RAJ SHARAN © 2026       │
+  │  Full-Stack Developer • AI Engineer • Software Dev     │
+  └────────────────────────────────────────────────────────┘
+```
+
+[![Connect on LinkedIn](https://img.shields.io/badge/LinkedIn-Yash_Raj_Sharan-0A66C2?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/yashrajsharan)
+[![Send Email](https://img.shields.io/badge/Email-Contact_Me-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:yashraj10messi@gmail.com)
+[![GitHub](https://img.shields.io/badge/GitHub-omen18-181717?style=for-the-badge&logo=github)](https://github.com/omen18)
+
+</div>
