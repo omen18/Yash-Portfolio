@@ -9,7 +9,7 @@ __   __     _     ____   _   _    ____      _         _
   | |    / ___ \  ___) ||  _  |  |  _ <  / ___ \ | |_| |
   |_|   /_/   \_\|____/ |_| |_|  |_| \_\/_/   \_\ \___/ 
 
-          [ NEXUS // SPATIAL 3D COMPUTING & AI LAB ]
+        
 ```
 
 [![Live Demo](https://img.shields.io/badge/LIVE%20DEMO-yashrajsharan.dev-00f0ff?style=for-the-badge&logo=vercel&logoColor=black)](https://yashrajsharan.dev)
