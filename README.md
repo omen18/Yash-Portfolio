@@ -83,6 +83,8 @@ This portfolio operates as an interactive computing dashboard. Each module is en
 <div align="center">
   <img src="./public/badges/gssoc-2026-ai-agents.png" width="90" alt="GSSoC AI Agents Track" title="GSSoC 2026 AI Agents Track" />
   &nbsp;&nbsp;
+  <img src="./public/badges/gssoc-2026-hybrid.png" width="90" alt="GSSoC Hybrid Contributor" title="GSSoC 2026 Hybrid Contributor" />
+  &nbsp;&nbsp;
   <img src="./public/badges/gssoc-2026-contributor.png" width="90" alt="GSSoC Contributor" title="GSSoC 2026 Contributor" />
   &nbsp;&nbsp;
   <img src="./public/badges/gssoc-2026-collaborator.png" width="90" alt="GSSoC Collaborator" title="GSSoC 2026 Collaborator" />
