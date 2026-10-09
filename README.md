@@ -78,7 +78,19 @@ This portfolio operates as an interactive computing dashboard. Each module is en
 
 ### 🔹 4. Live Open-Source Contribution Heatmap (`src/components/GithubHeatmap.tsx`)
 - Custom-styled dark matrix displaying **3,000+ contributions**, **23+ public repositories**, and a **134-day streak**.
-- Highlights merged upstream contributions to notable open-source ecosystems (e.g. **Refine**, **Helm**, **IBM**).
+- Highlights merged upstream contributions to notable open-source ecosystems (e.g. **Refine**, **Helm**, **IBM**, and **GSSoC 2026**).
+
+<div align="center">
+  <img src="./public/badges/gssoc-2026-ai-agents.png" width="90" alt="GSSoC AI Agents Track" title="GSSoC 2026 AI Agents Track" />
+  &nbsp;&nbsp;
+  <img src="./public/badges/gssoc-2026-contributor.png" width="90" alt="GSSoC Contributor" title="GSSoC 2026 Contributor" />
+  &nbsp;&nbsp;
+  <img src="./public/badges/gssoc-2026-collaborator.png" width="90" alt="GSSoC Collaborator" title="GSSoC 2026 Collaborator" />
+  &nbsp;&nbsp;
+  <img src="./public/badges/cisco-networking-basics.png" width="80" alt="Cisco Networking Basics" title="Cisco Verified: Networking Basics" />
+  &nbsp;&nbsp;
+  <img src="./public/badges/cisco-networking-devices-config.png" width="80" alt="Cisco Networking Devices" title="Cisco Verified: Networking Devices & Initial Configuration" />
+</div>
 
 ### 🔹 5. Audio Synthesis & Genius Lyrics Sync (`src/components/Navbar.tsx`)
 - Persistent floating spatial music HUD streaming *Circles* with synchronized real-time lyrics telemetry and audio spectrum animations.
