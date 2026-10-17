@@ -151,7 +151,8 @@ const projectsList: Project[] = [
       "/images/neuravoice_brain.png",
       "/images/neuravoice_report.png"
     ],
-    link: "https://github.com/omen18/NeuraVoice"
+    link: "https://github.com/omen18/NeuraVoice",
+    liveLink: "https://neura-voice.vercel.app/"
   }
 ];
 
