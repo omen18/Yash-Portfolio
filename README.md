@@ -118,6 +118,7 @@ This portfolio operates as an interactive computing dashboard. Each module is en
 | **🚚 AI Route Planner** | 3D Graph Optimization | Three.js • A*/Dijkstra • React | [![GitHub](https://img.shields.io/badge/Repo-Route--Planner-blue?style=flat-square&logo=threedotjs)](https://github.com/omen18/AI-delivery-route-planner) [![Demo](https://img.shields.io/badge/Demo-Live-green?style=flat-square)](https://ai-delivery-route-planner.vercel.app/) |
 | **🏃 CodeStride** | Developer Analytics | Next.js • GitHub OAuth • Contribution APIs | [![GitHub](https://img.shields.io/badge/Repo-CodeStride-black?style=flat-square&logo=nextdotjs)](https://github.com/omen18/CodeStride.git) |
 | **🎵 Musify** | Mobile Audio Streamer | Flutter • Dart • Material 3 • YouTube API | [![GitHub](https://img.shields.io/badge/Repo-Musify-cyan?style=flat-square&logo=flutter)](https://github.com/omen18/Musify.git) |
+| **🧠 NeuraVoice** | Clinical Voice Biomarker AI | FastAPI • Whisper • Librosa • spaCy • React | [![GitHub](https://img.shields.io/badge/Repo-NeuraVoice-pink?style=flat-square&logo=github)](https://github.com/omen18/NeuraVoice) |
 
 </div>
 

@@ -138,6 +138,20 @@ const projectsList: Project[] = [
       "/images/musify_album.png"
     ],
     link: "https://github.com/omen18/Musify.git"
+  },
+  {
+    title: "NeuraVoice",
+    subtitle: "Multi-Modal Voice Biomarker AI Pipeline for Early Cognitive & Neurological Detection",
+    category: "Clinical Voice AI & Neurological Biomarkers",
+    tools: "React 18, FastAPI, OpenAI Whisper, Librosa, spaCy, MiniLM-L6-v2, Three.js, PostgreSQL",
+    images: [
+      "/images/neuravoice_architecture.png",
+      "/images/neuravoice_ai_ml.png",
+      "/images/neuravoice_frontend_2.png",
+      "/images/neuravoice_ml_pipeline.png",
+      "/images/neuravoice_frontend_1.png"
+    ],
+    link: "https://github.com/omen18/NeuraVoice"
   }
 ];
 
