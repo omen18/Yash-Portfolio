@@ -126,18 +126,19 @@ const projectsList: Project[] = [
     link: "https://github.com/omen18/MacDeck"
   },
   {
-    title: "Musify",
-    subtitle: "Flutter Music Streaming & Offline Audio Player with Lyrics & SponsorBlock",
-    category: "Mobile & Audio Engineering",
-    tools: "Flutter, Dart, Material 3, YouTube API, Offline Audio Cache, SponsorBlock",
+    title: "OmniGatewayAPI",
+    subtitle: "High-Speed Go AI Proxy Multiplexer & Multi-Provider Protocol Translator",
+    category: "Distributed AI Systems & Systems Engineering",
+    tools: "Go, Gin Multiplexer, OpenAI / Claude / Gemini APIs, uTLS Spoofing, Round-Robin Pooling, Chrome MV3",
     images: [
-      "/images/musify_banner.png",
-      "/images/musify_home.png",
-      "/images/musify_player.png",
-      "/images/musify_library.png",
-      "/images/musify_album.png"
+      "/images/omnigateway_landing.png",
+      "/images/omnigateway_architecture.png",
+      "/images/omnigateway_studio.png",
+      "/images/omnigateway_config.png",
+      "/images/omnigateway_extension.png"
     ],
-    link: "https://github.com/omen18/Musify.git"
+    link: "https://github.com/omen18/OmniGatewayAPI",
+    liveLink: "https://omni-gateway-api.vercel.app"
   },
   {
     title: "NeuraVoice",
