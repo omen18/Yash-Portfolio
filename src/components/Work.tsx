@@ -136,7 +136,9 @@ const projectsList: Project[] = [
       "/images/omnigateway_studio.png",
       "/images/omnigateway_config.png",
       "/images/omnigateway_extension.png",
-      "/images/omnigateway_management.png"
+      "/images/omnigateway_management.png",
+      "/images/omnigateway_console_dashboard.png",
+      "/images/omnigateway_providers.png"
     ],
     link: "https://github.com/omen18/OmniGatewayAPI",
     liveLink: "https://omni-gateway-api.vercel.app"
